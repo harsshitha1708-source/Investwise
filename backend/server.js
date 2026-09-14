@@ -151,6 +151,8 @@ app.get("/api/health", (req, res) => {
 // START SERVER
 // ==========================================
 
-app.listen(3000, () => {
-    console.log("InvestWise server running on http://localhost:3000");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`InvestWise server running on port ${PORT}`);
 });
