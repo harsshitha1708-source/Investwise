@@ -1,0 +1,1796 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>InvestWise - Dashboard</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            color: #10194a;
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 50%,
+                    rgba(100, 92, 240, .14),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 90% 70%,
+                    rgba(115, 65, 235, .14),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f8f9ff,
+                    #eef1ff
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            inset: 78px 0 0;
+
+            pointer-events: none;
+
+            opacity: .45;
+
+            background-image:
+                linear-gradient(
+                    rgba(99,102,241,.045) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(99,102,241,.045) 1px,
+                    transparent 1px
+                );
+
+            background-size: 55px 55px;
+
+            z-index: 0;
+        }
+
+
+        /* ============================
+           NAVBAR
+        ============================ */
+
+        .navbar {
+
+            height: 78px;
+
+            padding: 0 36px;
+
+            background:
+                rgba(255,255,255,.94);
+
+            backdrop-filter:
+                blur(16px);
+
+            border-bottom:
+                1px solid #e5e7f2;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            position: relative;
+
+            z-index: 10;
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .logo-icon {
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 11px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            font-size: 21px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4d78ee,
+                    #7044e9
+                );
+
+            box-shadow:
+                0 7px 18px
+                rgba(80,70,220,.2);
+        }
+
+
+        .logo h2 {
+
+            color: #10194a;
+
+            font-size: 24px;
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+
+            list-style: none;
+        }
+
+
+        .nav-links a {
+
+            color: #10194a;
+
+            text-decoration: none;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            padding: 10px 13px;
+
+            border-radius: 25px;
+
+            transition: .25s;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #604eea;
+
+            background: #f1efff;
+        }
+
+
+        .nav-links .active {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6268ed,
+                    #7546eb
+                );
+
+            box-shadow:
+                0 8px 20px
+                rgba(95,75,225,.23);
+        }
+
+
+        /* ============================
+           MAIN
+        ============================ */
+
+        .dashboard {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 42px 25px 60px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        /* ============================
+           WELCOME
+        ============================ */
+
+        .welcome {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 28px;
+        }
+
+
+        .welcome h1 {
+
+            font-size: 38px;
+
+            letter-spacing: -.8px;
+
+            color: #10194a;
+
+            margin-bottom: 7px;
+        }
+
+
+        .welcome p {
+
+            color: #63709a;
+
+            font-size: 15px;
+        }
+
+
+        .date-badge {
+
+            padding: 12px 17px;
+
+            border-radius: 25px;
+
+            background:
+                rgba(255,255,255,.9);
+
+            border:
+                1px solid #e1e2f2;
+
+            color: #5b668c;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+
+        /* ============================
+           STAT CARDS
+        ============================ */
+
+        .stats-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .stat-card {
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid #e1e2f2;
+
+            border-radius: 19px;
+
+            padding: 21px;
+
+            box-shadow:
+                0 12px 32px
+                rgba(55,60,120,.09);
+
+            transition: .25s;
+        }
+
+
+        .stat-card:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 17px 35px
+                rgba(55,60,120,.14);
+        }
+
+
+        .stat-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 13px;
+        }
+
+
+        .stat-title {
+
+            color: #68739a;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: .8px;
+        }
+
+
+        .stat-icon {
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #efedff;
+
+            font-size: 19px;
+        }
+
+
+        .stat-card:nth-child(2)
+        .stat-icon {
+
+            background: #eef6ff;
+        }
+
+
+        .stat-card:nth-child(3)
+        .stat-icon {
+
+            background: #e8faf4;
+        }
+
+
+        .stat-card:nth-child(4)
+        .stat-icon {
+
+            background: #fff1e7;
+        }
+
+
+        .stat-card h2 {
+
+            font-size: 25px;
+
+            color: #10194a;
+        }
+
+
+        .stat-card p {
+
+            margin-top: 6px;
+
+            color: #929bb8;
+
+            font-size: 11px;
+        }
+
+
+        .positive {
+
+            color: #12a97b !important;
+
+            font-weight: 800;
+        }
+
+
+        /* ============================
+           MARKET OVERVIEW
+        ============================ */
+
+        .section-title {
+
+            font-size: 21px;
+
+            color: #10194a;
+
+            margin-bottom: 17px;
+        }
+
+
+        .market-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 18px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .market-card {
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid #e1e2f2;
+
+            border-radius: 18px;
+
+            padding: 21px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(55,60,120,.08);
+
+            transition: .25s;
+        }
+
+
+        .market-card:hover {
+
+            transform:
+                translateY(-3px);
+        }
+
+
+        .market-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 16px;
+        }
+
+
+        .market-name {
+
+            font-weight: 800;
+
+            color: #10194a;
+
+            font-size: 14px;
+        }
+
+
+        .market-symbol {
+
+            color: #929bb8;
+
+            font-size: 10px;
+        }
+
+
+        .market-price {
+
+            font-size: 23px;
+
+            font-weight: 800;
+
+            color: #10194a;
+
+            margin-bottom: 6px;
+        }
+
+
+        .market-change {
+
+            color: #12a97b;
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        /* ============================
+           QUICK ACTIONS
+        ============================ */
+
+        .section-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 17px;
+        }
+
+
+        .section-header p {
+
+            color: #8992ad;
+
+            font-size: 12px;
+        }
+
+
+        .actions-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 18px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .action-card {
+
+            text-decoration: none;
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid #e1e2f2;
+
+            border-radius: 18px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(55,60,120,.08);
+
+            transition: .25s;
+        }
+
+
+        .action-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            box-shadow:
+                0 17px 35px
+                rgba(55,60,120,.14);
+
+            border-color:
+                #d7d2ff;
+        }
+
+
+        .action-icon {
+
+            width: 48px;
+            height: 48px;
+
+            border-radius: 14px;
+
+            background: #efedff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 23px;
+
+            margin-bottom: 16px;
+        }
+
+
+        .action-card:nth-child(2)
+        .action-icon {
+
+            background: #eef6ff;
+        }
+
+
+        .action-card:nth-child(3)
+        .action-icon {
+
+            background: #e8faf4;
+        }
+
+
+        .action-card:nth-child(4)
+        .action-icon {
+
+            background: #fff1e7;
+        }
+
+
+        .action-card h3 {
+
+            color: #10194a;
+
+            font-size: 16px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .action-card p {
+
+            color: #8992ad;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+        }
+
+
+        /* ============================
+           NEWS PREVIEW
+        ============================ */
+
+        .news-section {
+
+            background:
+                rgba(255,255,255,.92);
+
+            border:
+                1px solid #e1e2f2;
+
+            border-radius: 20px;
+
+            padding: 24px;
+
+            box-shadow:
+                0 12px 30px
+                rgba(55,60,120,.08);
+        }
+
+
+        .news-list {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 15px;
+        }
+
+
+        .news-card {
+
+            padding: 17px;
+
+            border-radius: 14px;
+
+            background: #f8f8ff;
+
+            border:
+                1px solid #ececf7;
+
+            transition: .2s;
+        }
+
+
+        .news-card:hover {
+
+            background: #f3f1ff;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+        .news-category {
+
+            display: inline-block;
+
+            padding: 5px 9px;
+
+            border-radius: 20px;
+
+            background: #ebe8ff;
+
+            color: #6557db;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            margin-bottom: 10px;
+        }
+
+
+        .news-card h3 {
+
+            color: #10194a;
+
+            font-size: 14px;
+
+            line-height: 1.4;
+
+            margin-bottom: 7px;
+        }
+
+
+        .news-card p {
+
+            color: #8992ad;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        .news-link {
+
+            display: inline-block;
+
+            margin-top: 10px;
+
+            color: #6658df;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            text-decoration: none;
+        }
+
+
+        /* ============================
+           RESPONSIVE
+        ============================ */
+
+        @media(max-width:1000px) {
+
+            .stats-grid {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+
+            .actions-grid {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+
+            .nav-links a {
+
+                padding:
+                    9px 9px;
+
+                font-size: 12px;
+            }
+
+        }
+
+
+        @media(max-width:750px) {
+
+            .navbar {
+
+                padding: 0 18px;
+            }
+
+
+            .nav-links {
+
+                display: none;
+            }
+
+
+            .dashboard {
+
+                padding:
+                    30px 15px 45px;
+            }
+
+
+            .welcome {
+
+                flex-direction: column;
+
+                align-items:
+                    flex-start;
+
+                gap: 15px;
+            }
+
+
+            .welcome h1 {
+
+                font-size: 30px;
+            }
+
+
+            .market-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .news-list {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media(max-width:500px) {
+
+            .stats-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .actions-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ============================
+         NAVBAR
+    ============================ -->
+
+    <nav class="navbar">
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+
+                📈
+
+            </div>
+
+
+            <h2>
+
+                InvestWise
+
+            </h2>
+
+        </div>
+
+
+
+        <ul class="nav-links">
+
+
+            <li>
+
+                <a
+                    href="dashboard.html"
+                    class="active">
+
+                    Dashboard
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="ai.html">
+
+                    AI Advisor
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="papertrading.html">
+
+                    Paper Trading
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="portfolio.html">
+
+                    Portfolio
+
+                </a>
+
+            </li>
+
+
+            <li>
+
+                <a href="marketnews.html">
+
+                    📰 Market News
+
+                </a>
+
+            </li>
+
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- ============================
+         DASHBOARD
+    ============================ -->
+
+    <main class="dashboard">
+
+
+        <!-- WELCOME -->
+
+        <section class="welcome">
+
+
+            <div>
+
+                <h1>
+
+                    Welcome to InvestWise 👋
+
+                </h1>
+
+
+                <p>
+
+                    Your intelligent virtual investment
+                    learning dashboard.
+
+                </p>
+
+            </div>
+
+
+            <div class="date-badge">
+
+                📅 Today's Market
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ============================
+             STATS
+        ============================ -->
+
+        <section class="stats-grid">
+
+
+            <div class="stat-card">
+
+
+                <div class="stat-top">
+
+                    <span class="stat-title">
+
+                        VIRTUAL BALANCE
+
+                    </span>
+
+
+                    <div class="stat-icon">
+
+                        💰
+
+                    </div>
+
+                </div>
+
+
+                <h2 id="balance">
+
+                    ₹10,00,000
+
+                </h2>
+
+
+                <p>
+
+                    Available for trading
+
+                </p>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+
+                <div class="stat-top">
+
+                    <span class="stat-title">
+
+                        PORTFOLIO VALUE
+
+                    </span>
+
+
+                    <div class="stat-icon">
+
+                        💼
+
+                    </div>
+
+                </div>
+
+
+                <h2 id="portfolioValue">
+
+                    ₹0
+
+                </h2>
+
+
+                <p>
+
+                    Current holdings
+
+                </p>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+
+                <div class="stat-top">
+
+                    <span class="stat-title">
+
+                        PROFIT / LOSS
+
+                    </span>
+
+
+                    <div class="stat-icon">
+
+                        📈
+
+                    </div>
+
+                </div>
+
+
+                <h2
+                    id="profitLoss"
+                    class="positive">
+
+                    ₹0
+
+                </h2>
+
+
+                <p>
+
+                    Portfolio performance
+
+                </p>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+
+                <div class="stat-top">
+
+                    <span class="stat-title">
+
+                        HOLDINGS
+
+                    </span>
+
+
+                    <div class="stat-icon">
+
+                        📊
+
+                    </div>
+
+                </div>
+
+
+                <h2 id="holdings">
+
+                    0
+
+                </h2>
+
+
+                <p>
+
+                    Different stocks
+
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ============================
+             MARKET OVERVIEW
+        ============================ -->
+
+        <section>
+
+
+            <h2 class="section-title">
+
+                📊 Market Overview
+
+            </h2>
+
+
+            <div class="market-grid">
+
+
+                <div class="market-card">
+
+
+                    <div class="market-header">
+
+                        <div>
+
+                            <div class="market-name">
+
+                                NIFTY 50
+
+                            </div>
+
+                            <div class="market-symbol">
+
+                                NSE
+
+                            </div>
+
+                        </div>
+
+
+                        <span>
+
+                            🇮🇳
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="market-price">
+
+                        24,850.15
+
+                    </div>
+
+
+                    <div class="market-change">
+
+                        ▲ +0.72%
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="market-card">
+
+
+                    <div class="market-header">
+
+                        <div>
+
+                            <div class="market-name">
+
+                                SENSEX
+
+                            </div>
+
+                            <div class="market-symbol">
+
+                                BSE
+
+                            </div>
+
+                        </div>
+
+
+                        <span>
+
+                            📈
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="market-price">
+
+                        81,560.40
+
+                    </div>
+
+
+                    <div class="market-change">
+
+                        ▲ +0.58%
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="market-card">
+
+
+                    <div class="market-header">
+
+                        <div>
+
+                            <div class="market-name">
+
+                                BANK NIFTY
+
+                            </div>
+
+                            <div class="market-symbol">
+
+                                NSE
+
+                            </div>
+
+                        </div>
+
+
+                        <span>
+
+                            🏦
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="market-price">
+
+                        55,240.20
+
+                    </div>
+
+
+                    <div class="market-change">
+
+                        ▲ +0.41%
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================
+             QUICK ACTIONS
+        ============================ -->
+
+        <section>
+
+
+            <div class="section-header">
+
+                <h2 class="section-title">
+
+                    ⚡ Quick Actions
+
+                </h2>
+
+
+                <p>
+
+                    Explore InvestWise
+
+                </p>
+
+            </div>
+
+
+            <div class="actions-grid">
+
+
+                <!-- PAPER TRADING -->
+
+                <a
+                    href="papertrading.html"
+                    class="action-card">
+
+
+                    <div class="action-icon">
+
+                        📈
+
+                    </div>
+
+
+                    <h3>
+
+                        Start Trading
+
+                    </h3>
+
+
+                    <p>
+
+                        Buy and sell stocks using
+                        virtual money.
+
+                    </p>
+
+
+                </a>
+
+
+
+                <!-- PORTFOLIO -->
+
+                <a
+                    href="portfolio.html"
+                    class="action-card">
+
+
+                    <div class="action-icon">
+
+                        💼
+
+                    </div>
+
+
+                    <h3>
+
+                        View Portfolio
+
+                    </h3>
+
+
+                    <p>
+
+                        Track your holdings,
+                        investments and performance.
+
+                    </p>
+
+
+                </a>
+
+
+
+                <!-- AI -->
+
+                <a
+                    href="ai.html"
+                    class="action-card">
+
+
+                    <div class="action-icon">
+
+                        🤖
+
+                    </div>
+
+
+                    <h3>
+
+                        AI Advisor
+
+                    </h3>
+
+
+                    <p>
+
+                        Get educational stock
+                        suggestions based on your profile.
+
+                    </p>
+
+
+                </a>
+
+
+
+                <!-- MARKET NEWS -->
+
+                <a
+                    href="marketnews.html"
+                    class="action-card">
+
+
+                    <div class="action-icon">
+
+                        📰
+
+                    </div>
+
+
+                    <h3>
+
+                        Market News
+
+                    </h3>
+
+
+                    <p>
+
+                        Stay updated with the latest
+                        stock market news and events.
+
+                    </p>
+
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ============================
+             NEWS PREVIEW
+        ============================ -->
+
+        <section class="news-section">
+
+
+            <div class="section-header">
+
+
+                <h2 class="section-title">
+
+                    📰 Latest Market News
+
+                </h2>
+
+
+                <a
+                    href="marketnews.html"
+                    class="news-link">
+
+                    View All →
+
+                </a>
+
+            </div>
+
+
+
+            <div class="news-list">
+
+
+                <div class="news-card">
+
+
+                    <span class="news-category">
+
+                        MARKET
+
+                    </span>
+
+
+                    <h3>
+
+                        Indian markets continue
+                        to show strong activity
+
+                    </h3>
+
+
+                    <p>
+
+                        Follow the latest market
+                        movements and major index updates.
+
+                    </p>
+
+
+                    <a
+                        href="marketnews.html"
+                        class="news-link">
+
+                        Read More →
+
+                    </a>
+
+                </div>
+
+
+
+                <div class="news-card">
+
+
+                    <span class="news-category">
+
+                        IPO
+
+                    </span>
+
+
+                    <h3>
+
+                        New IPO opportunities
+                        attract investor attention
+
+                    </h3>
+
+
+                    <p>
+
+                        Explore upcoming public
+                        offerings and important IPO events.
+
+                    </p>
+
+
+                    <a
+                        href="marketnews.html"
+                        class="news-link">
+
+                        Read More →
+
+                    </a>
+
+                </div>
+
+
+
+                <div class="news-card">
+
+
+                    <span class="news-category">
+
+                        BUSINESS
+
+                    </span>
+
+
+                    <h3>
+
+                        Technology sector remains
+                        a key market focus
+
+                    </h3>
+
+
+                    <p>
+
+                        Keep track of important
+                        company and sector developments.
+
+                    </p>
+
+
+                    <a
+                        href="marketnews.html"
+                        class="news-link">
+
+                        Read More →
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ============================
+         JAVASCRIPT
+    ============================ -->
+
+    <script>
+
+
+        /* ============================
+           VIRTUAL BALANCE
+        ============================ */
+
+        let balance =
+
+            Number(
+                localStorage.getItem(
+                    "virtualBalance"
+                )
+            );
+
+
+        if (!balance) {
+
+            balance = 1000000;
+
+            localStorage.setItem(
+                "virtualBalance",
+                balance
+            );
+
+        }
+
+
+        document.getElementById(
+            "balance"
+        ).innerText =
+
+            "₹" +
+
+            balance.toLocaleString(
+                "en-IN"
+            );
+
+
+
+        /* ============================
+           PORTFOLIO
+        ============================ */
+
+        let portfolio =
+
+            JSON.parse(
+                localStorage.getItem(
+                    "portfolio"
+                )
+            ) || [];
+
+
+
+        /* ============================
+           TOTAL INVESTED
+        ============================ */
+
+        let totalInvested = 0;
+
+
+        portfolio.forEach(
+            function(stock) {
+
+                totalInvested +=
+
+                    Number(
+                        stock.investment
+                    ) || 0;
+
+            }
+        );
+
+
+
+        /* ============================
+           PORTFOLIO VALUE
+        ============================ */
+
+        document.getElementById(
+            "portfolioValue"
+        ).innerText =
+
+            "₹" +
+
+            totalInvested.toLocaleString(
+                "en-IN"
+            );
+
+
+
+        /* ============================
+           PROFIT / LOSS
+        ============================ */
+
+        document.getElementById(
+            "profitLoss"
+        ).innerText =
+
+            "₹0";
+
+
+
+        /* ============================
+           HOLDINGS
+        ============================ */
+
+        document.getElementById(
+            "holdings"
+        ).innerText =
+
+            portfolio.length;
+
+
+    </script>
+
+
+</body>
+
+</html>

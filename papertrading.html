@@ -1,0 +1,2734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>InvestWise - Paper Trading</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            min-height: 100vh;
+
+            color: #10194a;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(96, 82, 240, .14),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(120, 70, 235, .14),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f8f9ff,
+                    #eef1ff
+                );
+
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            height: 78px;
+
+            padding: 0 38px;
+
+            background:
+                rgba(255,255,255,.95);
+
+            backdrop-filter:
+                blur(15px);
+
+            border-bottom:
+                1px solid #e5e7f2;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .logo-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4d78ee,
+                    #7044e9
+                );
+
+            color: white;
+
+            font-size: 21px;
+
+        }
+
+
+        .logo h2 {
+
+            font-size: 23px;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 7px;
+
+            list-style: none;
+
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #10194a;
+
+            padding: 11px 15px;
+
+            border-radius: 25px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: .25s;
+
+        }
+
+
+        .nav-links a:hover {
+
+            background: #f0eeff;
+
+            color: #634ce7;
+
+        }
+
+
+        .nav-links .active {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6268ed,
+                    #7546eb
+                );
+
+            box-shadow:
+                0 8px 20px
+                rgba(95,75,225,.22);
+
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 42px 25px 60px;
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .page-header {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .page-header h1 {
+
+            font-size: 36px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .page-header p {
+
+            color: #68739a;
+
+            font-size: 14px;
+
+        }
+
+
+        .live-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 11px 16px;
+
+            border-radius: 25px;
+
+            background: white;
+
+            border:
+                1px solid #e1e2f2;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+        }
+
+
+        .green-dot {
+
+            width: 9px;
+
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #18b98a;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(24,185,138,.12);
+
+        }
+
+
+        /* =========================
+           BALANCE
+        ========================= */
+
+        .balance-card {
+
+            padding: 28px;
+
+            border-radius: 22px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #506fea,
+                    #7545e8
+                );
+
+            box-shadow:
+                0 18px 40px
+                rgba(83,73,220,.22);
+
+            margin-bottom: 25px;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+
+        .balance-card::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+
+            height: 230px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,.08);
+
+            right: -80px;
+
+            top: -100px;
+
+        }
+
+
+        .balance-label {
+
+            font-size: 12px;
+
+            opacity: .82;
+
+            font-weight: 700;
+
+            letter-spacing: .7px;
+
+        }
+
+
+        .balance-card h2 {
+
+            font-size: 38px;
+
+            margin-top: 8px;
+
+        }
+
+
+        .balance-card p {
+
+            margin-top: 7px;
+
+            opacity: .78;
+
+            font-size: 12px;
+
+        }
+
+
+        /* =========================
+           QUICK STATS
+        ========================= */
+
+        .stats {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 18px;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .stat-card {
+
+            background: white;
+
+            border:
+                1px solid #e1e2f2;
+
+            border-radius: 18px;
+
+            padding: 21px;
+
+            box-shadow:
+                0 10px 28px
+                rgba(55,60,120,.07);
+
+        }
+
+
+        .stat-card span {
+
+            color: #7883a5;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            letter-spacing: .5px;
+
+        }
+
+
+        .stat-card h3 {
+
+            margin-top: 9px;
+
+            font-size: 23px;
+
+        }
+
+
+        /* =========================
+           MARKET CARD
+        ========================= */
+
+        .card {
+
+            background:
+                rgba(255,255,255,.96);
+
+            border:
+                1px solid #e1e2f2;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 12px 32px
+                rgba(55,60,120,.08);
+
+        }
+
+
+        .card-header {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .card-header h2 {
+
+            font-size: 21px;
+
+        }
+
+
+        .card-header p {
+
+            margin-top: 5px;
+
+            color: #929bb8;
+
+            font-size: 11px;
+
+        }
+
+
+        .refresh-btn {
+
+            border: none;
+
+            color: white;
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6268ed,
+                    #7546eb
+                );
+
+        }
+
+
+        .refresh-btn:disabled {
+
+            opacity: .6;
+
+            cursor: wait;
+
+        }
+
+
+        /* =========================
+           STOCK GRID
+        ========================= */
+
+        .stock-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 16px;
+
+        }
+
+
+        .stock-card {
+
+            border:
+                1px solid #e7e8f3;
+
+            border-radius: 17px;
+
+            padding: 18px;
+
+            transition: .25s;
+
+            background: #fff;
+
+        }
+
+
+        .stock-card:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(55,60,120,.09);
+
+        }
+
+
+        .stock-top {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+            margin-bottom: 17px;
+
+        }
+
+
+        .stock-info {
+
+            display: flex;
+
+            align-items:
+                center;
+
+            gap: 11px;
+
+        }
+
+
+        .stock-icon {
+
+            width: 43px;
+
+            height: 43px;
+
+            border-radius: 12px;
+
+            background: #efedff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 19px;
+
+        }
+
+
+        .stock-name {
+
+            font-size: 14px;
+
+            font-weight: 900;
+
+        }
+
+
+        .stock-sector {
+
+            color: #929bb8;
+
+            font-size: 10px;
+
+            margin-top: 3px;
+
+        }
+
+
+        .live-tag {
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            color: #12a97b;
+
+            background: #e8faf4;
+
+            padding: 5px 8px;
+
+            border-radius: 20px;
+
+        }
+
+
+        .price-label {
+
+            color: #929bb8;
+
+            font-size: 10px;
+
+        }
+
+
+        .stock-price {
+
+            font-size: 25px;
+
+            font-weight: 900;
+
+            margin-top: 4px;
+
+        }
+
+
+        .change {
+
+            margin-top: 4px;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+        }
+
+
+        .positive {
+
+            color: #12a97b;
+
+        }
+
+
+        .negative {
+
+            color: #ef4d52;
+
+        }
+
+
+        .buy-btn {
+
+            width: 100%;
+
+            border: none;
+
+            margin-top: 17px;
+
+            height: 42px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #506fea,
+                    #7545e8
+                );
+
+            transition: .2s;
+
+        }
+
+
+        .buy-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 8px 17px
+                rgba(83,73,220,.2);
+
+        }
+
+
+        .buy-btn:disabled {
+
+            opacity: .5;
+
+            cursor: not-allowed;
+
+            transform: none;
+
+        }
+
+
+        .loading {
+
+            grid-column:
+                1 / -1;
+
+            text-align: center;
+
+            padding: 45px;
+
+            color: #7883a5;
+
+        }
+
+
+        /* =========================
+           HOW IT WORKS
+        ========================= */
+
+        .steps {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 18px;
+
+        }
+
+
+        .step {
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background: #f8f8ff;
+
+        }
+
+
+        .step-icon {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #eceaff;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .step h3 {
+
+            font-size: 14px;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .step p {
+
+            color: #929bb8;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================
+           BUY MODAL
+        ========================= */
+
+        .modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(16,25,74,.55);
+
+            backdrop-filter:
+                blur(7px);
+
+            display: none;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            padding: 20px;
+
+            z-index: 9999;
+
+        }
+
+
+        .modal.active {
+
+            display: flex;
+
+        }
+
+
+        .modal-box {
+
+            width:
+                min(440px,100%);
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 25px 70px
+                rgba(20,25,70,.3);
+
+            animation:
+                popup .2s ease;
+
+        }
+
+
+        @keyframes popup {
+
+            from {
+
+                opacity: 0;
+
+                transform:
+                    scale(.93);
+
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    scale(1);
+
+            }
+
+        }
+
+
+        .modal-box h2 {
+
+            font-size: 24px;
+
+        }
+
+
+        .modal-subtitle {
+
+            color: #7883a5;
+
+            font-size: 12px;
+
+            margin-top: 5px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .buy-details {
+
+            background: #f7f7ff;
+
+            padding: 15px;
+
+            border-radius: 14px;
+
+            margin-bottom: 18px;
+
+        }
+
+
+        .detail-row {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            padding: 6px 0;
+
+            font-size: 12px;
+
+        }
+
+
+        .detail-row span:first-child {
+
+            color: #7883a5;
+
+        }
+
+
+        .detail-row strong {
+
+            color: #10194a;
+
+        }
+
+
+        .modal-box label {
+
+            display: block;
+
+            font-size: 12px;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .modal-box input {
+
+            width: 100%;
+
+            height: 48px;
+
+            border:
+                1px solid #dcdcf0;
+
+            border-radius: 10px;
+
+            padding: 0 14px;
+
+            font-size: 15px;
+
+            outline: none;
+
+        }
+
+
+        .modal-box input:focus {
+
+            border-color: #6b61ed;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(107,97,237,.1);
+
+        }
+
+
+        .total-box {
+
+            margin-top: 15px;
+
+            padding: 14px;
+
+            border-radius: 12px;
+
+            background: #eef0ff;
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+
+        }
+
+
+        .total-box span {
+
+            font-size: 12px;
+
+            color: #68739a;
+
+        }
+
+
+        .total-box strong {
+
+            font-size: 19px;
+
+        }
+
+
+        .modal-error {
+
+            min-height: 18px;
+
+            color: #e33f52;
+
+            font-size: 11px;
+
+            margin-top: 9px;
+
+        }
+
+
+        .modal-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 18px;
+
+        }
+
+
+        .cancel-btn,
+        .confirm-btn {
+
+            flex: 1;
+
+            height: 45px;
+
+            border: none;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-weight: 800;
+
+        }
+
+
+        .cancel-btn {
+
+            background: #eef0f7;
+
+            color: #59637f;
+
+        }
+
+
+        .confirm-btn {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #506fea,
+                    #7545e8
+                );
+
+            color: white;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:950px) {
+
+            .stock-grid {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+            }
+
+        }
+
+
+        @media(max-width:700px) {
+
+            .navbar {
+
+                padding: 0 18px;
+
+            }
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+            .container {
+
+                padding:
+                    30px 15px 45px;
+
+            }
+
+            .page-header {
+
+                flex-direction:
+                    column;
+
+                align-items:
+                    flex-start;
+
+                gap: 15px;
+
+            }
+
+            .stats {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .stock-grid {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+            .steps {
+
+                grid-template-columns:
+                    1fr;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                📈
+            </div>
+
+            <h2>
+                InvestWise
+            </h2>
+
+        </div>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="ai.html">
+                    AI Advisor
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="papertrading.html"
+                    class="active"
+                >
+                    Paper Trading
+                </a>
+            </li>
+
+            <li>
+                <a href="portfolio.html">
+                    Portfolio
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="container">
+
+
+        <!-- HEADER -->
+
+        <section class="page-header">
+
+            <div>
+
+                <h1>
+                    📈 Paper Trading
+                </h1>
+
+                <p>
+                    Practice investing with virtual
+                    money using live market prices.
+                </p>
+
+            </div>
+
+
+            <div class="live-status">
+
+                <span class="green-dot"></span>
+
+                Live Market Data
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             BALANCE
+        ========================= -->
+
+        <section class="balance-card">
+
+            <div class="balance-label">
+                AVAILABLE VIRTUAL BALANCE
+            </div>
+
+            <h2 id="balanceDisplay">
+                ₹10,00,000
+            </h2>
+
+            <p>
+                No real money is involved.
+                This is an educational simulation.
+            </p>
+
+        </section>
+
+
+
+        <!-- =========================
+             STATS
+        ========================= -->
+
+        <section class="stats">
+
+
+            <div class="stat-card">
+
+                <span>
+                    HOLDINGS
+                </span>
+
+                <h3 id="holdingCount">
+                    0
+                </h3>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>
+                    TOTAL INVESTED
+                </span>
+
+                <h3 id="investedDisplay">
+                    ₹0
+                </h3>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span>
+                    TRANSACTIONS
+                </span>
+
+                <h3 id="transactionCount">
+                    0
+                </h3>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             MARKET
+        ========================= -->
+
+        <section class="card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        📊 Live Market
+                    </h2>
+
+                    <p>
+                        Prices are fetched from
+                        your InvestWise backend.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="refresh-btn"
+                    id="refreshBtn"
+                    onclick="loadMarket()"
+                >
+                    🔄 Refresh
+                </button>
+
+            </div>
+
+
+            <div
+                class="stock-grid"
+                id="stockGrid"
+            >
+
+                <div class="loading">
+
+                    ⏳ Loading live market prices...
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             HOW IT WORKS
+        ========================= -->
+
+        <section class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        💡 How Paper Trading Works
+                    </h2>
+
+                    <p>
+                        Learn while you invest virtually.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="steps">
+
+
+                <div class="step">
+
+                    <div class="step-icon">
+                        💰
+                    </div>
+
+                    <h3>
+                        Start With Virtual Money
+                    </h3>
+
+                    <p>
+                        You receive ₹10,00,000 virtual
+                        money to practice investing.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-icon">
+                        📈
+                    </div>
+
+                    <h3>
+                        Buy Stocks
+                    </h3>
+
+                    <p>
+                        Select a stock and buy shares
+                        using the current market price.
+                    </p>
+
+                </div>
+
+
+                <div class="step">
+
+                    <div class="step-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        Track Your Portfolio
+                    </h3>
+
+                    <p>
+                        Visit Portfolio to monitor
+                        your holdings, live value,
+                        P&L and sell stocks.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DISCLAIMER -->
+
+        <div
+            style="
+                padding:15px 18px;
+                border-radius:14px;
+                background:#fffaf0;
+                border:1px solid #f8df9b;
+                color:#765c14;
+                font-size:11px;
+                line-height:1.6;
+            "
+        >
+
+            ⚠️
+
+            <strong>
+                Educational Simulation:
+            </strong>
+
+            InvestWise is a paper-trading platform.
+            All money, trades and transactions are
+            virtual and do not involve real money.
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =========================
+         BUY MODAL
+    ========================= -->
+
+    <div
+        class="modal"
+        id="buyModal"
+    >
+
+        <div class="modal-box">
+
+
+            <h2>
+                Buy Stock
+            </h2>
+
+
+            <div
+                class="modal-subtitle"
+                id="buyStockSubtitle"
+            >
+                Stock
+            </div>
+
+
+
+            <div class="buy-details">
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Stock
+                    </span>
+
+                    <strong id="buyStockName">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Live Price
+                    </span>
+
+                    <strong id="buyStockPrice">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <span>
+                        Available Balance
+                    </span>
+
+                    <strong id="buyBalance">
+                        ₹0
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+
+            <label for="buyQuantity">
+
+                Quantity
+
+            </label>
+
+
+            <input
+                type="number"
+                id="buyQuantity"
+                min="1"
+                step="1"
+                placeholder="Enter number of shares"
+            >
+
+
+
+            <div class="total-box">
+
+                <span>
+                    Total Cost
+                </span>
+
+                <strong id="buyTotal">
+                    ₹0
+                </strong>
+
+            </div>
+
+
+            <div
+                class="modal-error"
+                id="buyError"
+            ></div>
+
+
+
+            <div class="modal-actions">
+
+
+                <button
+                    class="cancel-btn"
+                    onclick="closeBuyModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    class="confirm-btn"
+                    onclick="confirmBuy()"
+                >
+                    Confirm Buy
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================= -->
+
+    <script>
+
+
+        /* =========================
+           DATA
+        ========================= */
+
+
+        const stocks = [
+
+            {
+                name: "TCS",
+                symbol: "TCS.BSE",
+                sector: "IT Services",
+                icon: "💻"
+            },
+
+            {
+                name: "Infosys",
+                symbol: "INFY.BSE",
+                sector: "IT Services",
+                icon: "💻"
+            },
+
+            {
+                name: "HCL Technologies",
+                symbol: "HCLTECH.BSE",
+                sector: "IT Services",
+                icon: "💻"
+            },
+
+            {
+                name: "HDFC Bank",
+                symbol: "HDFCBANK.BSE",
+                sector: "Banking",
+                icon: "🏦"
+            },
+
+            {
+                name: "ICICI Bank",
+                symbol: "ICICIBANK.BSE",
+                sector: "Banking",
+                icon: "🏦"
+            },
+
+            {
+                name: "State Bank of India",
+                symbol: "SBIN.BSE",
+                sector: "Banking",
+                icon: "🏦"
+            },
+
+            {
+                name: "Sun Pharma",
+                symbol: "SUNPHARMA.BSE",
+                sector: "Pharma",
+                icon: "💊"
+            },
+
+            {
+                name: "Cipla",
+                symbol: "CIPLA.BSE",
+                sector: "Pharma",
+                icon: "💊"
+            },
+
+            {
+                name: "Dr. Reddy's Laboratories",
+                symbol: "DRREDDY.BSE",
+                sector: "Pharma",
+                icon: "💊"
+            },
+
+            {
+                name: "Tata Motors",
+                symbol: "TATAMOTORS.BSE",
+                sector: "Automobile",
+                icon: "🚗"
+            },
+
+            {
+                name: "Mahindra & Mahindra",
+                symbol: "M&M.BSE",
+                sector: "Automobile",
+                icon: "🚙"
+            },
+
+            {
+                name: "Exide Industries",
+                symbol: "EXIDEIND.BSE",
+                sector: "EV / Auto",
+                icon: "🔋"
+            }
+
+        ];
+
+
+
+        /* =========================
+           LOAD DATA
+        ========================= */
+
+
+        let balance =
+            Number(
+                localStorage.getItem(
+                    "virtualBalance"
+                )
+            );
+
+
+        if (
+            !balance ||
+            balance <= 0
+        ) {
+
+            balance = 1000000;
+
+            localStorage.setItem(
+                "virtualBalance",
+                balance
+            );
+
+        }
+
+
+
+        let portfolio =
+            JSON.parse(
+                localStorage.getItem(
+                    "portfolio"
+                )
+            ) || [];
+
+
+
+        let transactions =
+            JSON.parse(
+                localStorage.getItem(
+                    "transactions"
+                )
+            ) || [];
+
+
+
+        let selectedStock = null;
+
+        let selectedPrice = 0;
+
+
+
+        /* =========================
+           MONEY FORMAT
+        ========================= */
+
+        function money(value) {
+
+            return (
+                "₹" +
+                Number(value || 0)
+                    .toLocaleString(
+                        "en-IN",
+                        {
+                            maximumFractionDigits: 2
+                        }
+                    )
+            );
+
+        }
+
+
+
+        /* =========================
+           UPDATE BALANCE
+        ========================= */
+
+        function updateBalance() {
+
+            document.getElementById(
+                "balanceDisplay"
+            ).innerText =
+                money(balance);
+
+
+            document.getElementById(
+                "buyBalance"
+            ).innerText =
+                money(balance);
+
+        }
+
+
+
+        /* =========================
+           UPDATE STATS
+        ========================= */
+
+        function updateStats() {
+
+
+            let totalInvested = 0;
+
+
+            portfolio.forEach(
+                function(stock) {
+
+                    totalInvested +=
+                        Number(
+                            stock.investment
+                        ) || 0;
+
+                }
+            );
+
+
+            document.getElementById(
+                "holdingCount"
+            ).innerText =
+                portfolio.length;
+
+
+            document.getElementById(
+                "investedDisplay"
+            ).innerText =
+                money(totalInvested);
+
+
+            document.getElementById(
+                "transactionCount"
+            ).innerText =
+                transactions.length;
+
+        }
+
+
+
+        /* =========================
+           GET LIVE PRICE
+        ========================= */
+
+        async function getLivePrice(stock) {
+
+
+            const response =
+    await fetch(
+        `/api/stock/${encodeURIComponent(stock.symbol)}`
+    );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Backend error"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            const quote =
+                data["Global Quote"];
+
+
+            if (
+                !quote ||
+                !quote["05. price"]
+            ) {
+
+                throw new Error(
+                    "Price unavailable"
+                );
+
+            }
+
+
+            return {
+
+                price:
+                    Number(
+                        quote["05. price"]
+                    ),
+
+                change:
+                    Number(
+                        quote["09. change"]
+                    ) || 0,
+
+                changePercent:
+                    quote["10. change percent"]
+                        || "0%"
+
+            };
+
+        }
+
+
+
+        /* =========================
+           LOAD MARKET
+        ========================= */
+
+        async function loadMarket() {
+
+
+            const grid =
+                document.getElementById(
+                    "stockGrid"
+                );
+
+
+            const refreshButton =
+                document.getElementById(
+                    "refreshBtn"
+                );
+
+
+            refreshButton.disabled =
+                true;
+
+
+            refreshButton.innerText =
+                "⏳ Loading...";
+
+
+            grid.innerHTML = `
+
+                <div class="loading">
+
+                    ⏳ Fetching live market prices...
+
+                </div>
+
+            `;
+
+
+            const results = [];
+
+
+            for (
+                const stock of stocks
+            ) {
+
+
+                try {
+
+                    const market =
+                        await getLivePrice(
+                            stock
+                        );
+
+
+                    results.push({
+
+                        ...stock,
+
+                        price:
+                            market.price,
+
+                        change:
+                            market.change,
+
+                        changePercent:
+                            market.changePercent
+
+                    });
+
+                }
+
+
+                catch (error) {
+
+                    console.error(
+                        stock.name,
+                        error
+                    );
+
+                    results.push({
+
+                        ...stock,
+
+                        price: null,
+
+                        change: 0,
+
+                        changePercent:
+                            "Unavailable"
+
+                    });
+
+                }
+
+            }
+
+
+            renderMarket(results);
+
+
+            refreshButton.disabled =
+                false;
+
+
+            refreshButton.innerText =
+                "🔄 Refresh";
+
+        }
+
+
+
+        /* =========================
+           RENDER MARKET
+        ========================= */
+
+        function renderMarket(list) {
+
+
+            const grid =
+                document.getElementById(
+                    "stockGrid"
+                );
+
+
+            grid.innerHTML = "";
+
+
+            list.forEach(
+                function(stock) {
+
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "stock-card";
+
+
+                    const available =
+                        stock.price !== null;
+
+
+                    const changeClass =
+                        stock.change >= 0
+                            ? "positive"
+                            : "negative";
+
+
+                    const changeText =
+                        stock.change >= 0
+                            ? "+"
+                            : "";
+
+
+                    card.innerHTML = `
+
+                        <div class="stock-top">
+
+                            <div class="stock-info">
+
+                                <div class="stock-icon">
+                                    ${stock.icon}
+                                </div>
+
+                                <div>
+
+                                    <div class="stock-name">
+                                        ${stock.name}
+                                    </div>
+
+                                    <div class="stock-sector">
+                                        ${stock.sector}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            ${
+                                available
+                                    ? `
+                                        <span class="live-tag">
+                                            LIVE
+                                        </span>
+                                      `
+                                    : `
+                                        <span
+                                            class="live-tag"
+                                            style="
+                                                color:#e33f52;
+                                                background:#fff0f2;
+                                            "
+                                        >
+                                            ERROR
+                                        </span>
+                                      `
+                            }
+
+                        </div>
+
+
+                        <div class="price-label">
+                            Current Market Price
+                        </div>
+
+
+                        <div class="stock-price">
+
+                            ${
+                                available
+                                    ? money(stock.price)
+                                    : "Unavailable"
+                            }
+
+                        </div>
+
+
+                        <div class="change ${changeClass}">
+
+                            ${
+                                available
+                                    ? `
+                                        ${changeText}
+                                        ${money(stock.change)}
+                                        (${stock.changePercent})
+                                      `
+                                    : `
+                                        Backend/API unavailable
+                                      `
+                            }
+
+                        </div>
+
+
+                        <button
+                            class="buy-btn"
+                            ${
+                                !available
+                                    ? "disabled"
+                                    : ""
+                            }
+                            onclick='openBuyModal(${JSON.stringify(stock)})'
+                        >
+
+                            ${
+                                available
+                                    ? "🛒 Buy Stock"
+                                    : "Unavailable"
+                            }
+
+                        </button>
+
+                    `;
+
+
+                    grid.appendChild(
+                        card
+                    );
+
+                }
+            );
+
+        }
+
+
+
+        /* =========================
+           OPEN BUY MODAL
+        ========================= */
+
+        function openBuyModal(stock) {
+
+
+            selectedStock =
+                stock;
+
+
+            selectedPrice =
+                Number(
+                    stock.price
+                );
+
+
+            document
+                .getElementById(
+                    "buyModal"
+                )
+                .classList
+                .add("active");
+
+
+            document.getElementById(
+                "buyStockName"
+            ).innerText =
+                stock.name;
+
+
+            document.getElementById(
+                "buyStockSubtitle"
+            ).innerText =
+                stock.sector;
+
+
+            document.getElementById(
+                "buyStockPrice"
+            ).innerText =
+                money(selectedPrice);
+
+
+            document.getElementById(
+                "buyBalance"
+            ).innerText =
+                money(balance);
+
+
+            document.getElementById(
+                "buyQuantity"
+            ).value =
+                "";
+
+
+            document.getElementById(
+                "buyTotal"
+            ).innerText =
+                money(0);
+
+
+            document.getElementById(
+                "buyError"
+            ).innerText =
+                "";
+
+        }
+
+
+
+        /* =========================
+           QUANTITY CHANGE
+        ========================= */
+
+        document
+            .getElementById(
+                "buyQuantity"
+            )
+            .addEventListener(
+                "input",
+                function() {
+
+
+                    const quantity =
+                        Number(
+                            this.value
+                        ) || 0;
+
+
+                    const total =
+                        quantity *
+                        selectedPrice;
+
+
+                    document.getElementById(
+                        "buyTotal"
+                    ).innerText =
+                        money(total);
+
+
+                    if (
+                        total > balance
+                    ) {
+
+                        document.getElementById(
+                            "buyError"
+                        ).innerText =
+                            "Insufficient virtual balance.";
+
+                    }
+
+                    else {
+
+                        document.getElementById(
+                            "buyError"
+                        ).innerText =
+                            "";
+
+                    }
+
+                }
+            );
+
+
+
+        /* =========================
+           CLOSE BUY MODAL
+        ========================= */
+
+        function closeBuyModal() {
+
+
+            document
+                .getElementById(
+                    "buyModal"
+                )
+                .classList
+                .remove("active");
+
+
+            selectedStock =
+                null;
+
+
+            selectedPrice =
+                0;
+
+        }
+
+
+
+        /* =========================
+           CONFIRM BUY
+        ========================= */
+
+        function confirmBuy() {
+
+
+            const error =
+                document.getElementById(
+                    "buyError"
+                );
+
+
+            const quantity =
+                Number(
+                    document.getElementById(
+                        "buyQuantity"
+                    ).value
+                );
+
+
+            /* VALIDATION */
+
+            if (
+                !selectedStock
+            ) {
+
+                error.innerText =
+                    "Please select a stock.";
+
+                return;
+
+            }
+
+
+            if (
+                !Number.isInteger(
+                    quantity
+                ) ||
+                quantity <= 0
+            ) {
+
+                error.innerText =
+                    "Enter a valid whole number of shares.";
+
+                return;
+
+            }
+
+
+            if (
+                selectedPrice <= 0
+            ) {
+
+                error.innerText =
+                    "Live price is unavailable.";
+
+                return;
+
+            }
+
+
+            const totalCost =
+                quantity *
+                selectedPrice;
+
+
+            if (
+                totalCost >
+                balance
+            ) {
+
+                error.innerText =
+                    "You don't have enough virtual money.";
+
+                return;
+
+            }
+
+
+
+            /* =========================
+               FIND EXISTING STOCK
+            ========================= */
+
+            const existingStock =
+                portfolio.find(
+                    function(stock) {
+
+                        return (
+                            stock.name ===
+                            selectedStock.name
+                        );
+
+                    }
+                );
+
+
+
+            if (
+                existingStock
+            ) {
+
+
+                const oldQuantity =
+                    Number(
+                        existingStock.quantity
+                    );
+
+
+                const oldInvestment =
+                    Number(
+                        existingStock.investment
+                    ) ||
+                    (
+                        oldQuantity *
+                        Number(
+                            existingStock.price
+                        )
+                    );
+
+
+                const newQuantity =
+                    oldQuantity +
+                    quantity;
+
+
+                const newInvestment =
+                    oldInvestment +
+                    totalCost;
+
+
+                /* Weighted average buy price */
+
+                existingStock.quantity =
+                    newQuantity;
+
+
+                existingStock.investment =
+                    newInvestment;
+
+
+                existingStock.price =
+                    newInvestment /
+                    newQuantity;
+
+
+                existingStock.symbol =
+                    selectedStock.symbol;
+
+            }
+
+
+            else {
+
+
+                portfolio.push({
+
+                    name:
+                        selectedStock.name,
+
+                    symbol:
+                        selectedStock.symbol,
+
+                    quantity:
+                        quantity,
+
+                    price:
+                        selectedPrice,
+
+                    investment:
+                        totalCost
+
+                });
+
+            }
+
+
+
+            /* =========================
+               DEDUCT BALANCE
+            ========================= */
+
+            balance =
+                balance -
+                totalCost;
+
+
+            localStorage.setItem(
+                "virtualBalance",
+                balance
+            );
+
+
+            /* =========================
+               SAVE PORTFOLIO
+            ========================= */
+
+            localStorage.setItem(
+                "portfolio",
+                JSON.stringify(
+                    portfolio
+                )
+            );
+
+
+
+            /* =========================
+               SAVE BUY TRANSACTION
+            ========================= */
+
+            transactions.push({
+
+                type:
+                    "BUY",
+
+                stock:
+                    selectedStock.name,
+
+                symbol:
+                    selectedStock.symbol,
+
+                quantity:
+                    quantity,
+
+                price:
+                    selectedPrice,
+
+                total:
+                    totalCost,
+
+                date:
+                    new Date()
+                        .toISOString()
+
+            });
+
+
+            localStorage.setItem(
+                "transactions",
+                JSON.stringify(
+                    transactions
+                )
+            );
+
+
+
+            /* =========================
+               UPDATE UI
+            ========================= */
+
+            updateBalance();
+
+            updateStats();
+
+
+            alert(
+
+                `Successfully bought ${quantity} share(s) of ${selectedStock.name} for ${money(totalCost)}.`
+
+            );
+
+
+            closeBuyModal();
+
+        }
+
+
+
+        /* =========================
+           CLICK OUTSIDE MODAL
+        ========================= */
+
+        document
+            .getElementById(
+                "buyModal"
+            )
+            .addEventListener(
+                "click",
+                function(event) {
+
+
+                    if (
+                        event.target ===
+                        this
+                    ) {
+
+                        closeBuyModal();
+
+                    }
+
+                }
+            );
+
+
+
+        /* =========================
+           ESC KEY
+        ========================= */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeBuyModal();
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================
+           INITIALIZE
+        ========================= */
+
+        updateBalance();
+
+        updateStats();
+
+        loadMarket();
+
+
+    </script>
+
+
+</body>
+
+</html>

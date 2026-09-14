@@ -1,0 +1,2693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>InvestWise - AI Investment Advisor</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 20% 60%,
+                    rgba(91, 89, 255, 0.15),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 70%,
+                    rgba(111, 76, 255, 0.16),
+                    transparent 35%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f8f9ff,
+                    #eef1ff
+                );
+
+            color: #10194a;
+
+            overflow-x: hidden;
+        }
+
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+
+            height: 78px;
+
+            background: rgba(255,255,255,0.92);
+
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid #e5e7f4;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 36px;
+
+            position: relative;
+
+            z-index: 10;
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 26px;
+
+            font-weight: 700;
+        }
+
+
+        .logo-icon {
+
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4777ff,
+                    #6357e8
+                );
+
+            color: white;
+
+            font-size: 21px;
+
+            box-shadow:
+                0 8px 20px rgba(80,80,220,0.2);
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #10194a;
+
+            font-size: 15px;
+
+            font-weight: 500;
+
+            padding: 11px 16px;
+
+            border-radius: 25px;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+
+            background: #f0efff;
+
+            color: #5c52e8;
+        }
+
+
+        .nav-links a.active {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6468ee,
+                    #7347ed
+                );
+
+            box-shadow:
+                0 8px 20px rgba(93,79,230,0.25);
+        }
+
+
+        .nav-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 22px;
+        }
+
+
+        .notification {
+
+            position: relative;
+
+            font-size: 23px;
+
+            cursor: pointer;
+        }
+
+
+        .notification::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 8px;
+
+            height: 8px;
+
+            background: #ff416c;
+
+            border-radius: 50%;
+
+            top: 0;
+
+            right: -2px;
+        }
+
+
+        .profile {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7466f0,
+                    #a39aff
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 22px;
+
+            color: white;
+
+            border: 3px solid white;
+
+            box-shadow:
+                0 4px 12px rgba(70,70,150,0.2);
+        }
+
+
+        /* ================= HERO ================= */
+
+        .hero {
+
+            text-align: center;
+
+            padding: 48px 20px 28px;
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .hero-title {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 18px;
+
+            font-size: 46px;
+
+            font-weight: 700;
+        }
+
+
+        .robot {
+
+            width: 70px;
+
+            height: 70px;
+
+            border-radius: 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 40px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #eeeaff,
+                    #d9d5ff
+                );
+
+            box-shadow:
+                0 10px 30px rgba(96,78,240,0.18);
+        }
+
+
+        .sparkle {
+
+            font-size: 38px;
+
+            color: #704dff;
+        }
+
+
+        .hero p {
+
+            margin-top: 12px;
+
+            font-size: 19px;
+
+            line-height: 1.6;
+
+            color: #5b6794;
+        }
+
+
+        /* ================= MAIN CARD ================= */
+
+        .advisor-container {
+
+            max-width: 950px;
+
+            margin: 0 auto;
+
+            background:
+                rgba(255,255,255,0.94);
+
+            border-radius: 25px;
+
+            padding: 30px;
+
+            box-shadow:
+                0 20px 50px rgba(46,49,100,0.14);
+
+            border: 1px solid #ffffff;
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        .advisor-container::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 18px;
+
+            top: 28px;
+
+            bottom: 28px;
+
+            width: 6px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    #7164ff,
+                    #8c42ed
+                );
+        }
+
+
+        /* ================= FORM ================= */
+
+        .form-row {
+
+            min-height: 92px;
+
+            margin-bottom: 14px;
+
+            padding: 16px 18px 16px 28px;
+
+            border: 1px solid #e5e4f7;
+
+            border-radius: 17px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background:
+                rgba(255,255,255,0.8);
+
+            transition: 0.3s;
+        }
+
+
+        .form-row:hover {
+
+            transform: translateY(-2px);
+
+            border-color: #c9c5ff;
+
+            box-shadow:
+                0 8px 20px rgba(100,90,220,0.08);
+        }
+
+
+        .form-info {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 18px;
+
+            min-width: 48%;
+        }
+
+
+        .form-icon {
+
+            width: 60px;
+
+            height: 60px;
+
+            border-radius: 16px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 28px;
+
+            background: #f0edff;
+        }
+
+
+        .form-info h3 {
+
+            font-size: 18px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .form-info p {
+
+            font-size: 14px;
+
+            color: #63709a;
+        }
+
+
+        .input-area {
+
+            width: 44%;
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            height: 54px;
+
+            border: 1px solid #d9d8f5;
+
+            border-radius: 13px;
+
+            background: white;
+
+            padding: 0 18px;
+
+            font-size: 16px;
+
+            color: #111946;
+
+            outline: none;
+
+            transition: 0.3s;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color: #7265ef;
+
+            box-shadow:
+                0 0 0 4px rgba(113,100,239,0.1);
+        }
+
+
+        /* ================= BUTTON ================= */
+
+        .recommend-btn {
+
+            width: 100%;
+
+            height: 62px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            margin-top: 6px;
+
+            color: white;
+
+            font-size: 19px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    #4d78ee,
+                    #743cec
+                );
+
+            box-shadow:
+                0 10px 22px rgba(91,67,229,0.25);
+
+            transition: 0.3s;
+        }
+
+
+        .recommend-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 14px 28px rgba(91,67,229,0.35);
+        }
+
+
+        .recommend-btn:disabled {
+
+            opacity: 0.7;
+
+            cursor: wait;
+
+            transform: none;
+        }
+
+
+        /* ================= TRUST ================= */
+
+        .trust {
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            gap: 16px;
+
+            margin-top: 20px;
+
+            color: #66729b;
+
+            font-size: 14px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .dot {
+
+            color: #57b9c7;
+
+            font-size: 20px;
+        }
+
+
+        /* ================= RESULT ================= */
+
+        #recommendation {
+
+            display: none;
+
+            max-width: 950px;
+
+            margin: 30px auto;
+
+            position: relative;
+
+            z-index: 4;
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 15px 35px rgba(40,45,100,0.12);
+        }
+
+
+        .result-header {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+
+        .result-header h2 {
+
+            color: #5148d8;
+
+            font-size: 25px;
+        }
+
+
+        .live-badge {
+
+            padding: 8px 14px;
+
+            border-radius: 30px;
+
+            background: #e8fff4;
+
+            color: #15925d;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .summary-box {
+
+            margin-top: 18px;
+
+            padding: 18px;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f5f3ff,
+                    #f4f8ff
+                );
+
+            border: 1px solid #e8e5ff;
+
+            line-height: 1.7;
+        }
+
+
+        .market-note {
+
+            margin-top: 15px;
+
+            padding: 13px 16px;
+
+            border-radius: 12px;
+
+            background: #eff8ff;
+
+            color: #315c80;
+
+            font-size: 14px;
+        }
+
+
+        .section-title {
+
+            margin-top: 25px;
+
+            font-size: 20px;
+
+            color: #242b62;
+        }
+
+
+        /* ================= STOCK CARD ================= */
+
+        .stock-card {
+
+            margin-top: 14px;
+
+            padding: 20px;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #fafaff,
+                    #f7f8ff
+                );
+
+            border: 1px solid #e6e5f6;
+
+            border-left: 5px solid #6759ed;
+
+            transition: 0.3s;
+        }
+
+
+        .stock-card:hover {
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 25px rgba(70,65,170,0.10);
+        }
+
+
+        .stock-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+
+        .stock-name {
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            color: #171d50;
+        }
+
+
+        .stock-symbol {
+
+            margin-top: 5px;
+
+            color: #737b9f;
+
+            font-size: 13px;
+        }
+
+
+        .stock-price {
+
+            text-align: right;
+
+            font-size: 19px;
+
+            font-weight: 700;
+        }
+
+
+        .stock-change {
+
+            margin-top: 5px;
+
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        .positive {
+
+            color: #0b9b60;
+        }
+
+
+        .negative {
+
+            color: #df3e4d;
+        }
+
+
+        .stock-details {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 10px;
+
+            margin-top: 17px;
+
+            padding-top: 15px;
+
+            border-top: 1px solid #e6e6ef;
+        }
+
+
+        .detail-box {
+
+            padding: 11px;
+
+            background: white;
+
+            border-radius: 10px;
+
+            text-align: center;
+        }
+
+
+        .detail-label {
+
+            font-size: 12px;
+
+            color: #7b83a5;
+
+            margin-bottom: 4px;
+        }
+
+
+        .detail-value {
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            color: #20275b;
+        }
+
+
+        .buy-btn {
+
+            width: 100%;
+
+            height: 46px;
+
+            margin-top: 15px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5148e8,
+                    #733fe8
+                );
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+
+        .buy-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 8px 18px rgba(80,65,220,0.25);
+        }
+
+
+        /* ================= FEATURES ================= */
+
+        .features {
+
+            max-width: 1160px;
+
+            margin: 30px auto 50px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            background:
+                rgba(255,255,255,0.85);
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 15px 35px rgba(50,50,110,0.1);
+
+            overflow: hidden;
+
+            border: 1px solid white;
+
+            position: relative;
+
+            z-index: 3;
+        }
+
+
+        .feature {
+
+            padding: 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            border-right: 1px solid #ececf6;
+        }
+
+
+        .feature:last-child {
+
+            border-right: none;
+        }
+
+
+        .feature-icon {
+
+            min-width: 54px;
+
+            height: 54px;
+
+            border-radius: 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #f0edff;
+
+            font-size: 26px;
+        }
+
+
+        .feature h4 {
+
+            font-size: 15px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .feature p {
+
+            font-size: 12px;
+
+            color: #69759a;
+
+            line-height: 1.4;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width:900px) {
+
+            .nav-links {
+
+                gap: 5px;
+            }
+
+            .nav-links a {
+
+                padding: 8px;
+
+                font-size: 13px;
+            }
+
+            .features {
+
+                margin-left: 20px;
+
+                margin-right: 20px;
+
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+            .feature:nth-child(2) {
+
+                border-right: none;
+            }
+        }
+
+
+        @media(max-width:700px) {
+
+            .navbar {
+
+                padding: 0 15px;
+            }
+
+            .logo {
+
+                font-size: 20px;
+            }
+
+            .nav-links {
+
+                display: none;
+            }
+
+            .hero-title {
+
+                font-size: 32px;
+
+                flex-wrap: wrap;
+            }
+
+            .hero p {
+
+                font-size: 16px;
+            }
+
+            .advisor-container {
+
+                margin: 0 15px;
+
+                padding: 20px;
+            }
+
+            .form-row {
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 14px;
+
+                padding-left: 20px;
+            }
+
+            .form-info {
+
+                min-width: 100%;
+            }
+
+            .input-area {
+
+                width: 100%;
+            }
+
+            #recommendation {
+
+                margin: 25px 15px;
+
+                padding: 20px;
+            }
+
+            .features {
+
+                grid-template-columns: 1fr;
+            }
+
+            .feature {
+
+                border-right: none;
+
+                border-bottom: 1px solid #ececf6;
+            }
+
+            .feature:last-child {
+
+                border-bottom: none;
+            }
+
+            .stock-top {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .stock-price {
+
+                text-align: left;
+            }
+
+            .stock-details {
+
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            📈
+        </div>
+
+        InvestWise
+
+    </div>
+
+
+    <div class="nav-links">
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="ai.html"
+           class="active">
+            AI Advisor
+        </a>
+
+        <a href="papertrading.html">
+            Paper Trading
+        </a>
+
+        <a href="portfolio.html">
+            Portfolio
+        </a>
+
+        <a href="#">
+            Market News
+        </a>
+
+    </div>
+
+
+    <div class="nav-right">
+
+        <div class="notification">
+            🔔
+        </div>
+
+        <div class="profile">
+            👤
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-title">
+
+        <div class="robot">
+            🤖
+        </div>
+
+        <span>
+            AI Investment Advisor
+        </span>
+
+        <span class="sparkle">
+            ✦
+        </span>
+
+    </div>
+
+
+    <p>
+
+        Tell us your preferences and our smart
+        recommendation engine will analyze
+        live market data.
+
+        <br>
+
+        Get personalized stock recommendations
+        for your investment goals.
+
+    </p>
+
+</section>
+
+
+
+<!-- ================= FORM ================= -->
+
+<section class="advisor-container">
+
+
+    <!-- AMOUNT -->
+
+    <div class="form-row">
+
+        <div class="form-info">
+
+            <div class="form-icon">
+                ₹
+            </div>
+
+            <div>
+
+                <h3>
+                    Investment Amount
+                </h3>
+
+                <p>
+                    Enter how much you want to invest
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-area">
+
+            <input
+                type="number"
+                id="amount"
+                placeholder="Enter amount in ₹"
+                min="1"
+            >
+
+        </div>
+
+    </div>
+
+
+
+    <!-- RISK -->
+
+    <div class="form-row">
+
+        <div class="form-info">
+
+            <div class="form-icon">
+                🛡️
+            </div>
+
+            <div>
+
+                <h3>
+                    Risk Level
+                </h3>
+
+                <p>
+                    Choose the risk you are comfortable with
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-area">
+
+            <select id="risk">
+
+                <option value="">
+                    Select Risk Level
+                </option>
+
+                <option value="Low">
+                    Low Risk
+                </option>
+
+                <option value="Medium">
+                    Medium Risk
+                </option>
+
+                <option value="High">
+                    High Risk
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- DURATION -->
+
+    <div class="form-row">
+
+        <div class="form-info">
+
+            <div class="form-icon">
+                📅
+            </div>
+
+            <div>
+
+                <h3>
+                    Investment Duration
+                </h3>
+
+                <p>
+                    Select how long you want to stay invested
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-area">
+
+            <select id="duration">
+
+                <option value="">
+                    Select Duration
+                </option>
+
+                <option value="1">
+                    1 Year
+                </option>
+
+                <option value="3">
+                    3 Years
+                </option>
+
+                <option value="5">
+                    5 Years
+                </option>
+
+                <option value="10">
+                    10+ Years
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SECTOR -->
+
+    <div class="form-row">
+
+        <div class="form-info">
+
+            <div class="form-icon">
+                📊
+            </div>
+
+            <div>
+
+                <h3>
+                    Preferred Sector
+                </h3>
+
+                <p>
+                    Pick a sector you are interested in
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="input-area">
+
+            <select id="sector">
+
+                <option value="">
+                    Select Sector
+                </option>
+
+                <option value="IT">
+                    Information Technology
+                </option>
+
+                <option value="Banking">
+                    Banking
+                </option>
+
+                <option value="Pharma">
+                    Pharma
+                </option>
+
+                <option value="EV">
+                    Electric Vehicles
+                </option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- BUTTON -->
+
+    <button
+        class="recommend-btn"
+        id="recommendButton"
+        onclick="getRecommendation()">
+
+        ✨ &nbsp; Get Live Recommendation
+
+    </button>
+
+
+    <div class="trust">
+
+        <span>
+            🛡️ Smart analysis
+        </span>
+
+        <span class="dot">
+            •
+        </span>
+
+        <span>
+            📡 Live market data
+        </span>
+
+        <span class="dot">
+            •
+        </span>
+
+        <span>
+            📊 Risk based
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= RESULT ================= -->
+
+<div id="recommendation">
+
+    <div class="result-header">
+
+        <h2>
+            🤖 Your AI Recommendation
+        </h2>
+
+        <span class="live-badge">
+            ● LIVE MARKET DATA
+        </span>
+
+    </div>
+
+
+    <div id="resultContent"></div>
+
+</div>
+
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="features">
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            🧠
+        </div>
+
+        <div>
+
+            <h4>
+                Smart Analysis
+            </h4>
+
+            <p>
+                Scores stocks according
+                to your preferences
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            📊
+        </div>
+
+        <div>
+
+            <h4>
+                Personalized
+            </h4>
+
+            <p>
+                Recommendations based
+                on your inputs
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            🛡️
+        </div>
+
+        <div>
+
+            <h4>
+                Risk Managed
+            </h4>
+
+            <p>
+                Risk level influences
+                stock scoring
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="feature">
+
+        <div class="feature-icon">
+            ⚡
+        </div>
+
+        <div>
+
+            <h4>
+                Real-time
+            </h4>
+
+            <p>
+                Uses current market
+                quote information
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+
+/* =========================================================
+   SECTOR STOCK DATABASE
+   ========================================================= */
+
+const sectorStocks = {
+
+    IT: [
+
+        {
+            symbol: "TCS",
+            name: "TCS"
+        },
+
+        {
+            symbol: "INFY",
+            name: "Infosys"
+        },
+
+        {
+            symbol: "HCLTECH",
+            name: "HCL Technologies"
+        },
+
+        {
+            symbol: "WIPRO",
+            name: "Wipro"
+        },
+
+        {
+            symbol: "TECHM",
+            name: "Tech Mahindra"
+        }
+
+    ],
+
+
+    Banking: [
+
+        {
+            symbol: "HDFCBANK",
+            name: "HDFC Bank"
+        },
+
+        {
+            symbol: "ICICIBANK",
+            name: "ICICI Bank"
+        },
+
+        {
+            symbol: "SBIN",
+            name: "State Bank of India"
+        },
+
+        {
+            symbol: "AXISBANK",
+            name: "Axis Bank"
+        },
+
+        {
+            symbol: "KOTAKBANK",
+            name: "Kotak Mahindra Bank"
+        }
+
+    ],
+
+
+    Pharma: [
+
+        {
+            symbol: "SUNPHARMA",
+            name: "Sun Pharma"
+        },
+
+        {
+            symbol: "CIPLA",
+            name: "Cipla"
+        },
+
+        {
+            symbol: "DRREDDY",
+            name: "Dr. Reddy's Laboratories"
+        },
+
+        {
+            symbol: "DIVISLAB",
+            name: "Divi's Laboratories"
+        },
+
+        {
+            symbol: "LUPIN",
+            name: "Lupin"
+        }
+
+    ],
+
+
+    EV: [
+
+        {
+            symbol: "TATAMOTORS",
+            name: "Tata Motors"
+        },
+
+        {
+            symbol: "M&M",
+            name: "Mahindra & Mahindra"
+        },
+
+        {
+            symbol: "EXIDEIND",
+            name: "Exide Industries"
+        },
+
+        {
+            symbol: "HEROMOTOCO",
+            name: "Hero MotoCorp"
+        },
+
+        {
+            symbol: "MARUTI",
+            name: "Maruti Suzuki"
+        }
+
+    ]
+
+};
+
+
+
+/* =========================================================
+   MAIN RECOMMENDATION FUNCTION
+   ========================================================= */
+
+async function getRecommendation() {
+
+
+    /* =========================
+       GET USER INPUT
+       ========================= */
+
+    const amount =
+        Number(
+            document.getElementById("amount").value
+        );
+
+
+    const risk =
+        document.getElementById("risk").value;
+
+
+    const duration =
+        Number(
+            document.getElementById("duration").value
+        );
+
+
+    const sector =
+        document.getElementById("sector").value;
+
+
+
+    /* =========================
+       VALIDATION
+       ========================= */
+
+    if (
+        !amount ||
+        amount <= 0 ||
+        !risk ||
+        !duration ||
+        !sector
+    ) {
+
+        alert(
+            "Please fill in all investment preferences."
+        );
+
+        return;
+    }
+
+
+
+    /* =========================
+       GET STOCKS FOR SECTOR
+       ========================= */
+
+    const selectedStocks =
+        sectorStocks[sector];
+
+
+    if (
+        !selectedStocks ||
+        selectedStocks.length === 0
+    ) {
+
+        alert(
+            "No stocks available for this sector."
+        );
+
+        return;
+    }
+
+
+
+    /* =========================
+       SHOW RESULT
+       ========================= */
+
+    const recommendation =
+        document.getElementById(
+            "recommendation"
+        );
+
+
+    const resultContent =
+        document.getElementById(
+            "resultContent"
+        );
+
+
+    const button =
+        document.getElementById(
+            "recommendButton"
+        );
+
+
+    recommendation.style.display =
+        "block";
+
+
+    button.disabled = true;
+
+
+    button.innerHTML =
+        "⏳ Fetching live market data...";
+
+
+    resultContent.innerHTML = `
+
+        <div style="
+            text-align:center;
+            padding:30px;
+            color:#626b91;
+        ">
+
+            <div style="
+                font-size:35px;
+                margin-bottom:10px;
+            ">
+                📡
+            </div>
+
+            <strong>
+                Analyzing live market data...
+            </strong>
+
+            <p style="
+                margin-top:8px;
+                font-size:14px;
+            ">
+                Comparing available stocks for
+                your selected sector.
+            </p>
+
+        </div>
+
+    `;
+
+
+
+    /* =========================
+       FETCH LIVE DATA
+       ========================= */
+
+    try {
+
+
+        const results =
+            await Promise.all(
+
+                selectedStocks.map(
+                    async stock => {
+
+                        try {
+
+                            const response =
+                                await fetch(
+                                    `http://localhost:3000/api/stock/${encodeURIComponent(stock.symbol)}`
+                                );
+
+
+                            if (!response.ok) {
+
+                                return null;
+                            }
+
+
+                            const data =
+                                await response.json();
+
+
+                            const quote =
+                                data["Global Quote"];
+
+
+                            if (
+                                !quote ||
+                                !quote["05. price"]
+                            ) {
+
+                                return null;
+                            }
+
+
+                            const price =
+                                Number(
+                                    quote["05. price"]
+                                );
+
+
+                            const change =
+                                Number(
+                                    quote["09. change"]
+                                ) || 0;
+
+
+                            const changePercent =
+                                parseFloat(
+                                    (
+                                        quote[
+                                            "10. change percent"
+                                        ] || "0"
+                                    ).replace(
+                                        "%",
+                                        ""
+                                    )
+                                ) || 0;
+
+
+                            return {
+
+                                symbol:
+                                    stock.symbol,
+
+                                name:
+                                    stock.name,
+
+                                price:
+                                    price,
+
+                                change:
+                                    change,
+
+                                changePercent:
+                                    changePercent
+
+                            };
+
+                        }
+
+                        catch (error) {
+
+                            console.log(
+                                "Failed:",
+                                stock.symbol,
+                                error
+                            );
+
+                            return null;
+                        }
+
+                    }
+                )
+
+            );
+
+
+
+        /* =========================
+           REMOVE FAILED RESULTS
+           ========================= */
+
+        let stocks =
+            results.filter(
+                stock => stock !== null
+            );
+
+
+
+        /* =========================
+           NO DATA
+           ========================= */
+
+        if (
+            stocks.length === 0
+        ) {
+
+            resultContent.innerHTML = `
+
+                <div style="
+                    padding:22px;
+                    background:#fff2f2;
+                    border-radius:14px;
+                    color:#c62828;
+                ">
+
+                    <strong>
+                        ❌ Live market data unavailable
+                    </strong>
+
+                    <p style="
+                        margin-top:10px;
+                        line-height:1.6;
+                    ">
+
+                        Please make sure your backend
+                        server is running.
+
+                        <br><br>
+
+                        Open your backend terminal and run:
+
+                        <br><br>
+
+                        <strong>
+                            node server.js
+                        </strong>
+
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+
+        /* =====================================================
+           CALCULATE STOCK SCORE
+           ===================================================== */
+
+        stocks.forEach(stock => {
+
+
+            /* Base score */
+
+            let score = 50;
+
+
+            /* Market movement */
+
+            const movement =
+                Math.abs(
+                    stock.changePercent
+                );
+
+
+
+            /* =========================
+               LOW RISK
+               ========================= */
+
+            if (risk === "Low") {
+
+
+                if (movement < 1) {
+
+                    score += 25;
+
+                }
+
+                else if (movement < 2) {
+
+                    score += 15;
+
+                }
+
+                else {
+
+                    score -= 5;
+
+                }
+
+            }
+
+
+
+            /* =========================
+               MEDIUM RISK
+               ========================= */
+
+            else if (
+                risk === "Medium"
+            ) {
+
+
+                if (
+                    movement >= 1 &&
+                    movement <= 3
+                ) {
+
+                    score += 25;
+
+                }
+
+                else {
+
+                    score += 10;
+
+                }
+
+            }
+
+
+
+            /* =========================
+               HIGH RISK
+               ========================= */
+
+            else if (
+                risk === "High"
+            ) {
+
+
+                if (movement > 2) {
+
+                    score += 30;
+
+                }
+
+                else if (movement > 1) {
+
+                    score += 20;
+
+                }
+
+                else {
+
+                    score += 5;
+
+                }
+
+            }
+
+
+
+            /* =========================
+               DURATION
+               ========================= */
+
+            if (
+                duration >= 5
+            ) {
+
+                score += 10;
+
+            }
+
+            else if (
+                duration >= 3
+            ) {
+
+                score += 5;
+
+            }
+
+            else {
+
+                score -= 3;
+
+            }
+
+
+
+            /* =========================
+               POSITIVE MOVEMENT
+               ========================= */
+
+            if (
+                stock.changePercent > 0
+            ) {
+
+                score += 10;
+
+            }
+
+            else if (
+                stock.changePercent < 0
+            ) {
+
+                score -= 5;
+
+            }
+
+
+
+            /* SAVE SCORE */
+
+            stock.score =
+                Math.round(score);
+
+        });
+
+
+
+        /* =========================
+           SORT BY SCORE
+           ========================= */
+
+        stocks.sort(
+            (a,b) =>
+                b.score - a.score
+        );
+
+
+
+        /* =========================
+           TOP 3
+           ========================= */
+
+        stocks =
+            stocks.slice(0,3);
+
+
+
+        /* =====================================================
+           ALLOCATION
+           ===================================================== */
+
+        let allocations;
+
+
+        if (
+            stocks.length === 3
+        ) {
+
+
+            if (
+                risk === "Low"
+            ) {
+
+                allocations =
+                    [50,30,20];
+
+            }
+
+            else if (
+                risk === "Medium"
+            ) {
+
+                allocations =
+                    [40,35,25];
+
+            }
+
+            else {
+
+                allocations =
+                    [40,35,25];
+
+            }
+
+        }
+
+        else {
+
+            allocations =
+                stocks.map(
+                    () =>
+                        Math.floor(
+                            100 /
+                            stocks.length
+                        )
+                );
+
+
+            allocations[0] +=
+                100 -
+                allocations.reduce(
+                    (sum,value) =>
+                        sum + value,
+                    0
+                );
+
+        }
+
+
+
+        /* =====================================================
+           CREATE STOCK CARDS
+           ===================================================== */
+
+        let stockHTML = "";
+
+
+
+        stocks.forEach(
+            (stock,index) => {
+
+
+                const investmentAmount =
+                    amount *
+                    allocations[index] /
+                    100;
+
+
+                const changeClass =
+                    stock.changePercent >= 0
+                        ? "positive"
+                        : "negative";
+
+
+                const arrow =
+                    stock.changePercent >= 0
+                        ? "▲"
+                        : "▼";
+
+
+
+                stockHTML += `
+
+                    <div class="stock-card">
+
+                        <div class="stock-top">
+
+                            <div>
+
+                                <div class="stock-name">
+
+                                    ${index === 0
+                                        ? "🥇 "
+                                        : index === 1
+                                        ? "🥈 "
+                                        : "🥉 "
+                                    }
+
+                                    ${stock.name}
+
+                                </div>
+
+
+                                <div class="stock-symbol">
+
+                                    ${stock.symbol}
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="stock-price">
+
+                                ₹${stock.price.toLocaleString(
+                                    "en-IN",
+                                    {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    }
+                                )}
+
+                                <div class="
+                                    stock-change
+                                    ${changeClass}
+                                ">
+
+                                    ${arrow}
+
+                                    ${stock.changePercent.toFixed(2)}%
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="stock-details">
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    AI Score
+                                </div>
+
+                                <div class="detail-value">
+                                    ${stock.score}/100
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    Allocation
+                                </div>
+
+                                <div class="detail-value">
+                                    ${allocations[index]}%
+                                </div>
+
+                            </div>
+
+
+                            <div class="detail-box">
+
+                                <div class="detail-label">
+                                    Suggested Amount
+                                </div>
+
+                                <div class="detail-value">
+
+                                    ₹${investmentAmount.toLocaleString(
+                                        "en-IN",
+                                        {
+                                            maximumFractionDigits: 0
+                                        }
+                                    )}
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <button
+                            class="buy-btn"
+                            onclick='buyStock(
+                                ${JSON.stringify(stock.name)},
+                                ${JSON.stringify(stock.symbol)},
+                                ${stock.price}
+                            )'
+                        >
+
+                            🛒 Buy ${stock.name}
+
+                        </button>
+
+
+                    </div>
+
+                `;
+
+            }
+        );
+
+
+
+        /* =====================================================
+           RISK MESSAGE
+           ===================================================== */
+
+        let riskMessage;
+
+
+        if (
+            risk === "Low"
+        ) {
+
+            riskMessage =
+                "The recommendation prioritizes relatively lower market movement and a more conservative allocation.";
+
+        }
+
+        else if (
+            risk === "Medium"
+        ) {
+
+            riskMessage =
+                "The recommendation balances market movement and potential growth.";
+
+        }
+
+        else {
+
+            riskMessage =
+                "The recommendation gives more weight to stocks showing stronger market movement, matching your higher risk preference.";
+
+        }
+
+
+
+        /* =====================================================
+           FINAL RESULT
+           ===================================================== */
+
+        resultContent.innerHTML = `
+
+            <div class="summary-box">
+
+                <strong>
+                    Your investment profile
+                </strong>
+
+                <br><br>
+
+                💰 Amount:
+                <strong>
+                    ₹${amount.toLocaleString("en-IN")}
+                </strong>
+
+                &nbsp; | &nbsp;
+
+                🛡️ Risk:
+                <strong>
+                    ${risk}
+                </strong>
+
+                &nbsp; | &nbsp;
+
+                📅 Duration:
+                <strong>
+                    ${duration} year(s)
+                </strong>
+
+                &nbsp; | &nbsp;
+
+                📊 Sector:
+                <strong>
+                    ${sector}
+                </strong>
+
+                <br><br>
+
+                ${riskMessage}
+
+            </div>
+
+
+
+            <div class="market-note">
+
+                🟢 <strong>Live Market Analysis:</strong>
+
+                The prices and daily percentage
+                movements shown below were retrieved
+                from your configured stock API.
+
+            </div>
+
+
+
+            <h3 class="section-title">
+
+                📊 Top Recommended Stocks
+
+            </h3>
+
+
+
+            ${stockHTML}
+
+
+
+            <div style="
+                margin-top:22px;
+                padding:15px;
+                background:#fff9ed;
+                border-radius:12px;
+                color:#7b6330;
+                font-size:13px;
+                line-height:1.6;
+            ">
+
+                ⚠️ <strong>Educational Use Only</strong>
+
+                <br>
+
+                These recommendations are generated
+                using predefined rules and live market
+                quotes. They are intended for your
+                InvestWise paper-trading project and
+                should not be treated as financial advice.
+
+            </div>
+
+        `;
+
+
+
+        /* Scroll */
+
+        recommendation.scrollIntoView({
+            behavior:"smooth"
+        });
+
+
+    }
+
+
+    catch(error) {
+
+
+        console.error(
+            "Recommendation error:",
+            error
+        );
+
+
+        resultContent.innerHTML = `
+
+            <div style="
+                padding:22px;
+                background:#fff0f0;
+                border-radius:14px;
+                color:#c62828;
+            ">
+
+                <strong>
+                    ❌ Unable to fetch live market data
+                </strong>
+
+                <br><br>
+
+                Please check:
+
+                <br><br>
+
+                1️⃣ Backend server is running
+
+                <br>
+
+                2️⃣ API key is present in .env
+
+                <br>
+
+                3️⃣ Backend is running on port 3000
+
+                <br><br>
+
+                Run:
+
+                <br><br>
+
+                <strong>
+                    node server.js
+                </strong>
+
+            </div>
+
+        `;
+
+    }
+
+
+    finally {
+
+        button.disabled = false;
+
+        button.innerHTML =
+            "✨ &nbsp; Get Live Recommendation";
+
+    }
+
+}
+
+
+
+/* =========================================================
+   BUY STOCK
+   ========================================================= */
+
+function buyStock(
+    name,
+    symbol,
+    price
+) {
+
+
+    /*
+       Store selected stock information
+       so papertrading.html can use it.
+    */
+
+    localStorage.setItem(
+        "selectedStock",
+        JSON.stringify({
+
+            name: name,
+
+            symbol: symbol,
+
+            price: price
+
+        })
+    );
+
+
+    /*
+       Open Paper Trading page
+    */
+
+    window.location.href =
+        "papertrading.html";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

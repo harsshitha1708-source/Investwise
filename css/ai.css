@@ -1,0 +1,165 @@
+/* ===== General Page ===== */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+
+/* ===== Navigation Bar ===== */
+
+.navbar {
+    background: #0f172a;
+    color: white;
+    padding: 18px 40px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h2 {
+    margin: 0;
+}
+
+.nav-links {
+    list-style: none;
+
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.nav-links a:hover {
+    color: #38bdf8;
+}
+
+
+/* ===== AI Section ===== */
+
+.ai-container {
+    width: 90%;
+    max-width: 900px;
+
+    margin: 50px auto;
+    text-align: center;
+}
+
+.ai-container h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.ai-container > p {
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+
+/* ===== Form Card ===== */
+
+.form-card {
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 12px;
+
+    text-align: left;
+}
+
+.form-card label {
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+.form-card input,
+.form-card select {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+}
+
+
+/* ===== Recommendation Button ===== */
+
+.form-card button {
+    margin-top: 15px;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #2563eb;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.form-card button:hover {
+    background: #1d4ed8;
+}
+
+
+/* ===== Result Card ===== */
+
+.result-card {
+    background: white;
+
+    margin-top: 30px;
+
+    padding: 30px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+
+    text-align: left;
+}
+
+.result-card h2 {
+    margin-bottom: 20px;
+}
+
+.result-card h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+.result-card p {
+    margin: 10px 0;
+}

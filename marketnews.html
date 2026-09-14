@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InvestWise - Market News</title>
+
+    <style>
+
+        /* ================================
+           GLOBAL
+        ================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top left, rgba(0, 255, 150, 0.08), transparent 30%),
+                radial-gradient(circle at bottom right, rgba(0, 255, 150, 0.05), transparent 30%),
+                #07110d;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* ================================
+           NAVBAR
+        ================================= */
+
+        .navbar {
+            height: 72px;
+            padding: 0 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(5, 15, 11, 0.92);
+            border-bottom: 1px solid rgba(0, 255, 150, 0.12);
+
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            backdrop-filter: blur(15px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            font-size: 24px;
+            font-weight: 700;
+            color: #00ff96;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: rgba(0, 255, 150, 0.12);
+            border: 1px solid rgba(0, 255, 150, 0.25);
+
+            font-size: 20px;
+        }
+
+        .back-btn {
+            padding: 10px 18px;
+
+            border-radius: 10px;
+
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            color: #ffffff;
+
+            transition: 0.3s;
+
+            font-size: 14px;
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 255, 150, 0.12);
+            border-color: #00ff96;
+            color: #00ff96;
+            transform: translateY(-2px);
+        }
+
+
+        /* ================================
+           MAIN CONTAINER
+        ================================= */
+
+        .container {
+            width: 88%;
+            max-width: 1400px;
+
+            margin: auto;
+
+            padding: 45px 0 70px;
+        }
+
+
+        /* ================================
+           HEADER
+        ================================= */
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .page-header h1 {
+            font-size: 42px;
+            margin-bottom: 12px;
+
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #00ff96
+            );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            color: #91a59c;
+            font-size: 16px;
+        }
+
+
+        /* ================================
+           MARKET STATUS
+        ================================= */
+
+        .market-status {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .status-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 10px 18px;
+
+            border-radius: 30px;
+
+            background: rgba(0, 255, 150, 0.07);
+            border: 1px solid rgba(0, 255, 150, 0.18);
+
+            color: #c7d8d0;
+
+            font-size: 14px;
+        }
+
+        .status-dot {
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #00ff96;
+
+            box-shadow: 0 0 12px #00ff96;
+
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+
+        /* ================================
+           FILTER SECTION
+        ================================= */
+
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+
+            margin-bottom: 40px;
+
+            flex-wrap: wrap;
+        }
+
+        .filter-btn,
+        .refresh-btn {
+
+            padding: 12px 22px;
+
+            border-radius: 12px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn {
+
+            background: rgba(255, 255, 255, 0.04);
+
+            color: #aebdb6;
+
+            border: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .filter-btn:hover {
+
+            transform: translateY(-2px);
+
+            border-color: rgba(0, 255, 150, 0.5);
+
+            color: #ffffff;
+
+            background: rgba(0, 255, 150, 0.07);
+        }
+
+        .filter-btn.active {
+
+            background: linear-gradient(
+                135deg,
+                #00ff96,
+                #00c878
+            );
+
+            color: #04100a;
+
+            border-color: transparent;
+
+            box-shadow: 0 8px 25px rgba(0, 255, 150, 0.15);
+        }
+
+        .refresh-btn {
+
+            background: transparent;
+
+            color: #00ff96;
+
+            border: 1px solid rgba(0, 255, 150, 0.35);
+        }
+
+        .refresh-btn:hover {
+
+            background: rgba(0, 255, 150, 0.1);
+
+            transform: rotate(2deg) translateY(-2px);
+        }
+
+
+        /* ================================
+           NEWS GRID
+        ================================= */
+
+        .news-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(330px, 1fr));
+
+            gap: 22px;
+        }
+
+
+        /* ================================
+           NEWS CARD
+        ================================= */
+
+        .news-card {
+
+            position: relative;
+
+            padding: 24px;
+
+            min-height: 300px;
+
+            display: flex;
+            flex-direction: column;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.055),
+                    rgba(255, 255, 255, 0.018)
+                );
+
+            border: 1px solid rgba(255, 255, 255, 0.08);
+
+            border-radius: 18px;
+
+            backdrop-filter: blur(12px);
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .news-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 3px;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #00ff96,
+                transparent
+            );
+
+            opacity: 0;
+
+            transition: 0.3s;
+        }
+
+        .news-card:hover {
+
+            transform: translateY(-7px);
+
+            border-color: rgba(0, 255, 150, 0.28);
+
+            box-shadow:
+                0 20px 45px rgba(0, 0, 0, 0.3),
+                0 0 25px rgba(0, 255, 150, 0.05);
+        }
+
+        .news-card:hover::before {
+            opacity: 1;
+        }
+
+
+        /* ================================
+           NEWS META
+        ================================= */
+
+        .news-meta {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 18px;
+        }
+
+        .source {
+
+            color: #00ff96;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.5px;
+
+            background: rgba(0, 255, 150, 0.08);
+
+            padding: 6px 10px;
+
+            border-radius: 6px;
+        }
+
+        .date {
+
+            color: #75867e;
+
+            font-size: 12px;
+        }
+
+
+        /* ================================
+           NEWS TITLE
+        ================================= */
+
+        .news-title {
+
+            font-size: 19px;
+
+            line-height: 1.45;
+
+            margin-bottom: 14px;
+
+            color: #f2f7f4;
+
+            font-weight: 650;
+        }
+
+
+        /* ================================
+           SUMMARY
+        ================================= */
+
+        .news-summary {
+
+            color: #91a39a;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+
+            margin-bottom: 22px;
+
+            display: -webkit-box;
+
+            -webkit-line-clamp: 4;
+
+            -webkit-box-orient: vertical;
+
+            overflow: hidden;
+        }
+
+
+        /* ================================
+           READ BUTTON
+        ================================= */
+
+        .read-btn {
+
+            margin-top: auto;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            padding: 11px 15px;
+
+            border-radius: 9px;
+
+            background: rgba(0, 255, 150, 0.06);
+
+            border: 1px solid rgba(0, 255, 150, 0.16);
+
+            color: #00ff96;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+        .read-btn:hover {
+
+            background: #00ff96;
+
+            color: #04100a;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* ================================
+           LOADING
+        ================================= */
+
+        .loading {
+
+            grid-column: 1 / -1;
+
+            min-height: 250px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            gap: 15px;
+
+            color: #82968c;
+
+            font-size: 15px;
+        }
+
+        .loading::first-letter {
+            font-size: 25px;
+        }
+
+
+        /* ================================
+           FOOTER
+        ================================= */
+
+        .footer {
+
+            margin-top: 55px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+            text-align: center;
+
+            color: #64766e;
+
+            font-size: 13px;
+        }
+
+        .footer span {
+            color: #00ff96;
+        }
+
+
+        /* ================================
+           RESPONSIVE
+        ================================= */
+
+        @media (max-width: 768px) {
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .container {
+                width: 92%;
+                padding-top: 30px;
+            }
+
+            .page-header h1 {
+                font-size: 32px;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-container {
+                gap: 8px;
+            }
+
+            .filter-btn,
+            .refresh-btn {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .logo-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .back-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .page-header h1 {
+                font-size: 28px;
+            }
+
+            .news-card {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================================
+         NAVBAR
+    ================================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                📈
+            </div>
+
+            InvestWise
+
+        </div>
+
+
+        <a href="dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+
+    <!-- ================================
+         MAIN
+    ================================= -->
+
+    <main class="container">
+
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <h1>Market News</h1>
+
+            <p>
+                Stay updated with the latest financial and market developments.
+            </p>
+
+        </div>
+
+
+
+        <!-- MARKET STATUS -->
+
+        <div class="market-status">
+
+            <div class="status-box">
+
+                <span class="status-dot"></span>
+
+                Live Market News
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FILTERS -->
+
+        <div class="filter-container">
+
+            <button
+                class="filter-btn active"
+                onclick="setActive(this); loadNews('financial_markets')">
+
+                📈 Market
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="setActive(this); loadNews('technology')">
+
+                💻 Technology
+
+            </button>
+
+
+            <button
+                class="filter-btn"
+                onclick="setActive(this); loadNews('earnings')">
+
+                💰 Earnings
+
+            </button>
+
+
+            <button
+                class="refresh-btn"
+                onclick="loadNews(currentTopic)">
+
+                🔄 Refresh
+
+            </button>
+
+        </div>
+
+
+
+        <!-- NEWS GRID -->
+
+        <div id="newsGrid" class="news-grid">
+
+            <div class="loading">
+
+                ⏳
+
+                <div>
+                    Loading latest market news...
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- FOOTER -->
+
+        <div class="footer">
+
+            Powered by <span>InvestWise</span> • Market intelligence for smarter decisions
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================================
+         JAVASCRIPT
+    ================================= -->
+
+    <script>
+
+        let currentTopic = "financial_markets";
+
+
+        /* =================================
+           ACTIVE FILTER
+        ================================= */
+
+        function setActive(button) {
+
+            document
+                .querySelectorAll(".filter-btn")
+                .forEach(btn => {
+
+                    btn.classList.remove("active");
+
+                });
+
+            button.classList.add("active");
+
+        }
+
+
+        /* =================================
+           LOAD NEWS
+        ================================= */
+
+        async function loadNews(topic = "financial_markets") {
+
+            currentTopic = topic;
+
+            const newsGrid =
+                document.getElementById("newsGrid");
+
+
+            newsGrid.innerHTML = `
+
+                <div class="loading">
+
+                    ⏳
+
+                    <div>
+                        Loading ${topic.replace("_", " ")} news...
+                    </div>
+
+                </div>
+
+            `;
+
+
+            try {
+
+                console.log("Selected topic:", topic);
+
+
+                const response = await fetch(
+                    `http://localhost:3000/api/news?topic=${topic}`
+                );
+
+
+                const data = await response.json();
+
+
+                console.log("News received:", data);
+
+
+                if (!data.feed || data.feed.length === 0) {
+
+                    newsGrid.innerHTML = `
+
+                        <div class="loading">
+
+                            😕
+                            
+                            <div>
+                                No news available right now.
+                            </div>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                /*
+                 * Filter articles according to selected topic
+                 */
+
+                const filteredNews = data.feed.filter(article => {
+
+                    if (!article.topics) {
+                        return false;
+                    }
+
+
+                    return article.topics.some(item => {
+
+                        return item.topic === topic;
+
+                    });
+
+                });
+
+
+                console.log("Filtered news:", filteredNews);
+
+
+                if (filteredNews.length === 0) {
+
+                    newsGrid.innerHTML = `
+
+                        <div class="loading">
+
+                            😕
+                            
+                            <div>
+                                No news available for this category.
+                            </div>
+
+                        </div>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                filteredNews.forEach(article => {
+
+
+                    const card =
+                        document.createElement("div");
+
+
+                    card.className = "news-card";
+
+
+                    card.innerHTML = `
+
+                        <div class="news-meta">
+
+                            <span class="source">
+                                ${article.source || "Market News"}
+                            </span>
+
+                            <span class="date">
+                                ${formatDate(article.time_published)}
+                            </span>
+
+                        </div>
+
+
+                        <h2 class="news-title">
+
+                            ${article.title || "Market Update"}
+
+                        </h2>
+
+
+                        <p class="news-summary">
+
+                            ${article.summary || "Latest market information and financial updates."}
+
+                        </p>
+
+
+                        <a
+                            href="${article.url}"
+                            target="_blank"
+                            class="read-btn">
+
+                            Read Full Article →
+                            
+                        </a>
+
+                    `;
+
+
+                    newsGrid.appendChild(card);
+
+                });
+
+
+            } catch (error) {
+
+                console.error("News error:", error);
+
+
+                newsGrid.innerHTML = `
+
+                    <div class="loading">
+
+                        ⚠️
+
+                        <div>
+                            Unable to load news. Make sure the server is running.
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+
+        }
+
+
+        /* =================================
+           DATE FORMAT
+        ================================= */
+
+        function formatDate(dateString) {
+
+            if (!dateString) {
+                return "Recently";
+            }
+
+
+            const year =
+                dateString.substring(0, 4);
+
+            const month =
+                dateString.substring(4, 6);
+
+            const day =
+                dateString.substring(6, 8);
+
+            const hour =
+                dateString.substring(9, 11);
+
+            const minute =
+                dateString.substring(11, 13);
+
+
+            const date =
+                new Date(
+                    `${year}-${month}-${day}T${hour}:${minute}:00`
+                );
+
+
+            if (isNaN(date.getTime())) {
+                return "Recently";
+            }
+
+
+            return date.toLocaleString(
+                "en-IN",
+                {
+                    day: "2-digit",
+                    month: "short",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                }
+            );
+
+        }
+
+
+        /* =================================
+           INITIAL LOAD
+        ================================= */
+
+        loadNews();
+
+    </script>
+
+
+</body>
+
+</html>

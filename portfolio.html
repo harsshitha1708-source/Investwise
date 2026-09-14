@@ -1,0 +1,3432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>InvestWise - Portfolio</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
+            min-height: 100vh;
+
+            color: #10194a;
+
+            background:
+                radial-gradient(
+                    circle at 10% 30%,
+                    rgba(100, 92, 240, .14),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 90% 70%,
+                    rgba(115, 65, 235, .14),
+                    transparent 32%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #f8f9ff,
+                    #eef1ff
+                );
+
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+
+            height: 78px;
+
+            padding: 0 36px;
+
+            background:
+                rgba(255,255,255,.94);
+
+            backdrop-filter: blur(16px);
+
+            border-bottom:
+                1px solid #e5e7f2;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+        }
+
+
+        .logo-icon {
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            color: white;
+
+            font-size: 22px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #4d78ee,
+                    #7044e9
+                );
+
+        }
+
+
+        .logo h2 {
+
+            color: #10194a;
+
+            font-size: 24px;
+
+        }
+
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 8px;
+
+            list-style: none;
+
+        }
+
+
+        .nav-links a {
+
+            text-decoration: none;
+
+            color: #10194a;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            padding: 11px 16px;
+
+            border-radius: 25px;
+
+            transition: .25s;
+
+        }
+
+
+        .nav-links a:hover {
+
+            background: #f1efff;
+
+            color: #604eea;
+
+        }
+
+
+        .nav-links .active {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6268ed,
+                    #7546eb
+                );
+
+            box-shadow:
+                0 8px 20px
+                rgba(95,75,225,.23);
+
+        }
+
+
+        /* =========================
+           MAIN
+        ========================= */
+
+        .container {
+
+            max-width: 1200px;
+
+            margin: auto;
+
+            padding: 42px 25px 60px;
+
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .page-header {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 28px;
+
+        }
+
+
+        .page-header h1 {
+
+            font-size: 38px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .page-header p {
+
+            color: #68739a;
+
+            font-size: 15px;
+
+        }
+
+
+        .status {
+
+            padding: 12px 18px;
+
+            border-radius: 25px;
+
+            background: white;
+
+            border: 1px solid #e1e2f2;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+        }
+
+
+        /* =========================
+           SUMMARY
+        ========================= */
+
+        .summary-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 18px;
+
+            margin-bottom: 24px;
+
+        }
+
+
+        .summary-card {
+
+            background:
+                rgba(255,255,255,.94);
+
+            border:
+                1px solid #e1e2f2;
+
+            border-radius: 20px;
+
+            padding: 22px;
+
+            box-shadow:
+                0 12px 32px
+                rgba(55,60,120,.09);
+
+            transition: .25s;
+
+        }
+
+
+        .summary-card:hover {
+
+            transform:
+                translateY(-4px);
+
+        }
+
+
+        .summary-top {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .summary-title {
+
+            font-size: 11px;
+
+            color: #68739a;
+
+            font-weight: 800;
+
+            letter-spacing: .7px;
+
+        }
+
+
+        .summary-icon {
+
+            width: 43px;
+            height: 43px;
+
+            border-radius: 13px;
+
+            background: #efedff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 20px;
+
+        }
+
+
+        .summary-card:nth-child(2)
+        .summary-icon {
+
+            background: #eef6ff;
+
+        }
+
+
+        .summary-card:nth-child(3)
+        .summary-icon {
+
+            background: #e8faf4;
+
+        }
+
+
+        .summary-card:nth-child(4)
+        .summary-icon {
+
+            background: #fff1e7;
+
+        }
+
+
+        .summary-card h2 {
+
+            font-size: 25px;
+
+        }
+
+
+        .summary-card p {
+
+            color: #929bb8;
+
+            font-size: 11px;
+
+            margin-top: 7px;
+
+        }
+
+
+        /* =========================
+           PORTFOLIO CARD
+        ========================= */
+
+        .card {
+
+            background:
+                rgba(255,255,255,.94);
+
+            border:
+                1px solid #e1e2f2;
+
+            border-radius: 20px;
+
+            padding: 26px;
+
+            margin-bottom: 22px;
+
+            box-shadow:
+                0 12px 32px
+                rgba(55,60,120,.09);
+
+        }
+
+
+        .card-header {
+
+            display: flex;
+
+            justify-content:
+                space-between;
+
+            align-items: center;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .card-header h2 {
+
+            font-size: 21px;
+
+        }
+
+
+        .card-header span {
+
+            color: #7883a5;
+
+            font-size: 12px;
+
+        }
+
+
+        .refresh-btn {
+
+            border: none;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6268ed,
+                    #7546eb
+                );
+
+            color: white;
+
+            padding: 10px 15px;
+
+            border-radius: 10px;
+
+            cursor: pointer;
+
+            font-weight: 700;
+
+        }
+
+
+        .refresh-btn:hover {
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-wrapper {
+
+            width: 100%;
+
+            overflow-x: auto;
+
+        }
+
+
+        table {
+
+            width: 100%;
+
+            border-collapse:
+                collapse;
+
+            min-width: 900px;
+
+        }
+
+
+        thead {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #f6f5ff,
+                    #f3f5ff
+                );
+
+        }
+
+
+        th {
+
+            text-align: left;
+
+            padding: 14px;
+
+            color: #68739a;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: .5px;
+
+        }
+
+
+        td {
+
+            padding: 17px 14px;
+
+            border-bottom:
+                1px solid #eef0f7;
+
+            font-size: 13px;
+
+        }
+
+
+        tbody tr:hover {
+
+            background: #fafaff;
+
+        }
+
+
+        .company {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+        }
+
+
+        .company-icon {
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 12px;
+
+            background: #efedff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 18px;
+
+        }
+
+
+        .company-name {
+
+            font-weight: 800;
+
+        }
+
+
+        .company-type {
+
+            color: #929bb8;
+
+            font-size: 10px;
+
+            margin-top: 3px;
+
+        }
+
+
+        .amount {
+
+            font-weight: 700;
+
+        }
+
+
+        .profit {
+
+            color: #12a97b;
+
+            font-weight: 800;
+
+        }
+
+
+        .loss {
+
+            color: #ef4d52;
+
+            font-weight: 800;
+
+        }
+
+
+        /* =========================
+           SELL BUTTON
+        ========================= */
+
+        .sell-btn {
+
+            border: none;
+
+            padding: 9px 15px;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff5b6e,
+                    #e83e58
+                );
+
+            color: white;
+
+            font-size: 11px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition: .2s;
+
+        }
+
+
+        .sell-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 7px 15px
+                rgba(232,62,88,.25);
+
+        }
+
+
+        /* =========================
+           EMPTY
+        ========================= */
+
+        .empty-state {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 60px 20px;
+
+        }
+
+
+        .empty-icon {
+
+            font-size: 45px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .empty-state h3 {
+
+            font-size: 20px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .empty-state p {
+
+            color: #7883a5;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+        }
+
+
+        .trade-btn {
+
+            display: inline-block;
+
+            margin-top: 20px;
+
+            text-decoration: none;
+
+            color: white;
+
+            padding: 12px 20px;
+
+            border-radius: 12px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6268ed,
+                    #7546eb
+                );
+
+        }
+
+
+        /* =========================
+           BOTTOM GRID
+        ========================= */
+
+        .bottom-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 22px;
+
+        }
+
+
+        /* =========================
+           ALLOCATION
+        ========================= */
+
+        .allocation {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 30px;
+
+        }
+
+
+        .allocation-chart {
+
+            width: 150px;
+
+            height: 150px;
+
+            border-radius: 50%;
+
+            background:
+                conic-gradient(
+                    #6758e9 0deg 90deg,
+                    #18b98a 90deg 180deg,
+                    #f59e0b 180deg 270deg,
+                    #e3e5f0 270deg 360deg
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+        }
+
+
+        .allocation-inner {
+
+            width: 95px;
+
+            height: 95px;
+
+            border-radius: 50%;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            font-size: 11px;
+
+            color: #7883a5;
+
+        }
+
+
+        .legend {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 13px;
+
+        }
+
+
+        .legend-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 12px;
+
+            color: #59637f;
+
+        }
+
+
+        .dot {
+
+            width: 10px;
+
+            height: 10px;
+
+            border-radius: 50%;
+
+        }
+
+
+        .dot1 {
+            background: #6758e9;
+        }
+
+        .dot2 {
+            background: #18b98a;
+        }
+
+        .dot3 {
+            background: #f59e0b;
+        }
+
+        .dot4 {
+            background: #dfe2ec;
+        }
+
+
+        /* =========================
+           TIPS
+        ========================= */
+
+        .tip {
+
+            display: flex;
+
+            gap: 13px;
+
+            padding: 14px 0;
+
+            border-bottom:
+                1px solid #eef0f7;
+
+        }
+
+
+        .tip:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .tip-icon {
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 11px;
+
+            background: #efedff;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .tip strong {
+
+            display: block;
+
+            font-size: 13px;
+
+            margin-bottom: 4px;
+
+        }
+
+
+        .tip p {
+
+            color: #929bb8;
+
+            font-size: 11px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================
+           DISCLAIMER
+        ========================= */
+
+        .disclaimer {
+
+            padding: 15px 18px;
+
+            border-radius: 14px;
+
+            background:
+                #fffaf0;
+
+            border:
+                1px solid #f8df9b;
+
+            color: #765c14;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+
+        }
+
+
+        /* =========================
+           SELL MODAL
+        ========================= */
+
+        .sell-modal {
+
+            position: fixed;
+
+            inset: 0;
+
+            background:
+                rgba(16,25,74,.55);
+
+            backdrop-filter:
+                blur(7px);
+
+            display: none;
+
+            align-items: center;
+
+            justify-content: center;
+
+            z-index: 9999;
+
+            padding: 20px;
+
+        }
+
+
+        .sell-modal.active {
+
+            display: flex;
+
+        }
+
+
+        .sell-box {
+
+            width: min(450px, 100%);
+
+            background: white;
+
+            border-radius: 22px;
+
+            padding: 28px;
+
+            box-shadow:
+                0 25px 70px
+                rgba(20,25,70,.3);
+
+            animation:
+                popup .2s ease;
+
+        }
+
+
+        @keyframes popup {
+
+            from {
+
+                transform:
+                    scale(.92);
+
+                opacity: 0;
+
+            }
+
+            to {
+
+                transform:
+                    scale(1);
+
+                opacity: 1;
+
+            }
+
+        }
+
+
+        .sell-box h2 {
+
+            font-size: 24px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .sell-stock-name {
+
+            color: #68739a;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .sell-info {
+
+            background: #f7f7ff;
+
+            border-radius: 14px;
+
+            padding: 15px;
+
+            margin-bottom: 18px;
+
+            line-height: 2;
+
+            font-size: 13px;
+
+        }
+
+
+        .sell-info strong {
+
+            color: #10194a;
+
+        }
+
+
+        .sell-box label {
+
+            display: block;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        .sell-box input {
+
+            width: 100%;
+
+            height: 48px;
+
+            border:
+                1px solid #d9d8f5;
+
+            border-radius: 11px;
+
+            padding: 0 14px;
+
+            font-size: 15px;
+
+            outline: none;
+
+        }
+
+
+        .sell-box input:focus {
+
+            border-color: #7265ef;
+
+            box-shadow:
+                0 0 0 4px
+                rgba(113,100,239,.1);
+
+        }
+
+
+        .sell-message {
+
+            min-height: 20px;
+
+            margin-top: 10px;
+
+            color: #d33;
+
+            font-size: 12px;
+
+        }
+
+
+        .sell-actions {
+
+            display: flex;
+
+            gap: 10px;
+
+            margin-top: 18px;
+
+        }
+
+
+        .cancel-btn,
+        .confirm-btn {
+
+            flex: 1;
+
+            height: 46px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+        }
+
+
+        .cancel-btn {
+
+            background: #eef0f7;
+
+            color: #4f5878;
+
+        }
+
+
+        .confirm-btn {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ff5b6e,
+                    #e83e58
+                );
+
+            color: white;
+
+        }
+
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media(max-width:950px) {
+
+            .summary-grid {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+
+            }
+
+            .bottom-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+        }
+
+
+        @media(max-width:600px) {
+
+            .navbar {
+
+                padding: 0 18px;
+
+            }
+
+            .nav-links {
+
+                display: none;
+
+            }
+
+            .container {
+
+                padding:
+                    30px 15px 45px;
+
+            }
+
+            .page-header {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 15px;
+
+            }
+
+            .page-header h1 {
+
+                font-size: 30px;
+
+            }
+
+            .summary-grid {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .card {
+
+                padding: 18px;
+
+            }
+
+            .allocation {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         NAVBAR
+    ========================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                📈
+            </div>
+
+            <h2>
+                InvestWise
+            </h2>
+
+        </div>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="ai.html">
+                    AI Advisor
+                </a>
+            </li>
+
+            <li>
+                <a href="papertrading.html">
+                    Paper Trading
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="portfolio.html"
+                    class="active"
+                >
+                    Portfolio
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <main class="container">
+
+
+        <!-- HEADER -->
+
+        <section class="page-header">
+
+            <div>
+
+                <h1>
+                    💼 My Portfolio
+                </h1>
+
+                <p>
+                    Track your virtual investments
+                    and live portfolio performance.
+                </p>
+
+            </div>
+
+
+            <div class="status">
+                🟢 Portfolio Active
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SUMMARY
+        ========================= -->
+
+        <section class="summary-grid">
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <span class="summary-title">
+                        PORTFOLIO VALUE
+                    </span>
+
+                    <div class="summary-icon">
+                        💼
+                    </div>
+
+                </div>
+
+                <h2 id="portfolioValue">
+                    ₹0
+                </h2>
+
+                <p>
+                    Current holdings value
+                </p>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <span class="summary-title">
+                        TOTAL INVESTED
+                    </span>
+
+                    <div class="summary-icon">
+                        💰
+                    </div>
+
+                </div>
+
+                <h2 id="totalInvested">
+                    ₹0
+                </h2>
+
+                <p>
+                    Amount invested
+                </p>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <span class="summary-title">
+                        AVAILABLE CASH
+                    </span>
+
+                    <div class="summary-icon">
+                        🏦
+                    </div>
+
+                </div>
+
+                <h2 id="cashBalance">
+                    ₹0
+                </h2>
+
+                <p>
+                    Available for trading
+                </p>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-top">
+
+                    <span class="summary-title">
+                        PROFIT / LOSS
+                    </span>
+
+                    <div class="summary-icon">
+                        📈
+                    </div>
+
+                </div>
+
+                <h2 id="profitLoss">
+                    ₹0
+                </h2>
+
+                <p>
+                    Current performance
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             HOLDINGS
+        ========================= -->
+
+        <section class="card">
+
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        📊 Your Holdings
+                    </h2>
+
+                    <span>
+                        Live market prices
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <span id="stockCount">
+                        0 Stocks
+                    </span>
+
+                    <button
+                        class="refresh-btn"
+                        onclick="loadLivePrices()"
+                    >
+                        🔄 Refresh
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <div
+                class="table-wrapper"
+                id="tableWrapper"
+            >
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                STOCK
+                            </th>
+
+                            <th>
+                                QUANTITY
+                            </th>
+
+                            <th>
+                                BUY PRICE
+                            </th>
+
+                            <th>
+                                INVESTED
+                            </th>
+
+                            <th>
+                                LIVE PRICE
+                            </th>
+
+                            <th>
+                                CURRENT VALUE
+                            </th>
+
+                            <th>
+                                P&L
+                            </th>
+
+                            <th>
+                                ACTION
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody
+                        id="portfolioBody"
+                    ></tbody>
+
+                </table>
+
+            </div>
+
+
+
+            <!-- EMPTY -->
+
+            <div
+                class="empty-state"
+                id="emptyState"
+            >
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                <h3>
+                    Your Portfolio is Empty
+                </h3>
+
+                <p>
+                    You haven't purchased any
+                    stocks yet.
+                    <br>
+                    Start paper trading to build
+                    your virtual portfolio.
+                </p>
+
+                <a
+                    href="papertrading.html"
+                    class="trade-btn"
+                >
+                    📈 Start Trading
+                </a>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =========================
+             BOTTOM
+        ========================= -->
+
+        <section class="bottom-grid">
+
+
+            <!-- ALLOCATION -->
+
+            <div class="card">
+
+                <h2>
+                    📊 Portfolio Allocation
+                </h2>
+
+                <br>
+
+
+                <div class="allocation">
+
+
+                    <div
+                        class="allocation-chart"
+                        id="allocationChart"
+                    >
+
+                        <div class="allocation-inner">
+
+                            Your
+                            <br>
+                            Portfolio
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="legend"
+                        id="allocationLegend"
+                    >
+
+                        <div class="legend-item">
+
+                            <span class="dot dot1"></span>
+
+                            Technology
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="dot dot2"></span>
+
+                            Banking
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="dot dot3"></span>
+
+                            Pharma
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="dot dot4"></span>
+
+                            Other
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- TIPS -->
+<!-- =========================
+     TRANSACTION HISTORY
+========================= -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div>
+            <h2>📝 Transaction History</h2>
+            <span>Your recent BUY and SELL transactions</span>
+        </div>
+
+        <button
+            class="refresh-btn"
+            onclick="loadTransactions()"
+        >
+            🔄 Refresh
+        </button>
+
+    </div>
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>TYPE</th>
+                    <th>STOCK</th>
+                    <th>QUANTITY</th>
+                    <th>PRICE</th>
+                    <th>TOTAL</th>
+                    <th>DATE</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="transactionBody">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div
+        id="noTransactions"
+        style="
+            display:none;
+            text-align:center;
+            padding:30px;
+            color:#929bb8;
+            font-size:13px;
+        "
+    >
+        📭 No transactions yet.
+    </div>
+
+</div>
+            <div class="card">
+
+                <h2>
+                    💡 Portfolio Tips
+                </h2>
+
+
+                <div class="tip">
+
+                    <div class="tip-icon">
+                        🎯
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Diversify
+                        </strong>
+
+                        <p>
+                            Avoid putting all your
+                            virtual money into one stock.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <div class="tip-icon">
+                        📈
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Monitor Performance
+                        </strong>
+
+                        <p>
+                            Check live prices and
+                            profit or loss regularly.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tip">
+
+                    <div class="tip-icon">
+                        🤖
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Use AI Advisor
+                        </strong>
+
+                        <p>
+                            Get educational stock
+                            suggestions based on
+                            your preferences.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- DISCLAIMER -->
+
+        <div class="disclaimer">
+
+            ⚠️
+
+            <strong>
+                Educational Simulation:
+            </strong>
+
+            InvestWise is a paper-trading platform.
+            All balances, holdings and transactions
+            are virtual and do not involve real money.
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =================================================
+         SELL POPUP
+         IMPORTANT: POPUP IS BEFORE JAVASCRIPT
+    ================================================= -->
+
+    <div
+        class="sell-modal"
+        id="sellModal"
+    >
+
+        <div class="sell-box">
+
+
+            <h2>
+                Sell Stock
+            </h2>
+
+
+            <div
+                class="sell-stock-name"
+                id="sellStockName"
+            >
+                Stock
+            </div>
+
+
+            <div class="sell-info">
+
+
+                <div>
+
+                    <strong>
+                        Owned:
+                    </strong>
+
+                    <span id="sellOwned">
+                        0
+                    </span>
+
+                    shares
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Live Price:
+                    </strong>
+
+                    <span id="sellPrice">
+                        Loading...
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Estimated Value:
+                    </strong>
+
+                    <span id="sellEstimated">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+            </div>
+
+
+            <label for="sellQuantity">
+
+                Quantity to Sell
+
+            </label>
+
+
+            <input
+                type="number"
+                id="sellQuantity"
+                min="1"
+                step="1"
+                placeholder="Enter quantity"
+            >
+
+
+            <div
+                class="sell-message"
+                id="sellMessage"
+            ></div>
+
+
+            <div class="sell-actions">
+
+
+                <button
+                    class="cancel-btn"
+                    onclick="closeSellModal()"
+                >
+                    Cancel
+                </button>
+
+
+                <button
+                    class="confirm-btn"
+                    onclick="confirmSell()"
+                >
+                    Confirm Sell
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         JAVASCRIPT
+    ================================================= -->
+
+    <script>
+
+
+        /* =========================
+           GLOBAL VARIABLES
+        ========================= */
+
+        let balance =
+            Number(
+                localStorage.getItem(
+                    "virtualBalance"
+                )
+            ) || 1000000;
+
+
+        let portfolio =
+            JSON.parse(
+                localStorage.getItem(
+                    "portfolio"
+                )
+            ) || [];
+
+
+        let livePrices = {};
+
+        let selectedStockIndex = -1;
+
+        let selectedLivePrice = 0;
+
+
+
+        /* =========================
+           MONEY FORMAT
+        ========================= */
+
+        function money(value) {
+
+            return "₹" +
+                Number(value || 0)
+                    .toLocaleString(
+                        "en-IN",
+                        {
+                            maximumFractionDigits: 2
+                        }
+                    );
+
+        }
+
+
+
+        /* =========================
+           STOCK SYMBOLS
+        ========================= */
+
+        const stockSymbols = {
+
+
+            "TCS":
+                "TCS.BSE",
+
+
+            "INFY":
+                "INFY.BSE",
+
+
+            "Infosys":
+                "INFY.BSE",
+
+
+            "HCLTECH":
+                "HCLTECH.BSE",
+
+
+            "HCL Technologies":
+                "HCLTECH.BSE",
+
+
+            "HDFCBANK":
+                "HDFCBANK.BSE",
+
+
+            "HDFC Bank":
+                "HDFCBANK.BSE",
+
+
+            "ICICIBANK":
+                "ICICIBANK.BSE",
+
+
+            "ICICI Bank":
+                "ICICIBANK.BSE",
+
+
+            "SBIN":
+                "SBIN.BSE",
+
+
+            "State Bank of India":
+                "SBIN.BSE",
+
+
+            "SUNPHARMA":
+                "SUNPHARMA.BSE",
+
+
+            "Sun Pharma":
+                "SUNPHARMA.BSE",
+
+
+            "CIPLA":
+                "CIPLA.BSE",
+
+
+            "Cipla":
+                "CIPLA.BSE",
+
+
+            "DRREDDY":
+                "DRREDDY.BSE",
+
+
+            "Dr. Reddy's Laboratories":
+                "DRREDDY.BSE",
+
+
+            "TATAMOTORS":
+                "TATAMOTORS.BSE",
+
+
+            "Tata Motors":
+                "TATAMOTORS.BSE",
+
+
+            "M&M":
+                "M&M.BSE",
+
+
+            "Mahindra & Mahindra":
+                "M&M.BSE",
+
+
+            "EXIDEIND":
+                "EXIDEIND.BSE",
+
+
+            "Exide Industries":
+                "EXIDEIND.BSE"
+
+        };
+
+
+
+        /* =========================
+           GET SYMBOL
+        ========================= */
+
+        function getSymbol(stock) {
+
+
+            if (
+                stock.symbol &&
+                stock.symbol.includes(".")
+            ) {
+
+                return stock.symbol;
+
+            }
+
+
+            return (
+                stockSymbols[stock.name] ||
+                stock.name + ".BSE"
+            );
+
+        }
+
+
+
+        /* =========================
+           LOAD LIVE PRICES
+        ========================= */
+
+        async function loadLivePrices() {
+
+
+            if (
+                portfolio.length === 0
+            ) {
+
+                renderPortfolio();
+
+                return;
+
+            }
+
+
+            const refreshButton =
+                document.querySelector(
+                    ".refresh-btn"
+                );
+
+
+            refreshButton.innerText =
+                "⏳ Loading...";
+
+            refreshButton.disabled =
+                true;
+
+
+            for (
+                let i = 0;
+                i < portfolio.length;
+                i++
+            ) {
+
+
+                const stock =
+                    portfolio[i];
+
+
+                const symbol =
+                    getSymbol(stock);
+
+
+                try {
+
+
+                    const response =
+                        await fetch(
+
+                            `/api/stock/${encodeURIComponent(symbol)}`
+
+                        );
+
+
+                    const data =
+                        await response.json();
+
+
+                    const quote =
+                        data["Global Quote"];
+
+
+                    if (
+                        quote &&
+                        quote["05. price"]
+                    ) {
+
+
+                        livePrices[stock.name] =
+                            Number(
+                                quote["05. price"]
+                            );
+
+                    }
+
+
+                }
+
+                catch (error) {
+
+                    console.error(
+                        "Price error:",
+                        stock.name,
+                        error
+                    );
+
+                }
+
+            }
+
+
+            refreshButton.innerText =
+                "🔄 Refresh";
+
+            refreshButton.disabled =
+                false;
+
+
+            renderPortfolio();
+
+        }
+
+
+
+        /* =========================
+           RENDER PORTFOLIO
+        ========================= */
+
+        function renderPortfolio() {
+
+
+            const tableBody =
+                document.getElementById(
+                    "portfolioBody"
+                );
+
+
+            const tableWrapper =
+                document.getElementById(
+                    "tableWrapper"
+                );
+
+
+            const emptyState =
+                document.getElementById(
+                    "emptyState"
+                );
+
+
+            tableBody.innerHTML =
+                "";
+
+
+            if (
+                portfolio.length === 0
+            ) {
+
+
+                tableWrapper.style.display =
+                    "none";
+
+
+                emptyState.style.display =
+                    "block";
+
+
+                updateSummary();
+
+                updateAllocation();
+
+                return;
+
+            }
+
+
+            tableWrapper.style.display =
+                "block";
+
+
+            emptyState.style.display =
+                "none";
+
+
+
+            portfolio.forEach(
+                function(stock, index) {
+
+
+                    const quantity =
+                        Number(
+                            stock.quantity
+                        ) || 0;
+
+
+                    const buyPrice =
+                        Number(
+                            stock.price
+                        ) || 0;
+
+
+                    const invested =
+                        Number(
+                            stock.investment
+                        ) ||
+                        (
+                            quantity *
+                            buyPrice
+                        );
+
+
+                    const livePrice =
+                        livePrices[
+                            stock.name
+                        ] || buyPrice;
+
+
+                    const currentValue =
+                        quantity *
+                        livePrice;
+
+
+                    const profit =
+                        currentValue -
+                        invested;
+
+
+                    let icon =
+                        "📈";
+
+
+                    let type =
+                        "Equity";
+
+
+                    if (
+                        stock.name ===
+                        "TCS"
+                    ) {
+
+                        icon = "💻";
+
+                        type =
+                            "IT Services";
+
+                    }
+
+
+                    else if (
+                        stock.name ===
+                        "INFY" ||
+                        stock.name ===
+                        "Infosys"
+                    ) {
+
+                        icon = "💻";
+
+                        type =
+                            "IT Services";
+
+                    }
+
+
+                    else if (
+                        stock.name ===
+                        "HDFCBANK" ||
+                        stock.name ===
+                        "HDFC Bank"
+                    ) {
+
+                        icon = "🏦";
+
+                        type =
+                            "Banking";
+
+                    }
+
+
+                    else if (
+                        stock.name ===
+                        "ICICIBANK" ||
+                        stock.name ===
+                        "ICICI Bank"
+                    ) {
+
+                        icon = "🏦";
+
+                        type =
+                            "Banking";
+
+                    }
+
+
+                    else if (
+                        stock.name ===
+                        "SUNPHARMA" ||
+                        stock.name ===
+                        "Sun Pharma"
+                    ) {
+
+                        icon = "💊";
+
+                        type =
+                            "Pharma";
+
+                    }
+
+
+                    else if (
+                        stock.name ===
+                        "TATAMOTORS" ||
+                        stock.name ===
+                        "Tata Motors"
+                    ) {
+
+                        icon = "🚗";
+
+                        type =
+                            "Automobile";
+
+                    }
+
+
+                    const row =
+                        document.createElement(
+                            "tr"
+                        );
+
+
+                    row.innerHTML = `
+
+                        <td>
+
+                            <div class="company">
+
+                                <div class="company-icon">
+                                    ${icon}
+                                </div>
+
+                                <div>
+
+                                    <div class="company-name">
+                                        ${stock.name}
+                                    </div>
+
+                                    <div class="company-type">
+                                        ${type}
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+                            ${quantity}
+                            shares
+                        </td>
+
+
+                        <td>
+                            ${money(buyPrice)}
+                        </td>
+
+
+                        <td>
+
+                            <span class="amount">
+                                ${money(invested)}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="amount">
+                                ${money(livePrice)}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="amount">
+                                ${money(currentValue)}
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="${
+                                profit >= 0
+                                    ? "profit"
+                                    : "loss"
+                            }">
+
+                                ${
+                                    profit >= 0
+                                        ? "+"
+                                        : ""
+                                }
+
+                                ${money(profit)}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="sell-btn"
+                                onclick="openSellModal(${index})"
+                            >
+                                SELL
+                            </button>
+
+                        </td>
+
+                    `;
+
+
+                    tableBody.appendChild(
+                        row
+                    );
+
+                }
+            );
+
+
+            updateSummary();
+
+            updateAllocation();
+
+        }
+
+
+
+        /* =========================
+           UPDATE SUMMARY
+        ========================= */
+
+        function updateSummary() {
+
+
+            let totalInvested = 0;
+
+            let currentValue = 0;
+
+
+            portfolio.forEach(
+                function(stock) {
+
+
+                    const quantity =
+                        Number(
+                            stock.quantity
+                        ) || 0;
+
+
+                    const buyPrice =
+                        Number(
+                            stock.price
+                        ) || 0;
+
+
+                    totalInvested +=
+                        Number(
+                            stock.investment
+                        ) ||
+                        (
+                            quantity *
+                            buyPrice
+                        );
+
+
+                    const livePrice =
+                        livePrices[
+                            stock.name
+                        ] || buyPrice;
+
+
+                    currentValue +=
+                        quantity *
+                        livePrice;
+
+                }
+            );
+
+
+            const profitLoss =
+                currentValue -
+                totalInvested;
+
+
+
+            document.getElementById(
+                "portfolioValue"
+            ).innerText =
+                money(currentValue);
+
+
+            document.getElementById(
+                "totalInvested"
+            ).innerText =
+                money(totalInvested);
+
+
+            document.getElementById(
+                "cashBalance"
+            ).innerText =
+                money(balance);
+
+
+            const profitElement =
+                document.getElementById(
+                    "profitLoss"
+                );
+
+
+            profitElement.innerText =
+                (
+                    profitLoss >= 0
+                        ? "+"
+                        : ""
+                ) +
+                money(profitLoss);
+
+
+            profitElement.className =
+                profitLoss >= 0
+                    ? "profit"
+                    : "loss";
+
+
+            document.getElementById(
+                "stockCount"
+            ).innerText =
+
+                portfolio.length +
+
+                (
+                    portfolio.length === 1
+                        ? " Stock"
+                        : " Stocks"
+                );
+
+        }
+
+
+
+        /* =========================
+           ALLOCATION
+        ========================= */
+
+        function updateAllocation() {
+
+
+            let technology = 0;
+
+            let banking = 0;
+
+            let pharma = 0;
+
+            let other = 0;
+
+
+            portfolio.forEach(
+                function(stock) {
+
+
+                    const value =
+                        (
+                            Number(
+                                stock.quantity
+                            ) || 0
+                        ) *
+                        (
+                            livePrices[
+                                stock.name
+                            ] ||
+                            Number(
+                                stock.price
+                            ) ||
+                            0
+                        );
+
+
+                    const name =
+                        stock.name
+                            .toUpperCase();
+
+
+                    if (
+                        name.includes("TCS") ||
+                        name.includes("INFY") ||
+                        name.includes("HCL")
+                    ) {
+
+                        technology += value;
+
+                    }
+
+
+                    else if (
+                        name.includes("HDFC") ||
+                        name.includes("ICICI") ||
+                        name.includes("SBIN")
+                    ) {
+
+                        banking += value;
+
+                    }
+
+
+                    else if (
+                        name.includes("SUN") ||
+                        name.includes("CIPLA") ||
+                        name.includes("DRREDDY")
+                    ) {
+
+                        pharma += value;
+
+                    }
+
+
+                    else {
+
+                        other += value;
+
+                    }
+
+                }
+            );
+
+
+            const total =
+                technology +
+                banking +
+                pharma +
+                other;
+
+
+            if (total === 0) {
+
+                return;
+
+            }
+
+
+            const techDeg =
+                technology /
+                total *
+                360;
+
+
+            const bankDeg =
+                banking /
+                total *
+                360;
+
+
+            const pharmaDeg =
+                pharma /
+                total *
+                360;
+
+
+            const chart =
+                document.getElementById(
+                    "allocationChart"
+                );
+
+
+            chart.style.background =
+                `conic-gradient(
+                    #6758e9 0deg ${techDeg}deg,
+                    #18b98a ${techDeg}deg ${techDeg + bankDeg}deg,
+                    #f59e0b ${techDeg + bankDeg}deg ${techDeg + bankDeg + pharmaDeg}deg,
+                    #e3e5f0 ${techDeg + bankDeg + pharmaDeg}deg 360deg
+                )`;
+
+        }
+
+
+
+        /* =========================
+           OPEN SELL MODAL
+        ========================= */
+
+        async function openSellModal(index) {
+
+
+            const stock =
+                portfolio[index];
+
+
+            if (!stock) {
+
+                return;
+
+            }
+
+
+            selectedStockIndex =
+                index;
+
+
+            selectedLivePrice = 0;
+
+
+            document
+                .getElementById(
+                    "sellModal"
+                )
+                .classList
+                .add("active");
+
+
+            document.getElementById(
+                "sellStockName"
+            ).innerText =
+                stock.name;
+
+
+            document.getElementById(
+                "sellOwned"
+            ).innerText =
+                stock.quantity;
+
+
+            document.getElementById(
+                "sellPrice"
+            ).innerText =
+                "Loading...";
+
+
+            document.getElementById(
+                "sellEstimated"
+            ).innerText =
+                "₹0";
+
+
+            document.getElementById(
+                "sellQuantity"
+            ).value =
+                "";
+
+
+            document.getElementById(
+                "sellMessage"
+            ).innerText =
+                "";
+
+
+            try {
+
+
+                const symbol =
+                    getSymbol(stock);
+
+
+                const response =
+                    await fetch(
+
+                        
+                    `/api/stock/${encodeURIComponent(symbol)}`
+
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                const quote =
+                    data["Global Quote"];
+
+
+                if (
+                    !quote ||
+                    !quote["05. price"]
+                ) {
+
+                    throw new Error(
+                        "Live price unavailable"
+                    );
+
+                }
+
+
+                selectedLivePrice =
+                    Number(
+                        quote["05. price"]
+                    );
+
+
+                document.getElementById(
+                    "sellPrice"
+                ).innerText =
+                    money(
+                        selectedLivePrice
+                    );
+
+
+            }
+
+            catch (error) {
+
+
+                console.error(error);
+
+
+                document.getElementById(
+                    "sellPrice"
+                ).innerText =
+                    "Unavailable";
+
+
+                document.getElementById(
+                    "sellMessage"
+                ).innerText =
+                    "Unable to fetch live price.";
+
+            }
+
+        }
+
+
+
+        /* =========================
+           SELL QUANTITY CHANGE
+        ========================= */
+
+        document.getElementById(
+            "sellQuantity"
+        ).addEventListener(
+            "input",
+            function() {
+
+
+                const quantity =
+                    Number(
+                        this.value
+                    ) || 0;
+
+
+                const value =
+                    quantity *
+                    selectedLivePrice;
+
+
+                document.getElementById(
+                    "sellEstimated"
+                ).innerText =
+                    money(value);
+
+            }
+        );
+
+
+
+        /* =========================
+           CLOSE SELL MODAL
+        ========================= */
+
+        function closeSellModal() {
+
+
+            document
+                .getElementById(
+                    "sellModal"
+                )
+                .classList
+                .remove("active");
+
+
+            selectedStockIndex =
+                -1;
+
+
+            selectedLivePrice =
+                0;
+
+        }
+
+
+
+        /* =========================
+           CONFIRM SELL
+        ========================= */
+
+        function confirmSell() {
+
+
+            const stock =
+                portfolio[
+                    selectedStockIndex
+                ];
+
+
+            const quantity =
+                Number(
+                    document
+                        .getElementById(
+                            "sellQuantity"
+                        )
+                        .value
+                );
+
+
+            const message =
+                document.getElementById(
+                    "sellMessage"
+                );
+
+
+            /* STOCK CHECK */
+
+            if (!stock) {
+
+                message.innerText =
+                    "Stock not found.";
+
+                return;
+
+            }
+
+
+            /* QUANTITY CHECK */
+
+            if (
+                !Number.isInteger(
+                    quantity
+                ) ||
+                quantity <= 0
+            ) {
+
+                message.innerText =
+                    "Please enter a valid whole number.";
+
+                return;
+
+            }
+
+
+            /* OWNERSHIP CHECK */
+
+            if (
+                quantity >
+                Number(stock.quantity)
+            ) {
+
+                message.innerText =
+                    `You only own ${stock.quantity} shares.`;
+
+                return;
+
+            }
+
+
+            /* PRICE CHECK */
+
+            if (
+                selectedLivePrice <= 0
+            ) {
+
+                message.innerText =
+                    "Live price is unavailable.";
+
+                return;
+
+            }
+
+
+            /* SELL VALUE */
+
+            const sellingValue =
+                quantity *
+                selectedLivePrice;
+
+
+            /* ADD MONEY */
+
+            balance +=
+                sellingValue;
+
+
+            /* REDUCE SHARES */
+
+            stock.quantity =
+                Number(stock.quantity) -
+                quantity;
+
+
+            /* REMOVE COMPLETELY */
+
+            if (
+                stock.quantity === 0
+            ) {
+
+                portfolio.splice(
+                    selectedStockIndex,
+                    1
+                );
+
+            }
+
+
+            /* SAVE BALANCE */
+
+            localStorage.setItem(
+                "virtualBalance",
+                balance
+            );
+
+
+            /* SAVE PORTFOLIO */
+
+            localStorage.setItem(
+                "portfolio",
+                JSON.stringify(
+                    portfolio
+                )
+            );
+
+
+            /* TRANSACTION */
+
+            const transactions =
+                JSON.parse(
+                    localStorage.getItem(
+                        "transactions"
+                    )
+                ) || [];
+
+
+            transactions.push({
+
+                type:
+                    "SELL",
+
+                stock:
+                    stock.name,
+
+                quantity:
+                    quantity,
+
+                price:
+                    selectedLivePrice,
+
+                total:
+                    sellingValue,
+
+                date:
+                    new Date()
+                        .toISOString()
+
+            });
+
+
+            localStorage.setItem(
+                "transactions",
+                JSON.stringify(
+                    transactions
+                )
+            );
+
+
+            alert(
+
+                `Successfully sold ${quantity} share(s) of ${stock.name} for ${money(sellingValue)}.`
+
+            );
+
+
+            closeSellModal();
+
+
+            renderPortfolio();
+
+
+        }
+
+
+
+        /* =========================
+           CLOSE WHEN CLICK OUTSIDE
+        ========================= */
+
+        document
+            .getElementById(
+                "sellModal"
+            )
+            .addEventListener(
+                "click",
+                function(event) {
+
+
+                    if (
+                        event.target ===
+                        this
+                    ) {
+
+                        closeSellModal();
+
+                    }
+
+                }
+            );
+
+
+
+        /* =========================
+           INITIAL LOAD
+        ========================= */
+
+        renderPortfolio();
+
+        loadLivePrices();
+
+/* =========================
+   TRANSACTION HISTORY
+========================= */
+
+function loadTransactions() {
+
+    const transactionBody =
+        document.getElementById("transactionBody");
+
+    const noTransactions =
+        document.getElementById("noTransactions");
+
+    const transactions =
+        JSON.parse(
+            localStorage.getItem("transactions")
+        ) || [];
+
+    transactionBody.innerHTML = "";
+
+    if (transactions.length === 0) {
+
+        noTransactions.style.display = "block";
+
+        return;
+
+    }
+
+    noTransactions.style.display = "none";
+
+
+    /* Show newest transaction first */
+
+    const latestTransactions =
+        [...transactions].reverse();
+
+
+    latestTransactions.forEach(function(transaction) {
+
+        const row =
+            document.createElement("tr");
+
+
+        const type =
+            transaction.type || "BUY";
+
+
+        const typeClass =
+            type === "SELL"
+                ? "loss"
+                : "profit";
+
+
+        const icon =
+            type === "SELL"
+                ? "🔴"
+                : "🟢";
+
+
+        const date =
+            transaction.date
+                ? new Date(
+                    transaction.date
+                  ).toLocaleString("en-IN")
+                : "Recently";
+
+
+        row.innerHTML = `
+
+            <td>
+
+                <span class="${typeClass}">
+
+                    ${icon}
+                    ${type}
+
+                </span>
+
+            </td>
+
+
+            <td>
+
+                <strong>
+                    ${transaction.stock || "-"}
+                </strong>
+
+            </td>
+
+
+            <td>
+
+                ${transaction.quantity || 0}
+
+                shares
+
+            </td>
+
+
+            <td>
+
+                ${money(
+                    transaction.price || 0
+                )}
+
+            </td>
+
+
+            <td>
+
+                <strong>
+                    ${money(
+                        transaction.total || 0
+                    )}
+                </strong>
+
+            </td>
+
+
+            <td>
+
+                ${date}
+
+            </td>
+
+        `;
+
+
+        transactionBody.appendChild(row);
+
+    });
+
+}
+    </script>
+
+
+</body>
+
+</html>

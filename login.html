@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InvestWise - Login</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        /* =========================
+           BODY
+        ========================= */
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 30px 15px;
+
+            background:
+                radial-gradient(
+                    circle at 10% 20%,
+                    rgba(139, 92, 246, 0.20),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(124, 58, 237, 0.18),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #f5f0ff,
+                    #eee7ff,
+                    #faf8ff
+                );
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           BACKGROUND DECORATIONS
+        ========================= */
+
+        body::before {
+            content: "";
+
+            position: fixed;
+
+            width: 300px;
+            height: 300px;
+
+            border-radius: 50%;
+
+            background: rgba(124, 58, 237, 0.08);
+
+            top: -120px;
+            left: -100px;
+
+            z-index: -1;
+        }
+
+        body::after {
+            content: "";
+
+            position: fixed;
+
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            background: rgba(168, 85, 247, 0.08);
+
+            bottom: -150px;
+            right: -100px;
+
+            z-index: -1;
+        }
+
+
+        /* =========================
+           LOGIN CARD
+        ========================= */
+
+        .login-card {
+
+            width: 100%;
+            max-width: 500px;
+
+            background: rgba(255, 255, 255, 0.96);
+
+            border: 1px solid rgba(124, 58, 237, 0.15);
+
+            border-radius: 24px;
+
+            padding: 45px 45px 40px;
+
+            box-shadow:
+                0 25px 60px rgba(76, 29, 149, 0.15),
+                0 8px 20px rgba(0, 0, 0, 0.06);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        /* Purple top border */
+
+        .login-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 5px;
+
+            background: linear-gradient(
+                90deg,
+                #5b21b6,
+                #7c3aed,
+                #a855f7
+            );
+        }
+
+
+        /* =========================
+           LOGO
+        ========================= */
+
+        .logo {
+
+            text-align: center;
+
+            margin-bottom: 8px;
+        }
+
+        .logo h1 {
+
+            font-size: 36px;
+
+            font-weight: 800;
+
+            background: linear-gradient(
+                90deg,
+                #5b21b6,
+                #7c3aed,
+                #a855f7
+            );
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        /* =========================
+           TAGLINE
+        ========================= */
+
+        .tagline {
+
+            text-align: center;
+
+            color: #6b7280;
+
+            font-size: 15px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           HEADING
+        ========================= */
+
+        .heading {
+
+            text-align: center;
+
+            color: #1f1633;
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            margin-bottom: 28px;
+        }
+
+        .heading span {
+
+            color: #7c3aed;
+        }
+
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .input-group {
+
+            margin-bottom: 17px;
+        }
+
+
+        .input-group input {
+
+            width: 100%;
+
+            height: 52px;
+
+            padding: 0 17px;
+
+            border: 1.5px solid #ddd6fe;
+
+            border-radius: 11px;
+
+            outline: none;
+
+            background: #ffffff;
+
+            color: #1f2937;
+
+            font-size: 15px;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .input-group input::placeholder {
+
+            color: #8b8b9a;
+        }
+
+
+        .input-group input:hover {
+
+            border-color: #a78bfa;
+        }
+
+
+        .input-group input:focus {
+
+            border-color: #7c3aed;
+
+            box-shadow:
+                0 0 0 4px rgba(124, 58, 237, 0.12);
+
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        .login-btn {
+
+            width: 100%;
+
+            height: 52px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            background: linear-gradient(
+                135deg,
+                #5b21b6,
+                #7c3aed,
+                #9333ea
+            );
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            cursor: pointer;
+
+            margin-top: 5px;
+
+            box-shadow:
+                0 8px 20px rgba(124, 58, 237, 0.30);
+
+            transition: all 0.3s ease;
+        }
+
+
+        .login-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 27px rgba(124, 58, 237, 0.40);
+        }
+
+
+        .login-btn:active {
+
+            transform: translateY(0);
+        }
+
+
+        /* =========================
+           CREATE ACCOUNT
+        ========================= */
+
+        .create-account {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #55516a;
+
+            font-size: 14px;
+        }
+
+
+        .create-account a {
+
+            color: #6d28d9;
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            margin-left: 4px;
+
+            transition: 0.2s;
+        }
+
+
+        .create-account a:hover {
+
+            color: #4c1d95;
+
+            text-decoration: underline;
+        }
+
+
+        /* =========================
+           SECURITY TEXT
+        ========================= */
+
+        .security {
+
+            text-align: center;
+
+            margin-top: 22px;
+
+            color: #8b8798;
+
+            font-size: 12px;
+        }
+
+
+        /* =========================
+           RESPONSIVE DESIGN
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 20px 12px;
+            }
+
+
+            .login-card {
+
+                padding: 35px 22px;
+
+                border-radius: 20px;
+            }
+
+
+            .logo h1 {
+
+                font-size: 30px;
+            }
+
+
+            .heading {
+
+                font-size: 22px;
+
+                margin-bottom: 23px;
+            }
+
+
+            .input-group input {
+
+                height: 50px;
+            }
+
+
+            .login-btn {
+
+                height: 50px;
+            }
+        }
+
+
+        @media (max-width: 380px) {
+
+            .login-card {
+
+                padding: 30px 17px;
+            }
+
+
+            .logo h1 {
+
+                font-size: 27px;
+            }
+
+
+            .heading {
+
+                font-size: 20px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         LOGIN CARD
+    ========================= -->
+
+    <div class="login-card">
+
+
+        <!-- Logo -->
+
+        <div class="logo">
+
+            <h1>
+                InvestWise
+            </h1>
+
+        </div>
+
+
+        <!-- Tagline -->
+
+        <p class="tagline">
+
+            Learn Investing Without Risk
+
+        </p>
+
+
+        <!-- Heading -->
+
+        <h2 class="heading">
+
+            Login to Your <span>Account</span>
+
+        </h2>
+
+
+        <!-- Login Form -->
+
+        <form id="loginForm">
+
+
+            <!-- Email -->
+
+            <div class="input-group">
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Email Address"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="input-group">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Password"
+                    required
+                >
+
+            </div>
+
+
+            <!-- Login Button -->
+
+            <button
+                type="submit"
+                class="login-btn"
+            >
+                Login
+            </button>
+
+
+        </form>
+
+
+        <!-- Create Account -->
+
+        <p class="create-account">
+
+            Don't have an account?
+
+            <a href="index.html">
+                Create Account
+            </a>
+
+        </p>
+
+
+        <!-- Security -->
+
+        <p class="security">
+
+            🔒 Your information is securely protected
+
+        </p>
+
+
+    </div>
+
+
+    <!-- Your existing JavaScript -->
+
+    <script src="js/script.js"></script>
+
+
+</body>
+
+</html>

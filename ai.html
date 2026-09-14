@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InvestWise - AI Investment Advisor</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #07110d;
+            --card: rgba(255, 255, 255, 0.045);
+            --card-hover: rgba(255, 255, 255, 0.065);
+            --border: rgba(255, 255, 255, 0.09);
+            --green: #00ff96;
+            --green-dark: #00c878;
+            --text: #ffffff;
+            --muted: #91a59c;
+            --muted2: #71857c;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(0, 255, 150, 0.08),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(0, 255, 150, 0.05),
+                    transparent 30%
+                ),
+                var(--bg);
+
+            color: var(--text);
+
+            min-height: 100vh;
+
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           NAVBAR
+        ===================================================== */
+
+        .navbar {
+
+            min-height: 72px;
+
+            padding: 0 5%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            background: rgba(5, 15, 11, 0.94);
+
+            border-bottom:
+                1px solid rgba(0, 255, 150, 0.12);
+
+            backdrop-filter: blur(18px);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: var(--green);
+        }
+
+
+        .logo-icon {
+
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 11px;
+
+            background:
+                rgba(0, 255, 150, 0.10);
+
+            border:
+                1px solid rgba(0, 255, 150, 0.22);
+
+            font-size: 20px;
+        }
+
+
+        .logo h2 {
+
+            font-size: 22px;
+
+            letter-spacing: -0.5px;
+        }
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            list-style: none;
+        }
+
+
+        .nav-links a {
+
+            display: block;
+
+            padding: 10px 14px;
+
+            border-radius: 9px;
+
+            color: #91a59c;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            transition: 0.3s;
+        }
+
+
+        .nav-links a:hover {
+
+            color: #ffffff;
+
+            background:
+                rgba(0, 255, 150, 0.07);
+        }
+
+
+        .nav-links a.active {
+
+            color: var(--green);
+
+            background:
+                rgba(0, 255, 150, 0.09);
+
+            border:
+                1px solid rgba(0, 255, 150, 0.12);
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            width: 90%;
+
+            max-width: 950px;
+
+            margin: auto;
+
+            padding: 55px 0 30px;
+
+            text-align: center;
+        }
+
+
+        .robot {
+
+            width: 64px;
+            height: 64px;
+
+            margin: auto;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 18px;
+
+            background:
+                rgba(0, 255, 150, 0.08);
+
+            border:
+                1px solid rgba(0, 255, 150, 0.16);
+
+            font-size: 32px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .hero-title {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            color: #ffffff;
+
+            font-size: 40px;
+
+            margin-bottom: 12px;
+
+            letter-spacing: -1px;
+        }
+
+
+        .sparkle {
+
+            color: var(--green);
+
+            font-size: 28px;
+        }
+
+
+        .hero p {
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        /* =====================================================
+           ADVISOR CARD
+        ===================================================== */
+
+        .advisor-container {
+
+            width: 90%;
+
+            max-width: 950px;
+
+            margin: 0 auto 45px;
+
+            padding: 30px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.055),
+                    rgba(255, 255, 255, 0.018)
+                );
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 20px 50px rgba(0, 0, 0, 0.28);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .advisor-container::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+
+            top: 0;
+
+            width: 3px;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    var(--green),
+                    rgba(0, 255, 150, 0.15)
+                );
+        }
+
+
+        .advisor-title {
+
+            font-size: 21px;
+
+            margin-bottom: 8px;
+        }
+
+
+        .advisor-subtitle {
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            margin-bottom: 25px;
+        }
+
+
+        /* =====================================================
+           FORM ROWS
+        ===================================================== */
+
+        .form-row {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+
+            padding: 19px;
+
+            margin-bottom: 15px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(255, 255, 255, 0.025);
+
+            border:
+                1px solid var(--border);
+
+            transition: 0.3s;
+        }
+
+
+        .form-row:hover {
+
+            border-color:
+                rgba(0, 255, 150, 0.25);
+        }
+
+
+        .form-info {
+
+            flex: 1;
+        }
+
+
+        .form-info h3 {
+
+            color: #ffffff;
+
+            font-size: 15px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .form-info p {
+
+            color: var(--muted);
+
+            font-size: 11px;
+        }
+
+
+        .input-area {
+
+            width: 270px;
+        }
+
+
+        input,
+        select {
+
+            width: 100%;
+
+            padding: 13px 14px;
+
+            border-radius: 10px;
+
+            outline: none;
+
+            background: #0c1913;
+
+            color: #ffffff;
+
+            border:
+                1px solid rgba(255, 255, 255, 0.12);
+
+            font-size: 13px;
+
+            transition: 0.3s;
+        }
+
+
+        input::placeholder {
+
+            color: #71857c;
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color: var(--green);
+
+            box-shadow:
+                0 0 0 4px rgba(0, 255, 150, 0.08);
+        }
+
+
+        option {
+
+            background: #0c1913;
+
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           RISK BUTTONS
+        ===================================================== */
+
+        .risk-buttons {
+
+            display: flex;
+
+            gap: 8px;
+        }
+
+
+        .risk-btn {
+
+            padding: 10px 15px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            background:
+                rgba(255, 255, 255, 0.035);
+
+            color: var(--muted);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.10);
+
+            font-size: 12px;
+
+            transition: 0.3s;
+        }
+
+
+        .risk-btn:hover {
+
+            border-color:
+                rgba(0, 255, 150, 0.25);
+
+            color: #ffffff;
+        }
+
+
+        .risk-btn.active {
+
+            background:
+                rgba(0, 255, 150, 0.10);
+
+            border-color:
+                rgba(0, 255, 150, 0.30);
+
+            color: var(--green);
+        }
+
+
+        /* =====================================================
+           RECOMMEND BUTTON
+        ===================================================== */
+
+        .recommend-btn {
+
+            width: 100%;
+
+            margin-top: 15px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 11px;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    var(--green),
+                    var(--green-dark)
+                );
+
+            color: #031009;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            transition: 0.3s;
+        }
+
+
+        .recommend-btn:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 30px rgba(0, 255, 150, 0.20);
+        }
+
+
+        /* =====================================================
+           TRUST MESSAGE
+        ===================================================== */
+
+        .trust {
+
+            margin-top: 17px;
+
+            text-align: center;
+
+            color: var(--muted2);
+
+            font-size: 10px;
+        }
+
+
+        .dot {
+
+            color: var(--green);
+
+            margin-right: 5px;
+        }
+
+
+        /* =====================================================
+           RECOMMENDATION RESULT
+        ===================================================== */
+
+        #recommendation {
+
+            width: 90%;
+
+            max-width: 950px;
+
+            margin: 0 auto 50px;
+        }
+
+
+        .result-header {
+
+            margin-bottom: 18px;
+
+            font-size: 21px;
+        }
+
+
+        .summary-box {
+
+            padding: 18px;
+
+            margin-bottom: 18px;
+
+            border-radius: 14px;
+
+            background:
+                rgba(0, 255, 150, 0.055);
+
+            border:
+                1px solid rgba(0, 255, 150, 0.13);
+
+            color: #dce9e3;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        .summary-box strong {
+
+            color: #ffffff;
+        }
+
+
+        /* =====================================================
+           RECOMMENDED STOCKS
+        ===================================================== */
+
+        .stocks-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 17px;
+        }
+
+
+        .stock-card {
+
+            padding: 21px;
+
+            border-radius: 17px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.05),
+                    rgba(255, 255, 255, 0.018)
+                );
+
+            border:
+                1px solid var(--border);
+
+            transition: 0.3s;
+        }
+
+
+        .stock-card:hover {
+
+            transform: translateY(-4px);
+
+            border-color:
+                rgba(0, 255, 150, 0.24);
+        }
+
+
+        .stock-top {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 18px;
+        }
+
+
+        .stock-name {
+
+            color: #ffffff;
+
+            font-size: 16px;
+
+            font-weight: 700;
+        }
+
+
+        .stock-symbol {
+
+            color: var(--muted2);
+
+            font-size: 10px;
+
+            margin-top: 4px;
+        }
+
+
+        .stock-icon {
+
+            width: 37px;
+            height: 37px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 9px;
+
+            background:
+                rgba(0, 255, 150, 0.08);
+
+            border:
+                1px solid rgba(0, 255, 150, 0.12);
+        }
+
+
+        .stock-price {
+
+            color: #ffffff;
+
+            font-size: 22px;
+
+            font-weight: 700;
+
+            margin-bottom: 7px;
+        }
+
+
+        .stock-change {
+
+            color: var(--green);
+
+            font-size: 12px;
+
+            margin-bottom: 17px;
+        }
+
+
+        .detail-box {
+
+            padding: 12px;
+
+            margin-bottom: 12px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(255, 255, 255, 0.035);
+
+            border:
+                1px solid rgba(255, 255, 255, 0.07);
+        }
+
+
+        .detail-label {
+
+            display: block;
+
+            color: var(--muted2);
+
+            font-size: 9px;
+
+            margin-bottom: 5px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .detail-value {
+
+            color: #ffffff;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+
+        .buy-btn {
+
+            width: 100%;
+
+            padding: 11px;
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            background:
+                rgba(0, 255, 150, 0.08);
+
+            color: var(--green);
+
+            border:
+                1px solid rgba(0, 255, 150, 0.18);
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            transition: 0.3s;
+        }
+
+
+        .buy-btn:hover {
+
+            background: var(--green);
+
+            color: #031009;
+        }
+
+
+        /* =====================================================
+           WARNING / NOTE
+        ===================================================== */
+
+        .market-note {
+
+            margin-top: 20px;
+
+            padding: 16px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(255, 193, 7, 0.06);
+
+            border:
+                1px solid rgba(255, 193, 7, 0.12);
+
+            color: #d9c995;
+
+            font-size: 11px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .footer {
+
+            width: 90%;
+
+            max-width: 950px;
+
+            margin: 50px auto 25px;
+
+            padding-top: 22px;
+
+            text-align: center;
+
+            border-top:
+                1px solid rgba(255, 255, 255, 0.07);
+
+            color: #56675f;
+
+            font-size: 10px;
+        }
+
+
+        .footer span {
+
+            color: var(--green);
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .navbar {
+
+                flex-direction: column;
+
+                gap: 12px;
+
+                padding: 14px 5%;
+            }
+
+
+            .nav-links {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .form-row {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+
+            .input-area {
+
+                width: 100%;
+            }
+
+
+            .stocks-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .hero {
+
+                padding-top: 35px;
+            }
+
+
+            .hero-title {
+
+                font-size: 28px;
+            }
+
+
+            .advisor-container {
+
+                padding: 22px;
+            }
+
+
+            .risk-buttons {
+
+                width: 100%;
+
+                flex-wrap: wrap;
+            }
+
+
+            .risk-btn {
+
+                flex: 1;
+            }
+
+
+            .stocks-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .nav-links a {
+
+                padding: 8px 9px;
+
+                font-size: 11px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         NAVBAR
+    ===================================================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                📈
+            </div>
+
+            <h2>
+                InvestWise
+            </h2>
+
+        </div>
+
+
+        <ul class="nav-links">
+
+            <li>
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="ai.html" class="active">
+                    AI Advisor
+                </a>
+            </li>
+
+            <li>
+                <a href="papertrading.html">
+                    Paper Trading
+                </a>
+            </li>
+
+            <li>
+                <a href="portfolio.html">
+                    Portfolio
+                </a>
+            </li>
+
+            <li>
+                <a href="marketnews.html">
+                    📰 Market News
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <section class="hero">
+
+        <div class="robot">
+            🤖
+        </div>
+
+
+        <h1 class="hero-title">
+
+            AI Investment Advisor
+
+            <span class="sparkle">
+                ✦
+            </span>
+
+        </h1>
+
+
+        <p>
+            Get personalized educational investment
+            suggestions based on your investment profile.
+        </p>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         ADVISOR FORM
+    ===================================================== -->
+
+    <section class="advisor-container">
+
+        <h2 class="advisor-title">
+            Tell us about your investment goals
+        </h2>
+
+        <p class="advisor-subtitle">
+            Enter your details and let InvestWise
+            create a personalized investment strategy.
+        </p>
+
+
+
+        <!-- INVESTMENT AMOUNT -->
+
+        <div class="form-row">
+
+            <div class="form-info">
+
+                <h3>
+                    💰 Investment Amount
+                </h3>
+
+                <p>
+                    How much money do you want to invest?
+                </p>
+
+            </div>
+
+
+            <div class="input-area">
+
+                <input
+                    type="number"
+                    id="amount"
+                    placeholder="Enter amount in ₹"
+                    min="1000"
+                >
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RISK -->
+
+        <div class="form-row">
+
+            <div class="form-info">
+
+                <h3>
+                    ⚖️ Risk Level
+                </h3>
+
+                <p>
+                    How much risk are you comfortable with?
+                </p>
+
+            </div>
+
+
+            <div class="input-area">
+
+                <div class="risk-buttons">
+
+                    <button
+                        type="button"
+                        class="risk-btn active"
+                        onclick="selectRisk('Low', this)">
+
+                        Low
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="risk-btn"
+                        onclick="selectRisk('Medium', this)">
+
+                        Medium
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="risk-btn"
+                        onclick="selectRisk('High', this)">
+
+                        High
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DURATION -->
+
+        <div class="form-row">
+
+            <div class="form-info">
+
+                <h3>
+                    ⏳ Investment Duration
+                </h3>
+
+                <p>
+                    How long do you plan to stay invested?
+                </p>
+
+            </div>
+
+
+            <div class="input-area">
+
+                <select id="duration">
+
+                    <option value="">
+                        Select duration
+                    </option>
+
+                    <option value="1">
+                        1 Year
+                    </option>
+
+                    <option value="3">
+                        3 Years
+                    </option>
+
+                    <option value="5">
+                        5 Years
+                    </option>
+
+                    <option value="10">
+                        10+ Years
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SECTOR -->
+
+        <div class="form-row">
+
+            <div class="form-info">
+
+                <h3>
+                    🏢 Preferred Sector
+                </h3>
+
+                <p>
+                    Which industry interests you?
+                </p>
+
+            </div>
+
+
+            <div class="input-area">
+
+                <select id="sector">
+
+                    <option value="">
+                        Select sector
+                    </option>
+
+                    <option value="IT">
+                        💻 Information Technology
+                    </option>
+
+                    <option value="Banking">
+                        🏦 Banking & Finance
+                    </option>
+
+                    <option value="Pharma">
+                        💊 Pharmaceuticals
+                    </option>
+
+                    <option value="EV">
+                        🚗 Electric Vehicles
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BUTTON -->
+
+        <button
+            class="recommend-btn"
+            onclick="getRecommendation()">
+
+            ✨ Get AI Recommendation
+
+        </button>
+
+
+        <div class="trust">
+
+            <span class="dot">
+                ●
+            </span>
+
+            Educational simulation • Not financial advice
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         RESULT AREA
+    ===================================================== -->
+
+    <section id="recommendation">
+
+    </section>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer class="footer">
+
+        Powered by
+        <span>InvestWise AI</span>
+        • Virtual Investment Learning Platform
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         EXISTING JAVASCRIPT
+    ===================================================== -->
+
+    <script src="js/script.js"></script>
+
+
+    <!-- =====================================================
+         RISK SELECTION
+    ===================================================== -->
+
+    <script>
+
+        let selectedRisk = "Low";
+
+
+        function selectRisk(risk, button) {
+
+            selectedRisk = risk;
+
+
+            document
+                .querySelectorAll(".risk-btn")
+                .forEach(function(btn) {
+
+                    btn.classList.remove("active");
+
+                });
+
+
+            button.classList.add("active");
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
