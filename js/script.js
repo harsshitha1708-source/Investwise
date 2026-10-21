@@ -9,7 +9,7 @@ const getScriptApiBase = () => {
     if (window.location.port === "5000") {
         return window.location.origin;
     }
-    return "http://localhost:5000";
+    return "https://investwise-backend-jg94.onrender.com";
 };
 
 // ===============================
