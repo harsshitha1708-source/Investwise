@@ -2,542 +2,1348 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>InvestWise - Create Account</title>
 
+
     <style>
+
         * {
+
             margin: 0;
             padding: 0;
+
             box-sizing: border-box;
-            font-family: "Segoe UI", Arial, sans-serif;
+
         }
+
+
+        :root {
+
+            --purple: #8b5cf6;
+            --purple-light: #a78bfa;
+            --blue: #6366f1;
+
+            --green: #22c55e;
+
+            --text: #f8fafc;
+
+            --muted: #9ca5bd;
+
+        }
+
 
         body {
+
             min-height: 100vh;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
+
             display: flex;
-            justify-content: center;
+
             align-items: center;
-            padding: 30px 15px;
+
+            justify-content: center;
+
+            color: var(--text);
+
+            padding: 30px 20px;
 
             background:
-                radial-gradient(circle at 10% 20%, rgba(139, 92, 246, 0.20), transparent 30%),
-                radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.18), transparent 30%),
-                linear-gradient(135deg, #f5f0ff, #eee7ff, #faf8ff);
 
-            overflow-x: hidden;
+                radial-gradient(
+                    circle at 10% 15%,
+                    rgba(124,58,237,.20),
+                    transparent 28%
+                ),
+
+                radial-gradient(
+                    circle at 90% 85%,
+                    rgba(79,70,229,.18),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #050711,
+                    #090c18 50%,
+                    #070914
+                );
+
         }
 
-        /* Background decorations */
 
-        body::before {
-            content: "";
+        /* =================================
+           DECORATION
+        ================================= */
+
+        .orb {
+
             position: fixed;
-            width: 300px;
-            height: 300px;
+
             border-radius: 50%;
-            background: rgba(124, 58, 237, 0.08);
-            top: -120px;
-            left: -100px;
-            z-index: -1;
+
+            filter: blur(85px);
+
+            pointer-events: none;
+
+            opacity: .18;
+
         }
 
-        body::after {
-            content: "";
-            position: fixed;
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            background: rgba(168, 85, 247, 0.08);
-            bottom: -150px;
-            right: -100px;
-            z-index: -1;
+
+        .orb-one {
+
+            width: 220px;
+            height: 220px;
+
+            background: #7c3aed;
+
+            top: -80px;
+            left: -70px;
+
         }
 
-        /* Main Card */
 
-        .signup-card {
+        .orb-two {
+
+            width: 280px;
+            height: 280px;
+
+            background: #4f46e5;
+
+            right: -110px;
+            bottom: -120px;
+
+        }
+
+
+        /* =================================
+           CONTAINER
+        ================================= */
+
+        .register-container {
+
             width: 100%;
-            max-width: 520px;
 
-            background: rgba(255, 255, 255, 0.95);
-
-            border: 1px solid rgba(124, 58, 237, 0.15);
-
-            border-radius: 24px;
-
-            padding: 40px 45px;
-
-            box-shadow:
-                0 25px 60px rgba(76, 29, 149, 0.15),
-                0 8px 20px rgba(0, 0, 0, 0.06);
+            max-width: 560px;
 
             position: relative;
 
-            overflow: hidden;
+            z-index: 2;
+
         }
 
-        /* Purple top line */
 
-        .signup-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
+        /* =================================
+           LOGO
+        ================================= */
 
-            background: linear-gradient(
-                90deg,
-                #6d28d9,
-                #8b5cf6,
-                #a855f7
-            );
+        .logo-section {
+
+            text-align: center;
+
+            margin-bottom: 23px;
+
         }
 
-        /* Logo */
 
         .logo {
-            text-align: center;
-            margin-bottom: 8px;
-        }
 
-        .logo h1 {
-            font-size: 34px;
-            font-weight: 800;
+            width: 56px;
+            height: 56px;
 
-            background: linear-gradient(
-                90deg,
-                #5b21b6,
-                #7c3aed,
-                #a855f7
-            );
+            margin: 0 auto 12px;
 
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .tagline {
-            text-align: center;
-
-            color: #6b7280;
-
-            font-size: 15px;
-
-            margin-bottom: 28px;
-        }
-
-        /* Heading */
-
-        .heading {
-            text-align: center;
-
-            color: #1f1633;
-
-            font-size: 25px;
-
-            margin-bottom: 25px;
-
-            font-weight: 700;
-        }
-
-        .heading span {
-            color: #7c3aed;
-        }
-
-        /* Form */
-
-        form {
-            width: 100%;
-        }
-
-        .input-group {
-            margin-bottom: 15px;
-        }
-
-        .input-group input,
-        .input-group select {
-            width: 100%;
-
-            height: 48px;
-
-            padding: 0 15px;
-
-            border: 1.5px solid #ddd6fe;
-
-            border-radius: 10px;
-
-            outline: none;
-
-            background: #ffffff;
-
-            color: #1f2937;
-
-            font-size: 15px;
-
-            transition: all 0.25s ease;
-        }
-
-        .input-group input::placeholder {
-            color: #8b8b9a;
-        }
-
-        .input-group input:hover,
-        .input-group select:hover {
-            border-color: #a78bfa;
-        }
-
-        .input-group input:focus,
-        .input-group select:focus {
-            border-color: #7c3aed;
-
-            box-shadow:
-                0 0 0 3px rgba(124, 58, 237, 0.12);
-
-            transform: translateY(-1px);
-        }
-
-        /* Select row */
-
-        .select-row {
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 10px;
-
-            margin-bottom: 17px;
-        }
-
-        .select-row select {
-            height: 48px;
-
-            padding: 0 12px;
-
-            border: 1.5px solid #ddd6fe;
-
-            border-radius: 10px;
-
-            background: white;
-
-            font-size: 14px;
-
-            outline: none;
-
-            cursor: pointer;
-
-            transition: 0.25s;
-        }
-
-        .select-row select:focus {
-            border-color: #7c3aed;
-
-            box-shadow:
-                0 0 0 3px rgba(124, 58, 237, 0.12);
-        }
-
-        /* Terms */
-
-        .terms {
             display: flex;
 
             align-items: center;
 
-            gap: 9px;
+            justify-content: center;
 
-            margin: 18px 3px 25px;
+            border-radius: 17px;
+
+            font-size: 26px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #4f46e5
+                );
+
+            box-shadow:
+                0 14px 38px
+                rgba(124,58,237,.34);
+
+        }
+
+
+        .logo-section h1 {
+
+            font-size: 28px;
+
+            letter-spacing: -.8px;
+
+        }
+
+
+        .logo-section p {
+
+            color: var(--muted);
+
+            font-size: 12px;
+
+            margin-top: 6px;
+
+        }
+
+
+        /* =================================
+           CARD
+        ================================= */
+
+        .register-card {
+
+            padding: 31px;
+
+            border-radius: 24px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(18,22,40,.96),
+                    rgba(10,13,26,.96)
+                );
+
+            border:
+                1px solid
+                rgba(139,92,246,.20);
+
+            box-shadow:
+                0 30px 80px
+                rgba(0,0,0,.45);
+
+            backdrop-filter: blur(20px);
+
+        }
+
+
+        .heading {
+
+            margin-bottom: 24px;
+
+        }
+
+
+        .heading h2 {
+
+            font-size: 20px;
+
+            margin-bottom: 6px;
+
+        }
+
+
+        .heading p {
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+        }
+
+
+        /* =================================
+           FORM GRID
+        ================================= */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 17px;
+
+        }
+
+
+        .form-group {
+
+            margin-bottom: 2px;
+
+        }
+
+
+        .form-group.full {
+
+            grid-column:
+                1 / -1;
+
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color: #dce1ef;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: .25px;
+
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 13px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
 
             font-size: 14px;
 
-            color: #4b5563;
+            opacity: .75;
+
         }
 
-        .terms input {
-            width: 18px;
-            height: 18px;
 
-            accent-color: #7c3aed;
+        input,
+        select {
 
-            cursor: pointer;
-        }
-
-        .terms a {
-            color: #6d28d9;
-
-            font-weight: 600;
-
-            text-decoration: none;
-        }
-
-        .terms a:hover {
-            text-decoration: underline;
-        }
-
-        /* Create Account Button */
-
-        .create-btn {
             width: 100%;
 
-            height: 50px;
+            height: 47px;
 
-            border: none;
+            padding:
+                0 13px 0 40px;
 
             border-radius: 11px;
 
-            background: linear-gradient(
-                135deg,
-                #5b21b6,
-                #7c3aed,
-                #9333ea
-            );
+            outline: none;
 
             color: white;
 
-            font-size: 16px;
+            background:
+                rgba(5,8,18,.72);
 
-            font-weight: 600;
+            border:
+                1px solid
+                rgba(139,92,246,.16);
+
+            font-size: 12px;
+
+            transition: .2s;
+
+        }
+
+
+        select {
+
+            padding-left: 13px;
 
             cursor: pointer;
 
+        }
+
+
+        select option {
+
+            background: #111527;
+
+            color: white;
+
+        }
+
+
+        input::placeholder {
+
+            color: #555e78;
+
+        }
+
+
+        input:focus,
+        select:focus {
+
+            border-color:
+                var(--purple);
+
             box-shadow:
-                0 8px 20px rgba(124, 58, 237, 0.30);
+                0 0 0 4px
+                rgba(139,92,246,.10);
 
-            transition: all 0.3s ease;
         }
 
-        .create-btn:hover {
-            transform: translateY(-2px);
 
-            box-shadow:
-                0 12px 25px rgba(124, 58, 237, 0.40);
+        /* =================================
+           RISK SELECTION
+        ================================= */
+
+        .risk-title {
+
+            color: #dce1ef;
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            margin-bottom: 9px;
+
         }
 
-        .create-btn:active {
-            transform: translateY(0);
+
+        .risk-options {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 8px;
+
         }
 
-        /* Login */
 
-        .login-text {
+        .risk-option {
+
+            position: relative;
+
+        }
+
+
+        .risk-option input {
+
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+        }
+
+
+        .risk-label {
+
+            min-height: 65px;
+
+            padding: 9px;
+
+            border-radius: 11px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 4px;
+
+            cursor: pointer;
+
             text-align: center;
 
-            margin-top: 23px;
+            color: #9ca5bd;
 
-            color: #55516a;
+            background:
+                rgba(255,255,255,.025);
 
-            font-size: 14px;
+            border:
+                1px solid
+                rgba(255,255,255,.07);
+
+            transition: .2s;
+
         }
 
-        .login-text a {
-            color: #6d28d9;
 
-            font-weight: 700;
+        .risk-label strong {
 
-            text-decoration: none;
+            font-size: 10px;
 
-            margin-left: 3px;
+            color: #dce1ef;
+
         }
 
-        .login-text a:hover {
-            text-decoration: underline;
+
+        .risk-label span {
+
+            font-size: 9px;
+
         }
 
-        /* Small security text */
 
-        .security {
-            text-align: center;
+        .risk-label:hover {
+
+            border-color:
+                rgba(139,92,246,.30);
+
+            background:
+                rgba(139,92,246,.07);
+
+        }
+
+
+        .risk-option input:checked
+        + .risk-label {
+
+            border-color:
+                var(--purple);
+
+            background:
+                rgba(139,92,246,.13);
+
+            box-shadow:
+                0 8px 20px
+                rgba(109,40,217,.13);
+
+        }
+
+
+        /* =================================
+           TERMS
+        ================================= */
+
+        .terms {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 9px;
 
             margin-top: 20px;
 
-            color: #8b8798;
+            color: #777f98;
 
-            font-size: 12px;
+            font-size: 9px;
+
+            line-height: 1.6;
+
         }
 
-        /* Responsive */
 
-        @media (max-width: 600px) {
+        .terms input {
 
-            body {
-                padding: 20px 12px;
-            }
+            width: 15px;
+            height: 15px;
 
-            .signup-card {
-                padding: 32px 22px;
+            flex-shrink: 0;
 
-                border-radius: 20px;
-            }
+            margin-top: 1px;
 
-            .logo h1 {
-                font-size: 30px;
-            }
+            accent-color:
+                var(--purple);
 
-            .heading {
-                font-size: 22px;
-            }
+        }
 
-            .select-row {
+
+        .terms a {
+
+            color: var(--purple-light);
+
+            text-decoration: none;
+
+        }
+
+
+        /* =================================
+           BUTTON
+        ================================= */
+
+        .register-btn {
+
+            width: 100%;
+
+            height: 49px;
+
+            margin-top: 20px;
+
+            border: none;
+
+            border-radius: 12px;
+
+            cursor: pointer;
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #7c3aed,
+                    #4f46e5
+                );
+
+            box-shadow:
+                0 12px 30px
+                rgba(109,40,217,.28);
+
+            transition: .22s;
+
+        }
+
+
+        .register-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 17px 35px
+                rgba(109,40,217,.40);
+
+        }
+
+
+        /* =================================
+           LOGIN LINK
+        ================================= */
+
+        .login-text {
+
+            text-align: center;
+
+            margin-top: 21px;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+        }
+
+
+        .login-text a {
+
+            color: var(--purple-light);
+
+            text-decoration: none;
+
+            font-weight: 800;
+
+        }
+
+
+        .login-text a:hover {
+
+            color: white;
+
+        }
+
+
+        .security {
+
+            text-align: center;
+
+            margin-top: 17px;
+
+            color: #626c87;
+
+            font-size: 9px;
+
+        }
+
+
+        /* =================================
+           RESPONSIVE
+        ================================= */
+
+        @media(max-width: 600px) {
+
+            .form-grid {
+
                 grid-template-columns: 1fr;
+
             }
 
-            .terms {
-                align-items: flex-start;
+            .form-group.full {
 
-                line-height: 1.5;
+                grid-column:
+                    auto;
+
             }
+
+            .register-card {
+
+                padding: 24px 19px;
+
+            }
+
         }
 
-        @media (max-width: 380px) {
 
-            .signup-card {
-                padding: 28px 17px;
+        @media(max-width: 400px) {
+
+            .risk-options {
+
+                grid-template-columns: 1fr;
+
             }
 
-            .logo h1 {
-                font-size: 27px;
-            }
-
-            .heading {
-                font-size: 20px;
-            }
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <div class="signup-card">
 
-        <!-- Logo -->
-        <div class="logo">
-            <h1>InvestWise</h1>
+    <div class="orb orb-one"></div>
+
+    <div class="orb orb-two"></div>
+
+
+    <main class="register-container">
+
+
+        <!-- LOGO -->
+
+        <div class="logo-section">
+
+            <div class="logo">
+                📈
+            </div>
+
+            <h1>
+                InvestWise
+            </h1>
+
+            <p>
+                Build • Learn • Invest • Grow
+            </p>
+
         </div>
 
-        <!-- Tagline -->
-        <p class="tagline">
-            Learn Investing Without Risk
-        </p>
 
-        <!-- Heading -->
-        <h2 class="heading">
-            Create Your <span>Account</span>
-        </h2>
 
-        <!-- Registration Form -->
-        <form id="registerForm">
+        <!-- REGISTER CARD -->
 
-            <!-- Full Name -->
-            <div class="input-group">
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="Full Name"
-                    required
-                >
-            </div>
+        <div class="register-card">
 
-            <!-- Email -->
-            <div class="input-group">
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Email Address"
-                    required
-                >
-            </div>
 
-            <!-- Phone -->
-            <div class="input-group">
-                <input
-                    type="tel"
-                    id="phone"
-                    placeholder="Phone Number"
-                    required
-                >
-            </div>
+            <div class="heading">
 
-            <!-- Password -->
-            <div class="input-group">
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                    required
-                >
-            </div>
+                <h2>
+                    Create Your Account 🚀
+                </h2>
 
-            <!-- Confirm Password -->
-            <div class="input-group">
-                <input
-                    type="password"
-                    id="confirmPassword"
-                    placeholder="Confirm Password"
-                    required
-                >
-            </div>
-
-            <!-- Investment Experience + Risk Preference -->
-            <div class="select-row">
-
-                <select id="experience" required>
-                    <option value="">Investment Experience</option>
-                    <option value="Beginner">Beginner</option>
-                    <option value="Intermediate">Intermediate</option>
-                    <option value="Experienced">Experienced</option>
-                </select>
-
-                <select id="risk" required>
-                    <option value="">Risk Preference</option>
-                    <option value="Low">Low Risk</option>
-                    <option value="Medium">Medium Risk</option>
-                    <option value="High">High Risk</option>
-                </select>
+                <p>
+                    Start learning and practicing smart investing.
+                </p>
 
             </div>
 
-            <!-- Terms -->
-            <div class="terms">
 
-                <input
-                    type="checkbox"
-                    id="terms"
-                    required
-                >
 
-                <label for="terms">
-                    I agree to the
-                    <a href="#">Terms & Conditions</a>
+            <form id="registerForm">
+
+
+                <div class="form-grid">
+
+
+                    <!-- FULL NAME -->
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            FULL NAME
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                👤
+                            </span>
+
+                            <input
+                                type="text"
+                                id="name"
+                                placeholder="Your full name"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            EMAIL ADDRESS
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                ✉️
+                            </span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="you@example.com"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PHONE -->
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            PHONE NUMBER
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                📱
+                            </span>
+
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="10-digit number"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- EXPERIENCE -->
+
+                    <div class="form-group">
+
+                        <label for="experience">
+                            INVESTMENT EXPERIENCE
+                        </label>
+
+                        <select
+                            id="experience"
+                            required
+                        >
+
+                            <option value="">
+                                Select experience
+                            </option>
+
+                            <option value="Beginner">
+                                Beginner
+                            </option>
+
+                            <option value="Intermediate">
+                                Intermediate
+                            </option>
+
+                            <option value="Advanced">
+                                Advanced
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            PASSWORD
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔒
+                            </span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Create password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            CONFIRM PASSWORD
+                        </label>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">
+                                🔐
+                            </span>
+
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirm password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- RISK -->
+
+                    <div class="form-group full">
+
+                        <div class="risk-title">
+
+                            RISK PREFERENCE
+
+                        </div>
+
+
+                        <div class="risk-options">
+
+
+                            <div class="risk-option">
+
+                                <input
+                                    type="radio"
+                                    name="risk"
+                                    id="lowRisk"
+                                    value="Low"
+                                    required
+                                >
+
+                                <label
+                                    for="lowRisk"
+                                    class="risk-label"
+                                >
+
+                                    <strong>
+                                        🛡️ Low
+                                    </strong>
+
+                                    <span>
+                                        Conservative
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="risk-option">
+
+                                <input
+                                    type="radio"
+                                    name="risk"
+                                    id="mediumRisk"
+                                    value="Medium"
+                                >
+
+                                <label
+                                    for="mediumRisk"
+                                    class="risk-label"
+                                >
+
+                                    <strong>
+                                        ⚖️ Medium
+                                    </strong>
+
+                                    <span>
+                                        Balanced
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+
+
+                            <div class="risk-option">
+
+                                <input
+                                    type="radio"
+                                    name="risk"
+                                    id="highRisk"
+                                    value="High"
+                                >
+
+                                <label
+                                    for="highRisk"
+                                    class="risk-label"
+                                >
+
+                                    <strong>
+                                        🚀 High
+                                    </strong>
+
+                                    <span>
+                                        Aggressive
+                                    </span>
+
+                                </label>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- TERMS -->
+
+                <label class="terms">
+
+                    <input
+                        type="checkbox"
+                        id="terms"
+                        required
+                    >
+
+                    <span>
+
+                        I agree to use InvestWise as an
+                        educational paper-trading platform
+                        and understand that it does not involve
+                        real-money investment.
+
+                    </span>
+
                 </label>
 
+
+
+                <!-- BUTTON -->
+
+                <button
+                    type="submit"
+                    class="register-btn"
+                >
+
+                    🚀 Create InvestWise Account
+
+                </button>
+
+
+            </form>
+
+
+
+            <div class="login-text">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Sign In
+                </a>
+
             </div>
 
-            <!-- Create Account -->
-            <button
-                type="submit"
-                class="create-btn"
-            >
-                Create Account
-            </button>
 
-        </form>
+        </div>
 
-        <!-- Login -->
-        <p class="login-text">
-            Already have an account?
-            <a href="login.html">Login</a>
-        </p>
 
-        <!-- Security -->
-        <p class="security">
-            🔒 Your information is securely protected
-        </p>
+        <div class="security">
 
-    </div>
+            🔒 Your data stays within this educational application
 
-    <!-- Keep your existing JavaScript here -->
-    <script src="js/script.js"></script>
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         REGISTER LOGIC
+    ===================================================== -->
+
+    <script src="js/config.js"></script>
+    <script>
+
+        const form =
+            document.getElementById(
+                "registerForm"
+            );
+
+
+        form.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    document
+                        .getElementById("name")
+                        .value
+                        .trim();
+
+
+                const email =
+                    document
+                        .getElementById("email")
+                        .value
+                        .trim();
+
+
+                const phone =
+                    document
+                        .getElementById("phone")
+                        .value
+                        .trim();
+
+
+                const password =
+                    document
+                        .getElementById("password")
+                        .value;
+
+
+                const confirmPassword =
+                    document
+                        .getElementById(
+                            "confirmPassword"
+                        )
+                        .value;
+
+
+                const experience =
+                    document
+                        .getElementById(
+                            "experience"
+                        )
+                        .value;
+
+
+                const risk =
+                    document.querySelector(
+                        'input[name="risk"]:checked'
+                    );
+
+
+                /* PASSWORD CHECK */
+
+                if (
+                    password !==
+                    confirmPassword
+                ) {
+
+                    alert(
+                        "Passwords do not match."
+                    );
+
+                    return;
+
+                }
+
+
+                /* PHONE CHECK */
+
+                if (
+                    !/^[0-9]{10}$/.test(phone)
+                ) {
+
+                    alert(
+                        "Please enter a valid 10-digit phone number."
+                    );
+
+                    return;
+
+                }
+
+
+                /* RISK CHECK */
+
+                if (!risk) {
+
+                    alert(
+                        "Please select your risk preference."
+                    );
+
+                    return;
+
+                }
+
+
+                /* EXISTING USERS */
+
+                const users =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "users"
+                        )
+                    ) || [];
+
+
+                const existingUser =
+                    users.find(
+                        user =>
+                            user.email === email
+                    );
+
+
+                if (existingUser) {
+
+                    alert(
+                        "An account with this email already exists."
+                    );
+
+                    return;
+
+                }
+
+
+                /* CREATE USER */
+
+                const newUser = {
+
+                    name:
+                        name,
+
+                    email:
+                        email,
+
+                    phone:
+                        phone,
+
+                    password:
+                        password,
+
+                    experience:
+                        experience,
+
+                    risk:
+                        risk.value
+
+                };
+
+
+                users.push(
+                    newUser
+                );
+
+
+                localStorage.setItem(
+                    "users",
+                    JSON.stringify(
+                        users
+                    )
+                );
+
+
+                /* INITIAL VIRTUAL BALANCE */
+
+                localStorage.setItem(
+                    "virtualBalance",
+                    "1000000"
+                );
+
+
+                /* EMPTY PORTFOLIO */
+
+                localStorage.setItem(
+                    "portfolio",
+                    JSON.stringify([])
+                );
+
+
+                /* EMPTY TRANSACTIONS */
+
+                localStorage.setItem(
+                    "transactions",
+                    JSON.stringify([])
+                );
+
+
+                /* SAVE CURRENT USER ACROSS KEYS */
+
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem(
+                    "loggedInUser",
+                    JSON.stringify(newUser)
+                );
+                localStorage.setItem(
+                    "investWiseUser",
+                    JSON.stringify(newUser)
+                );
+                if (typeof INVESTWISE !== "undefined") {
+                    INVESTWISE.setUser(newUser);
+                }
+
+                alert(
+                    "Account created successfully! Welcome to InvestWise 🚀"
+                );
+
+                window.location.href =
+                    "dashboard.html";
+
+            }
+        );
+
+    </script>
+
 
 </body>
 

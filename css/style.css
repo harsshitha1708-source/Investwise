@@ -1,291 +1,1089 @@
-/* Whole page */
+/* =========================================================
+   INVESTWISE - PREMIUM DARK PURPLE FINTECH CSS
+   CSS ONLY — NO FUNCTIONAL CHANGES
+   ========================================================= */
+
+
+/* =========================================================
+   GLOBAL
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #f5f7fa;
-    font-family: Arial, sans-serif;
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    color: #f8fafc;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(124, 58, 237, 0.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            rgba(139, 92, 246, 0.12),
+            transparent 30%
+        ),
+        #080b16;
+
+    line-height: 1.6;
 }
 
-/* Center everything */
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080b16;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #5b3ca8;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8b5cf6;
+}
+
+
+/* =========================================================
+   CENTER CONTAINER
+   ========================================================= */
+
 .container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-}
 
-/* Registration Card */
-.register-card {
-    background: white;
+    min-height: 100vh;
     padding: 30px;
-    width: 400px;
-    border-radius: 10px;
-    box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
 }
 
-/* Heading */
-.register-card h1,
-.register-card h2,
-.register-card p {
+
+/* =========================================================
+   REGISTER / LOGIN CARD
+   ========================================================= */
+
+.register-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 35, 60, 0.96),
+            rgba(13, 17, 32, 0.96)
+        );
+
+    padding: 38px;
+
+    width: 100%;
+    max-width: 430px;
+
+    border-radius: 20px;
+
+    border: 1px solid rgba(139, 92, 246, 0.25);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.45),
+        0 0 35px rgba(124, 58, 237, 0.08);
+
+    backdrop-filter: blur(15px);
+}
+
+
+/* =========================================================
+   HEADINGS
+   ========================================================= */
+
+.register-card h1 {
+    margin-top: 0;
+    margin-bottom: 8px;
+
+    text-align: center;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #a78bfa
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.register-card h2 {
     text-align: center;
 }
 
-/* Form Layout */
+.register-card p {
+    text-align: center;
+
+    color: #a7b0c3;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
 form {
     display: flex;
     flex-direction: column;
 }
 
-/* Input Boxes */
-input,
-select {
-    margin-bottom: 15px;
-    padding: 12px;
-    border-radius: 6px;
-    border: 1px solid gray;
-    font-size: 16px;
+
+/* =========================================================
+   LABELS
+   ========================================================= */
+
+label {
+    margin-bottom: 6px;
+
+    color: #cbd5e1;
+
+    font-size: 14px;
+    font-weight: 600;
 }
 
-/* Button */
+
+/* =========================================================
+   INPUTS & SELECT
+   ========================================================= */
+
+input,
+select {
+    width: 100%;
+
+    margin-bottom: 15px;
+
+    padding: 13px 15px;
+
+    color: #f8fafc;
+
+    background: rgba(8, 11, 22, 0.80);
+
+    border: 1px solid rgba(148, 163, 184, 0.20);
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+}
+
+input::placeholder {
+    color: #64748b;
+}
+
+input:hover,
+select:hover {
+    border-color: rgba(139, 92, 246, 0.40);
+}
+
+input:focus,
+select:focus {
+    border-color: #8b5cf6;
+
+    background: rgba(15, 19, 36, 0.95);
+
+    box-shadow:
+        0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
 button {
-    padding: 12px;
-    background-color: green;
-    color: white;
+    padding: 13px 20px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8b5cf6,
+            #6d28d9
+        );
+
     border: none;
-    border-radius: 6px;
+
+    border-radius: 10px;
+
     cursor: pointer;
-    font-size: 16px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    box-shadow:
+        0 5px 15px rgba(109, 40, 217, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
 }
 
 button:hover {
-    background-color: darkgreen;
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 25px rgba(124, 58, 237, 0.35);
 }
-body{
-background: linear-gradient(135deg,#e8f5e9,#ffffff);
+
+button:active {
+    transform: translateY(0);
 }
+
+
+/* =========================================================
+   CHECKBOX
+   ========================================================= */
+
 .checkbox-group {
     display: flex;
+
     align-items: center;
+
     margin-bottom: 20px;
 }
 
 .checkbox-group input {
-    margin-right: 10px;
     width: 18px;
     height: 18px;
+
+    margin-right: 10px;
+    margin-bottom: 0;
+
+    accent-color: #8b5cf6;
+
     cursor: pointer;
 }
 
 .checkbox-group label {
-    font-size: 15px;
-    color: #333;
+    margin: 0;
+
+    color: #a7b0c3;
+
+    font-size: 14px;
 }
 
 .checkbox-group a {
-    color: #007bff;
+    color: #a78bfa;
+
     text-decoration: none;
+
     font-weight: bold;
 }
 
 .checkbox-group a:hover {
+    color: #c4b5fd;
+
     text-decoration: underline;
 }
-/* ========================= */
-/* DASHBOARD PAGE */
-/* ========================= */
 
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:#0f172a;
-    padding:15px 40px;
-}
 
-.logo h2{
-    color:white;
-}
+/* =========================================================
+   DASHBOARD NAVBAR
+   ========================================================= */
 
-.nav-links{
-    display:flex;
-    list-style:none;
-    gap:25px;
-}
-
-.nav-links a{
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.nav-links a:hover{
-    color:#38bdf8;
-}
-
-.welcome{
-    padding:40px;
-}
-
-.welcome h1{
-    font-size:38px;
-    color:#0f172a;
-}
-
-.welcome p{
-    color:#555;
-    font-size:18px;
-}
-
-.cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
-    padding:0 40px 40px;
-}
-
-.card{
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 4px 12px rgba(0,0,0,0.15);
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-5px);
-}
-
-.card h3{
-    color:#555;
-    margin-bottom:15px;
-}
-
-.card h2{
-    background:#f5f7fa;
-}
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    
-}
-/* Dashboard Cards */
-
-.dashboard-cards {
+.navbar {
     display: flex;
-    gap: 20px;
-    padding: 30px;
-    flex-wrap: wrap;
+
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 16px 40px;
+
+    background:
+        rgba(8, 11, 22, 0.90);
+
+    border-bottom:
+        1px solid rgba(139, 92, 246, 0.18);
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.20);
+
+    backdrop-filter: blur(15px);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo h2 {
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 24px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #a78bfa
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* =========================================================
+   NAV LINKS
+   ========================================================= */
+
+.nav-links {
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.nav-links a {
+    position: relative;
+
+    color: #cbd5e1;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: color 0.2s ease;
+}
+
+.nav-links a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -7px;
+
+    width: 0;
+    height: 2px;
+
+    background: #8b5cf6;
+
+    transition: width 0.25s ease;
+}
+
+.nav-links a:hover {
+    color: #ffffff;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.welcome {
+    max-width: 1300px;
+
+    margin: 0 auto;
+
+    padding: 50px 40px 25px;
+}
+
+.welcome h1 {
+    margin: 0 0 10px;
+
+    color: #ffffff;
+
+    font-size: 38px;
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #c4b5fd
+        );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.welcome p {
+    margin: 0;
+
+    color: #9ca8bb;
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   DASHBOARD CARDS
+   ========================================================= */
+
+.cards {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 20px;
+
+    max-width: 1300px;
+
+    margin: 0 auto;
+
+    padding: 15px 40px 40px;
+}
+
+
+/* =========================================================
+   GENERAL CARD
+   ========================================================= */
 
 .card {
-    background: white;
+    position: relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(27, 32, 55, 0.94),
+            rgba(15, 19, 36, 0.94)
+        );
+
     padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    width: 250px;
+
+    border-radius: 15px;
+
+    border:
+        1px solid rgba(139, 92, 246, 0.16);
+
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.28);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 20px;
+    right: 20px;
+
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(167, 139, 250, 0.55),
+            transparent
+        );
+}
+
+.card:hover {
+    transform: translateY(-5px);
+
+    border-color:
+        rgba(139, 92, 246, 0.40);
+
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.38),
+        0 0 25px rgba(124, 58, 237, 0.08);
 }
 
 .card h3 {
-    color: #555;
+    margin-top: 0;
+
     margin-bottom: 15px;
+
+    color: #a7b0c3;
+
+    font-size: 14px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.5px;
 }
 
 .card h2 {
-    color: #0f172a;
+    margin: 0;
+
+    padding: 0;
+
+    color: #ffffff;
+
+    background: transparent;
+
     font-size: 28px;
 }
 
 .card p {
-    color: #777;
+    margin-top: 8px;
+
+    color: #717b91;
 }
 
 
-/* Quick Actions */
+/* =========================================================
+   DASHBOARD CARDS - FLEX VERSION
+   ========================================================= */
+
+.dashboard-cards {
+    display: flex;
+
+    gap: 20px;
+
+    padding: 30px;
+
+    flex-wrap: wrap;
+}
+
+.dashboard-cards .card {
+    width: 250px;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
 
 .quick-actions {
-    padding: 0 30px 30px;
+    max-width: 1300px;
+
+    margin: 0 auto;
+
+    padding: 0 40px 40px;
 }
 
 .quick-actions h2 {
-    color: #0f172a;
+    color: #ffffff;
+
+    font-size: 22px;
 }
 
 .action-buttons {
     display: flex;
+
     gap: 15px;
+
     flex-wrap: wrap;
 }
 
 .action-buttons button {
     padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
+
+    border-radius: 9px;
 }
-/* =========================
-   LIVE MARKET
-   ========================= */
+
+
+/* =========================================================
+   LIVE MARKET SECTION
+   ========================================================= */
 
 .market-section {
-    width: 90%;
-    max-width: 1000px;
+    width: calc(100% - 80px);
+
+    max-width: 1200px;
+
     margin: 40px auto;
+
     padding: 30px;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(22, 27, 48, 0.94),
+            rgba(13, 17, 32, 0.94)
+        );
+
+    border:
+        1px solid rgba(139, 92, 246, 0.18);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.30);
 }
 
 .market-section h2 {
+    margin-top: 0;
     margin-bottom: 8px;
+
+    color: #ffffff;
+
     font-size: 28px;
 }
 
 .market-section > p {
     margin-bottom: 25px;
-    color: #666;
+
+    color: #8f9bb0;
 }
+
+
+/* =========================================================
+   MARKET GRID
+   ========================================================= */
 
 .market-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
     gap: 20px;
 }
 
+
+/* =========================================================
+   STOCK CARD
+   ========================================================= */
+
 .stock-card {
     padding: 22px;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    background: #f8fafc;
+
+    background:
+        rgba(15, 19, 36, 0.90);
+
+    border:
+        1px solid rgba(148, 163, 184, 0.12);
+
+    border-radius: 13px;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.stock-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+        rgba(139, 92, 246, 0.35);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
 .stock-card h3 {
+    margin-top: 0;
+
     margin-bottom: 5px;
+
+    color: #ffffff;
+
     font-size: 21px;
 }
 
 .stock-card p {
-    color: #666;
     margin-bottom: 15px;
+
+    color: #717b91;
 }
 
 .stock-card h4 {
-    font-size: 24px;
     margin-bottom: 8px;
+
+    color: #ffffff;
+
+    font-size: 24px;
 }
 
 .stock-card span {
+    color: #22c55e;
+
     font-weight: bold;
 }
 
+
+/* =========================================================
+   PROFIT / LOSS SUPPORT
+   ========================================================= */
+
+.profit,
+.positive,
+.gain {
+    color: #22c55e !important;
+}
+
+.loss,
+.negative {
+    color: #ef4444 !important;
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+a {
+    transition: color 0.2s ease;
+}
+
+
+/* =========================================================
+   MOBILE / TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .cards {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .navbar {
+        padding: 15px 25px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+}
+
+
 @media (max-width: 700px) {
+
+    .navbar {
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 18px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 12px 18px;
+    }
+
+    .welcome {
+        padding: 35px 20px 20px;
+    }
+
+    .welcome h1 {
+        font-size: 30px;
+    }
+
+    .welcome p {
+        font-size: 16px;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+
+        padding:
+            15px 20px 30px;
+    }
+
+    .dashboard-cards {
+        padding: 20px;
+    }
+
+    .dashboard-cards .card {
+        width: 100%;
+    }
+
+    .quick-actions {
+        padding:
+            0 20px 30px;
+    }
+
+    .market-section {
+        width: calc(100% - 30px);
+
+        padding: 22px;
+    }
 
     .market-grid {
         grid-template-columns: 1fr;
     }
 
-    .market-section {
-        width: 85%;
+    .register-card {
+        padding: 28px 22px;
     }
+}
+
+
+@media (max-width: 450px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    .register-card {
+        padding: 25px 18px;
+    }
+
+    .register-card h1 {
+        font-size: 28px;
+    }
+
+    .welcome h1 {
+        font-size: 26px;
+    }
+
+    .card h2 {
+        font-size: 24px;
+    }
+}
+/* ============================= */
+/* PROFILE PAGE */
+/* ============================= */
+
+.profile-container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 50px auto;
+}
+
+.profile-container h1 {
+    font-size: 32px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    color: #9b9bb5;
+    margin-bottom: 30px;
+}
+
+.profile-card {
+    background: #0d0d1b;
+    border: 1px solid #242442;
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.profile-top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #242442;
+}
+
+.profile-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #17132e;
+    border: 2px solid #714cff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 35px;
+}
+
+.profile-top h2 {
+    margin: 0 0 6px;
+}
+
+.profile-top p {
+    margin: 0;
+    color: #9b9bb5;
+}
+
+
+/* Sections */
+
+.profile-section {
+    padding: 30px 0;
+    border-bottom: 1px solid #242442;
+}
+
+.profile-section:last-child {
+    border-bottom: none;
+}
+
+.profile-section h3 {
+    margin-bottom: 20px;
+}
+
+
+/* Input Grid */
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-box {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-box label {
+    color: #aaaac0;
+    font-size: 14px;
+}
+
+.input-box input,
+.input-box select {
+    background: #090914;
+    border: 1px solid #29294a;
+    color: white;
+
+    padding: 12px;
+    border-radius: 8px;
+    outline: none;
+}
+
+.input-box input:focus,
+.input-box select:focus {
+    border-color: #714cff;
+}
+
+
+/* Save Button */
+
+.save-btn {
+    margin-top: 25px;
+
+    background: #714cff;
+    color: white;
+
+    border: none;
+    padding: 12px 25px;
+
+    border-radius: 8px;
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.save-btn:hover {
+    background: #845fff;
+}
+
+
+/* Risk */
+
+.preference {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.preference p {
+    color: #9b9bb5;
+    margin-top: 5px;
+}
+
+.preference input {
+    width: 200px;
+    accent-color: #714cff;
+}
+
+
+/* Quick Links */
+
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.quick-links a {
+    text-decoration: none;
+    color: white;
+
+    background: #121225;
+    border: 1px solid #29294a;
+
+    padding: 20px;
+    border-radius: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    transition: 0.2s;
+}
+
+.quick-links a:hover {
+    border-color: #714cff;
+    transform: translateY(-3px);
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .input-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-links {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-card {
+        padding: 20px;
+    }
+
+    .preference {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .preference input {
+        width: 100%;
+    }
+
 }

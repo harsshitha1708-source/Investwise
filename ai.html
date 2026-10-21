@@ -6,9 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>InvestWise - AI Investment Advisor</title>
+    <title>InvestWise AI - Investment Advisor</title>
 
     <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
 
         * {
             margin: 0;
@@ -16,33 +20,69 @@
             box-sizing: border-box;
         }
 
+
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+
         :root {
-            --bg: #07110d;
-            --card: rgba(255, 255, 255, 0.045);
-            --card-hover: rgba(255, 255, 255, 0.065);
-            --border: rgba(255, 255, 255, 0.09);
-            --green: #00ff96;
-            --green-dark: #00c878;
-            --text: #ffffff;
-            --muted: #91a59c;
-            --muted2: #71857c;
+
+            --bg: #080b16;
+
+            --card: rgba(17, 20, 38, 0.90);
+
+            --card-light: rgba(24, 20, 45, 0.95);
+
+            --border: rgba(139, 92, 246, 0.18);
+
+            --border-hover: rgba(139, 92, 246, 0.45);
+
+            --purple: #8b5cf6;
+
+            --purple-light: #a78bfa;
+
+            --purple-dark: #6d28d9;
+
+            --text: #f8fafc;
+
+            --muted: #94a3b8;
+
+            --muted-dark: #64748b;
+
+            --green: #22c55e;
+
+            --red: #ef4444;
+
+            --yellow: #facc15;
         }
 
+
+        /* =====================================================
+           BODY
+        ===================================================== */
+
         body {
-            font-family: "Segoe UI", Arial, sans-serif;
+
+            font-family:
+                "Segoe UI",
+                Arial,
+                sans-serif;
 
             background:
+
                 radial-gradient(
                     circle at 10% 10%,
-                    rgba(0, 255, 150, 0.08),
+                    rgba(139, 92, 246, 0.18),
                     transparent 30%
                 ),
+
                 radial-gradient(
                     circle at 90% 80%,
-                    rgba(0, 255, 150, 0.05),
+                    rgba(124, 58, 237, 0.14),
                     transparent 30%
                 ),
-                var(--bg);
+
+                #080b16;
 
             color: var(--text);
 
@@ -51,8 +91,16 @@
             overflow-x: hidden;
         }
 
+
         a {
             text-decoration: none;
+        }
+
+
+        button,
+        input,
+        select {
+            font-family: inherit;
         }
 
 
@@ -62,9 +110,11 @@
 
         .navbar {
 
-            min-height: 72px;
+            width: 100%;
 
-            padding: 0 5%;
+            min-height: 75px;
+
+            padding: 0 6%;
 
             display: flex;
 
@@ -72,12 +122,14 @@
 
             justify-content: space-between;
 
-            background: rgba(5, 15, 11, 0.94);
+            background:
+                rgba(10, 13, 28, 0.88);
+
+            backdrop-filter:
+                blur(18px);
 
             border-bottom:
-                1px solid rgba(0, 255, 150, 0.12);
-
-            backdrop-filter: blur(18px);
+                1px solid rgba(139, 92, 246, 0.18);
 
             position: sticky;
 
@@ -93,16 +145,21 @@
 
             align-items: center;
 
-            gap: 10px;
+            gap: 12px;
 
-            color: var(--green);
+            font-size: 22px;
+
+            font-weight: 700;
         }
 
 
         .logo-icon {
 
-            width: 40px;
-            height: 40px;
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 12px;
 
             display: flex;
 
@@ -110,28 +167,26 @@
 
             justify-content: center;
 
-            border-radius: 11px;
-
             background:
-                rgba(0, 255, 150, 0.10);
+                linear-gradient(
+                    135deg,
+                    var(--purple),
+                    var(--purple-dark)
+                );
 
-            border:
-                1px solid rgba(0, 255, 150, 0.22);
-
-            font-size: 20px;
+            box-shadow:
+                0 8px 30px
+                rgba(124, 58, 237, 0.30);
         }
 
 
-        .logo h2 {
-
-            font-size: 22px;
-
-            letter-spacing: -0.5px;
+        .logo span {
+            color: var(--purple-light);
         }
 
 
         /* =====================================================
-           NAVIGATION
+           NAV LINKS
         ===================================================== */
 
         .nav-links {
@@ -140,7 +195,7 @@
 
             align-items: center;
 
-            gap: 6px;
+            gap: 5px;
 
             list-style: none;
         }
@@ -150,11 +205,11 @@
 
             display: block;
 
-            padding: 10px 14px;
+            padding: 10px 13px;
 
             border-radius: 9px;
 
-            color: #91a59c;
+            color: #cbd5e1;
 
             font-size: 13px;
 
@@ -166,22 +221,22 @@
 
         .nav-links a:hover {
 
-            color: #ffffff;
+            color: white;
 
             background:
-                rgba(0, 255, 150, 0.07);
+                rgba(139, 92, 246, 0.10);
         }
 
 
         .nav-links a.active {
 
-            color: var(--green);
+            color: var(--purple-light);
 
             background:
-                rgba(0, 255, 150, 0.09);
+                rgba(139, 92, 246, 0.12);
 
             border:
-                1px solid rgba(0, 255, 150, 0.12);
+                1px solid rgba(139, 92, 246, 0.20);
         }
 
 
@@ -191,24 +246,27 @@
 
         .hero {
 
-            width: 90%;
+            width: 88%;
 
-            max-width: 950px;
+            max-width: 1100px;
 
             margin: auto;
 
-            padding: 55px 0 30px;
+            padding: 55px 0 35px;
 
             text-align: center;
         }
 
 
-        .robot {
+        .ai-icon {
 
-            width: 64px;
-            height: 64px;
+            width: 72px;
 
-            margin: auto;
+            height: 72px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 20px;
 
             display: flex;
 
@@ -216,86 +274,125 @@
 
             justify-content: center;
 
-            border-radius: 18px;
+            font-size: 34px;
 
             background:
-                rgba(0, 255, 150, 0.08);
+
+                linear-gradient(
+                    135deg,
+                    rgba(139, 92, 246, 0.30),
+                    rgba(109, 40, 217, 0.18)
+                );
 
             border:
-                1px solid rgba(0, 255, 150, 0.16);
+                1px solid rgba(167, 139, 250, 0.30);
 
-            font-size: 32px;
-
-            margin-bottom: 18px;
+            box-shadow:
+                0 15px 40px
+                rgba(124, 58, 237, 0.18);
         }
 
 
-        .hero-title {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 12px;
-
-            color: #ffffff;
+        .hero h1 {
 
             font-size: 40px;
 
-            margin-bottom: 12px;
-
             letter-spacing: -1px;
+
+            margin-bottom: 12px;
         }
 
 
-        .sparkle {
+        .hero h1 span {
 
-            color: var(--green);
-
-            font-size: 28px;
+            color: var(--purple-light);
         }
 
 
         .hero p {
 
+            max-width: 650px;
+
+            margin: auto;
+
             color: var(--muted);
 
-            font-size: 14px;
+            font-size: 15px;
 
             line-height: 1.7;
         }
 
 
-        /* =====================================================
-           ADVISOR CARD
-        ===================================================== */
+        .hero-badges {
 
-        .advisor-container {
+            display: flex;
 
-            width: 90%;
+            justify-content: center;
 
-            max-width: 950px;
+            flex-wrap: wrap;
 
-            margin: 0 auto 45px;
+            gap: 10px;
 
-            padding: 30px;
+            margin-top: 20px;
+        }
+
+
+        .hero-badge {
+
+            padding: 7px 13px;
+
+            border-radius: 20px;
 
             background:
+                rgba(139, 92, 246, 0.08);
+
+            border:
+                1px solid rgba(139, 92, 246, 0.18);
+
+            color: #c4b5fd;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           MAIN CONTAINER
+        ===================================================== */
+
+        .main-container {
+
+            width: 88%;
+
+            max-width: 1100px;
+
+            margin: 0 auto 60px;
+        }
+
+
+        /* =====================================================
+           PROFILE CARD
+        ===================================================== */
+
+        .advisor-card {
+
+            padding: 32px;
+
+            border-radius: 22px;
+
+            background:
+
                 linear-gradient(
                     145deg,
-                    rgba(255, 255, 255, 0.055),
-                    rgba(255, 255, 255, 0.018)
+                    rgba(24, 20, 45, 0.96),
+                    rgba(13, 16, 31, 0.96)
                 );
 
             border:
                 1px solid var(--border);
 
-            border-radius: 20px;
-
             box-shadow:
-                0 20px 50px rgba(0, 0, 0, 0.28);
+                0 25px 60px
+                rgba(0, 0, 0, 0.28);
 
             position: relative;
 
@@ -303,131 +400,195 @@
         }
 
 
-        .advisor-container::before {
+        .advisor-card::before {
 
             content: "";
 
             position: absolute;
 
-            left: 0;
-
             top: 0;
 
-            width: 3px;
+            left: 0;
 
-            height: 100%;
+            right: 0;
+
+            height: 3px;
 
             background:
                 linear-gradient(
-                    to bottom,
-                    var(--green),
-                    rgba(0, 255, 150, 0.15)
+                    90deg,
+                    var(--purple-dark),
+                    var(--purple-light),
+                    var(--purple-dark)
                 );
         }
 
 
-        .advisor-title {
-
-            font-size: 21px;
-
-            margin-bottom: 8px;
-        }
-
-
-        .advisor-subtitle {
-
-            color: var(--muted);
-
-            font-size: 12px;
-
-            margin-bottom: 25px;
-        }
-
-
-        /* =====================================================
-           FORM ROWS
-        ===================================================== */
-
-        .form-row {
+        .card-heading {
 
             display: flex;
 
             align-items: center;
 
-            justify-content: space-between;
+            gap: 15px;
 
-            gap: 25px;
+            margin-bottom: 28px;
+        }
 
-            padding: 19px;
 
-            margin-bottom: 15px;
+        .heading-icon {
 
-            border-radius: 15px;
+            width: 46px;
+
+            height: 46px;
+
+            border-radius: 13px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(139, 92, 246, 0.12);
+
+            color: var(--purple-light);
+
+            font-size: 21px;
+        }
+
+
+        .card-heading h2 {
+
+            font-size: 21px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .card-heading p {
+
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           FORM GRID
+        ===================================================== */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .form-card {
+
+            padding: 22px;
+
+            border-radius: 17px;
 
             background:
                 rgba(255, 255, 255, 0.025);
 
             border:
-                1px solid var(--border);
+                1px solid
+                rgba(139, 92, 246, 0.14);
 
             transition: 0.3s;
         }
 
 
-        .form-row:hover {
+        .form-card:hover {
 
             border-color:
-                rgba(0, 255, 150, 0.25);
+                rgba(139, 92, 246, 0.35);
+
+            background:
+                rgba(139, 92, 246, 0.035);
+
+            transform: translateY(-2px);
         }
 
 
-        .form-info {
+        .form-label {
 
-            flex: 1;
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-bottom: 7px;
+
+            font-size: 14px;
+
+            font-weight: 700;
         }
 
 
-        .form-info h3 {
+        .form-label-icon {
 
-            color: #ffffff;
+            width: 30px;
 
-            font-size: 15px;
+            height: 30px;
 
-            margin-bottom: 5px;
+            border-radius: 8px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(139, 92, 246, 0.12);
         }
 
 
-        .form-info p {
+        .form-description {
 
-            color: var(--muted);
+            color: var(--muted-dark);
 
             font-size: 11px;
+
+            margin-bottom: 15px;
+
+            line-height: 1.5;
         }
 
 
-        .input-area {
-
-            width: 270px;
-        }
-
+        /* =====================================================
+           INPUT
+        ===================================================== */
 
         input,
         select {
 
             width: 100%;
 
-            padding: 13px 14px;
+            padding: 14px 15px;
 
-            border-radius: 10px;
+            border-radius: 11px;
 
             outline: none;
 
-            background: #0c1913;
+            background:
+                #0d1120;
 
-            color: #ffffff;
+            color: white;
 
             border:
-                1px solid rgba(255, 255, 255, 0.12);
+                1px solid
+                rgba(148, 163, 184, 0.16);
 
             font-size: 13px;
 
@@ -437,35 +598,40 @@
 
         input::placeholder {
 
-            color: #71857c;
+            color: #64748b;
         }
 
 
         input:focus,
         select:focus {
 
-            border-color: var(--green);
+            border-color:
+                var(--purple);
 
             box-shadow:
-                0 0 0 4px rgba(0, 255, 150, 0.08);
+                0 0 0 4px
+                rgba(139, 92, 246, 0.09);
         }
 
 
         option {
 
-            background: #0c1913;
+            background: #0d1120;
 
-            color: #ffffff;
+            color: white;
         }
 
 
         /* =====================================================
-           RISK BUTTONS
+           RISK SELECTOR
         ===================================================== */
 
         .risk-buttons {
 
-            display: flex;
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
 
             gap: 8px;
         }
@@ -473,9 +639,9 @@
 
         .risk-btn {
 
-            padding: 10px 15px;
+            padding: 12px 8px;
 
-            border-radius: 9px;
+            border-radius: 10px;
 
             cursor: pointer;
 
@@ -485,9 +651,12 @@
             color: var(--muted);
 
             border:
-                1px solid rgba(255, 255, 255, 0.10);
+                1px solid
+                rgba(148, 163, 184, 0.14);
 
             font-size: 12px;
+
+            font-weight: 600;
 
             transition: 0.3s;
         }
@@ -496,144 +665,229 @@
         .risk-btn:hover {
 
             border-color:
-                rgba(0, 255, 150, 0.25);
+                rgba(139, 92, 246, 0.35);
 
-            color: #ffffff;
+            color: white;
         }
 
 
         .risk-btn.active {
 
             background:
-                rgba(0, 255, 150, 0.10);
+                linear-gradient(
+                    135deg,
+                    rgba(139, 92, 246, 0.22),
+                    rgba(109, 40, 217, 0.14)
+                );
 
             border-color:
-                rgba(0, 255, 150, 0.30);
+                rgba(167, 139, 250, 0.45);
 
-            color: var(--green);
+            color:
+                var(--purple-light);
+
+            box-shadow:
+                0 8px 20px
+                rgba(124, 58, 237, 0.12);
         }
 
 
         /* =====================================================
-           RECOMMEND BUTTON
+           GENERATE BUTTON
         ===================================================== */
 
         .recommend-btn {
 
             width: 100%;
 
-            margin-top: 15px;
+            margin-top: 22px;
 
-            padding: 15px;
+            padding: 16px;
 
             border: none;
 
-            border-radius: 11px;
+            border-radius: 12px;
 
             cursor: pointer;
 
             background:
+
                 linear-gradient(
                     135deg,
-                    var(--green),
-                    var(--green-dark)
+                    #8b5cf6,
+                    #6d28d9
                 );
 
-            color: #031009;
+            color: white;
 
             font-size: 14px;
 
             font-weight: 800;
 
+            letter-spacing: 0.2px;
+
             transition: 0.3s;
+
+            box-shadow:
+                0 12px 30px
+                rgba(124, 58, 237, 0.20);
         }
 
 
         .recommend-btn:hover {
 
-            transform: translateY(-2px);
+            transform: translateY(-3px);
 
             box-shadow:
-                0 12px 30px rgba(0, 255, 150, 0.20);
+                0 18px 40px
+                rgba(124, 58, 237, 0.30);
         }
 
 
-        /* =====================================================
-           TRUST MESSAGE
-        ===================================================== */
+        .recommend-btn:active {
+
+            transform: translateY(-1px);
+        }
+
 
         .trust {
 
-            margin-top: 17px;
-
             text-align: center;
 
-            color: var(--muted2);
+            margin-top: 14px;
+
+            color: var(--muted-dark);
 
             font-size: 10px;
         }
 
 
-        .dot {
+        .trust span {
 
-            color: var(--green);
-
-            margin-right: 5px;
+            color: var(--purple-light);
         }
 
 
         /* =====================================================
-           RECOMMENDATION RESULT
+           RESULT SECTION
         ===================================================== */
 
         #recommendation {
 
-            width: 90%;
+            margin-top: 35px;
+        }
 
-            max-width: 950px;
 
-            margin: 0 auto 50px;
+        .result-wrapper {
+
+            padding: 28px;
+
+            border-radius: 21px;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(24, 20, 45, 0.96),
+                    rgba(13, 16, 31, 0.96)
+                );
+
+            border:
+                1px solid var(--border);
+
+            box-shadow:
+                0 20px 50px
+                rgba(0, 0, 0, 0.25);
         }
 
 
         .result-header {
 
-            margin-bottom: 18px;
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .result-icon {
+
+            width: 46px;
+
+            height: 46px;
+
+            border-radius: 13px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background:
+                rgba(139, 92, 246, 0.13);
+
+            color:
+                var(--purple-light);
+
+            font-size: 20px;
+        }
+
+
+        .result-header h2 {
 
             font-size: 21px;
         }
 
 
+        .result-header p {
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            margin-top: 4px;
+        }
+
+
+        /* =====================================================
+           SUMMARY
+        ===================================================== */
+
         .summary-box {
 
-            padding: 18px;
+            padding: 20px;
 
-            margin-bottom: 18px;
-
-            border-radius: 14px;
+            border-radius: 15px;
 
             background:
-                rgba(0, 255, 150, 0.055);
+                rgba(139, 92, 246, 0.065);
 
             border:
-                1px solid rgba(0, 255, 150, 0.13);
+                1px solid
+                rgba(139, 92, 246, 0.18);
 
-            color: #dce9e3;
+            color: #dbe4f0;
 
             font-size: 13px;
 
-            line-height: 1.7;
+            line-height: 1.75;
+
+            margin-bottom: 20px;
         }
 
 
         .summary-box strong {
 
-            color: #ffffff;
+            color: white;
         }
 
 
         /* =====================================================
-           RECOMMENDED STOCKS
+           STOCK GRID
         ===================================================== */
 
         .stocks-grid {
@@ -643,7 +897,7 @@
             grid-template-columns:
                 repeat(3, 1fr);
 
-            gap: 17px;
+            gap: 16px;
         }
 
 
@@ -654,14 +908,11 @@
             border-radius: 17px;
 
             background:
-                linear-gradient(
-                    145deg,
-                    rgba(255, 255, 255, 0.05),
-                    rgba(255, 255, 255, 0.018)
-                );
+                rgba(17, 20, 38, 0.90);
 
             border:
-                1px solid var(--border);
+                1px solid
+                rgba(139, 92, 246, 0.15);
 
             transition: 0.3s;
         }
@@ -669,10 +920,14 @@
 
         .stock-card:hover {
 
-            transform: translateY(-4px);
+            transform: translateY(-5px);
 
             border-color:
-                rgba(0, 255, 150, 0.24);
+                rgba(139, 92, 246, 0.40);
+
+            box-shadow:
+                0 15px 35px
+                rgba(124, 58, 237, 0.12);
         }
 
 
@@ -680,17 +935,15 @@
 
             display: flex;
 
-            align-items: center;
-
             justify-content: space-between;
+
+            align-items: center;
 
             margin-bottom: 18px;
         }
 
 
         .stock-name {
-
-            color: #ffffff;
 
             font-size: 16px;
 
@@ -700,7 +953,7 @@
 
         .stock-symbol {
 
-            color: var(--muted2);
+            color: var(--muted-dark);
 
             font-size: 10px;
 
@@ -710,8 +963,11 @@
 
         .stock-icon {
 
-            width: 37px;
-            height: 37px;
+            width: 38px;
+
+            height: 38px;
+
+            border-radius: 10px;
 
             display: flex;
 
@@ -719,31 +975,28 @@
 
             justify-content: center;
 
-            border-radius: 9px;
-
             background:
-                rgba(0, 255, 150, 0.08);
+                rgba(139, 92, 246, 0.11);
 
-            border:
-                1px solid rgba(0, 255, 150, 0.12);
+            color:
+                var(--purple-light);
         }
 
 
         .stock-price {
 
-            color: #ffffff;
-
-            font-size: 22px;
+            font-size: 23px;
 
             font-weight: 700;
 
-            margin-bottom: 7px;
+            margin-bottom: 6px;
         }
 
 
         .stock-change {
 
-            color: var(--green);
+            color:
+                var(--green);
 
             font-size: 12px;
 
@@ -755,15 +1008,16 @@
 
             padding: 12px;
 
-            margin-bottom: 12px;
-
-            border-radius: 9px;
+            border-radius: 10px;
 
             background:
-                rgba(255, 255, 255, 0.035);
+                rgba(255, 255, 255, 0.025);
 
             border:
-                1px solid rgba(255, 255, 255, 0.07);
+                1px solid
+                rgba(148, 163, 184, 0.08);
+
+            margin-bottom: 10px;
         }
 
 
@@ -771,25 +1025,26 @@
 
             display: block;
 
-            color: var(--muted2);
+            color:
+                var(--muted-dark);
 
             font-size: 9px;
-
-            margin-bottom: 5px;
 
             text-transform: uppercase;
 
             letter-spacing: 0.5px;
+
+            margin-bottom: 5px;
         }
 
 
         .detail-value {
 
-            color: #ffffff;
-
             font-size: 13px;
 
             font-weight: 600;
+
+            color: #e2e8f0;
         }
 
 
@@ -799,17 +1054,19 @@
 
             padding: 11px;
 
-            border-radius: 9px;
+            border-radius: 10px;
 
             cursor: pointer;
 
             background:
-                rgba(0, 255, 150, 0.08);
+                rgba(139, 92, 246, 0.09);
 
-            color: var(--green);
+            color:
+                var(--purple-light);
 
             border:
-                1px solid rgba(0, 255, 150, 0.18);
+                1px solid
+                rgba(139, 92, 246, 0.20);
 
             font-size: 12px;
 
@@ -821,33 +1078,99 @@
 
         .buy-btn:hover {
 
-            background: var(--green);
+            background:
+                var(--purple);
 
-            color: #031009;
+            color: white;
+
+            border-color:
+                var(--purple);
+
+            transform: translateY(-1px);
         }
 
 
         /* =====================================================
-           WARNING / NOTE
+           INFORMATION CARDS
         ===================================================== */
 
-        .market-note {
+        .info-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 16px;
+
+            margin-top: 22px;
+        }
+
+
+        .info-card {
+
+            padding: 19px;
+
+            border-radius: 15px;
+
+            background:
+                rgba(17, 20, 38, 0.75);
+
+            border:
+                1px solid
+                rgba(139, 92, 246, 0.13);
+        }
+
+
+        .info-card-icon {
+
+            font-size: 22px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .info-card h3 {
+
+            font-size: 14px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .info-card p {
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =====================================================
+           DISCLAIMER
+        ===================================================== */
+
+        .disclaimer {
 
             margin-top: 20px;
 
             padding: 16px;
 
-            border-radius: 12px;
+            border-radius: 13px;
 
             background:
-                rgba(255, 193, 7, 0.06);
+                rgba(250, 204, 21, 0.045);
 
             border:
-                1px solid rgba(255, 193, 7, 0.12);
+                1px solid
+                rgba(250, 204, 21, 0.13);
 
-            color: #d9c995;
+            color:
+                #cbd5b1;
 
-            font-size: 11px;
+            font-size: 10px;
 
             line-height: 1.6;
         }
@@ -859,20 +1182,22 @@
 
         .footer {
 
-            width: 90%;
+            width: 88%;
 
-            max-width: 950px;
+            max-width: 1100px;
 
-            margin: 50px auto 25px;
+            margin: 0 auto 25px;
 
-            padding-top: 22px;
+            padding-top: 23px;
+
+            border-top:
+                1px solid
+                rgba(139, 92, 246, 0.12);
 
             text-align: center;
 
-            border-top:
-                1px solid rgba(255, 255, 255, 0.07);
-
-            color: #56675f;
+            color:
+                var(--muted-dark);
 
             font-size: 10px;
         }
@@ -880,7 +1205,8 @@
 
         .footer span {
 
-            color: var(--green);
+            color:
+                var(--purple-light);
         }
 
 
@@ -888,37 +1214,15 @@
            RESPONSIVE
         ===================================================== */
 
-        @media (max-width: 850px) {
+        @media (max-width: 1000px) {
 
-            .navbar {
+            .nav-links a {
 
-                flex-direction: column;
+                padding:
+                    9px 8px;
 
-                gap: 12px;
-
-                padding: 14px 5%;
-            }
-
-
-            .nav-links {
-
-                flex-wrap: wrap;
-
-                justify-content: center;
-            }
-
-
-            .form-row {
-
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-
-
-            .input-area {
-
-                width: 100%;
+                font-size:
+                    11px;
             }
 
 
@@ -931,51 +1235,104 @@
         }
 
 
+        @media (max-width: 800px) {
+
+            .navbar {
+
+                padding:
+                    14px 5%;
+
+                flex-direction:
+                    column;
+
+                gap: 12px;
+            }
+
+
+            .nav-links {
+
+                flex-wrap:
+                    wrap;
+
+                justify-content:
+                    center;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .info-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+        }
+
+
         @media (max-width: 600px) {
 
             .hero {
 
-                padding-top: 35px;
+                padding:
+                    35px 0 25px;
             }
 
 
-            .hero-title {
+            .hero h1 {
 
-                font-size: 28px;
+                font-size:
+                    29px;
             }
 
 
-            .advisor-container {
+            .hero p {
 
-                padding: 22px;
+                font-size:
+                    13px;
             }
 
 
-            .risk-buttons {
+            .main-container {
 
-                width: 100%;
-
-                flex-wrap: wrap;
+                width:
+                    92%;
             }
 
 
-            .risk-btn {
+            .advisor-card {
 
-                flex: 1;
+                padding:
+                    20px;
             }
 
 
             .stocks-grid {
 
-                grid-template-columns: 1fr;
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .risk-buttons {
+
+                grid-template-columns:
+                    1fr;
             }
 
 
             .nav-links a {
 
-                padding: 8px 9px;
+                padding:
+                    7px 7px;
 
-                font-size: 11px;
+                font-size:
+                    10px;
             }
 
         }
@@ -1000,9 +1357,7 @@
                 📈
             </div>
 
-            <h2>
-                InvestWise
-            </h2>
+            Invest<span>Wise</span>
 
         </div>
 
@@ -1017,7 +1372,7 @@
 
             <li>
                 <a href="ai.html" class="active">
-                    AI Advisor
+                    🤖 AI Advisor
                 </a>
             </li>
 
@@ -1051,268 +1406,407 @@
 
     <section class="hero">
 
-        <div class="robot">
+        <div class="ai-icon">
             🤖
         </div>
 
 
-        <h1 class="hero-title">
-
-            AI Investment Advisor
-
-            <span class="sparkle">
-                ✦
-            </span>
-
+        <h1>
+            AI Investment
+            <span>Advisor</span>
         </h1>
 
 
         <p>
-            Get personalized educational investment
-            suggestions based on your investment profile.
+
+            Build a personalized educational investment strategy
+            using your investment amount, risk preference,
+            time horizon and preferred sector.
+
         </p>
+
+
+        <div class="hero-badges">
+
+            <div class="hero-badge">
+                ✨ AI Assisted
+            </div>
+
+            <div class="hero-badge">
+                📊 Market Data
+            </div>
+
+            <div class="hero-badge">
+                🛡️ Risk Aware
+            </div>
+
+            <div class="hero-badge">
+                🎓 Educational
+            </div>
+
+        </div>
 
     </section>
 
 
 
     <!-- =====================================================
-         ADVISOR FORM
+         MAIN
     ===================================================== -->
 
-    <section class="advisor-container">
-
-        <h2 class="advisor-title">
-            Tell us about your investment goals
-        </h2>
-
-        <p class="advisor-subtitle">
-            Enter your details and let InvestWise
-            create a personalized investment strategy.
-        </p>
+    <main class="main-container">
 
 
+        <!-- =================================================
+             ADVISOR FORM
+        ================================================= -->
 
-        <!-- INVESTMENT AMOUNT -->
+        <section class="advisor-card">
 
-        <div class="form-row">
+            <div class="card-heading">
 
-            <div class="form-info">
+                <div class="heading-icon">
+                    🎯
+                </div>
 
-                <h3>
-                    💰 Investment Amount
-                </h3>
+                <div>
 
-                <p>
-                    How much money do you want to invest?
-                </p>
+                    <h2>
+                        Create Your Investment Profile
+                    </h2>
 
-            </div>
-
-
-            <div class="input-area">
-
-                <input
-                    type="number"
-                    id="amount"
-                    placeholder="Enter amount in ₹"
-                    min="1000"
-                >
-
-            </div>
-
-        </div>
-
-
-
-        <!-- RISK -->
-
-        <div class="form-row">
-
-            <div class="form-info">
-
-                <h3>
-                    ⚖️ Risk Level
-                </h3>
-
-                <p>
-                    How much risk are you comfortable with?
-                </p>
-
-            </div>
-
-
-            <div class="input-area">
-
-                <div class="risk-buttons">
-
-                    <button
-                        type="button"
-                        class="risk-btn active"
-                        onclick="selectRisk('Low', this)">
-
-                        Low
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="risk-btn"
-                        onclick="selectRisk('Medium', this)">
-
-                        Medium
-
-                    </button>
-
-
-                    <button
-                        type="button"
-                        class="risk-btn"
-                        onclick="selectRisk('High', this)">
-
-                        High
-
-                    </button>
+                    <p>
+                        Tell us about your investment goals
+                    </p>
 
                 </div>
 
             </div>
 
-        </div>
+
+
+            <div class="form-grid">
+
+
+                <!-- INVESTMENT AMOUNT -->
+
+                <div class="form-card">
+
+                    <div class="form-label">
+
+                        <div class="form-label-icon">
+                            💰
+                        </div>
+
+                        Investment Amount
+
+                    </div>
+
+
+                    <p class="form-description">
+
+                        Enter the amount you want to
+                        simulate investing.
+
+                    </p>
+
+
+                    <input
+                        type="number"
+                        id="amount"
+                        placeholder="Example: ₹50,000"
+                        min="1000"
+                    >
+
+                </div>
 
 
 
-        <!-- DURATION -->
+                <!-- RISK -->
 
-        <div class="form-row">
+                <div class="form-card">
 
-            <div class="form-info">
+                    <div class="form-label">
+
+                        <div class="form-label-icon">
+                            ⚖️
+                        </div>
+
+                        Risk Preference
+
+                    </div>
+
+
+                    <p class="form-description">
+
+                        Choose the level of market risk
+                        you are comfortable with.
+
+                    </p>
+
+
+                    <div class="risk-buttons">
+
+                        <button
+                            type="button"
+                            class="risk-btn active"
+                            onclick="selectRisk('Low', this)"
+                        >
+                            🛡️ Low
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="risk-btn"
+                            onclick="selectRisk('Medium', this)"
+                        >
+                            ⚖️ Medium
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="risk-btn"
+                            onclick="selectRisk('High', this)"
+                        >
+                            🚀 High
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DURATION -->
+
+                <div class="form-card">
+
+                    <div class="form-label">
+
+                        <div class="form-label-icon">
+                            ⏳
+                        </div>
+
+                        Investment Duration
+
+                    </div>
+
+
+                    <p class="form-description">
+
+                        Select how long you plan to remain
+                        invested.
+
+                    </p>
+
+
+                    <select id="duration">
+
+                        <option value="">
+                            Select duration
+                        </option>
+
+                        <option value="1">
+                            1 Year
+                        </option>
+
+                        <option value="3">
+                            3 Years
+                        </option>
+
+                        <option value="5">
+                            5 Years
+                        </option>
+
+                        <option value="10">
+                            10+ Years
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- SECTOR -->
+
+                <div class="form-card">
+
+                    <div class="form-label">
+
+                        <div class="form-label-icon">
+                            🏢
+                        </div>
+
+                        Preferred Sector
+
+                    </div>
+
+
+                    <p class="form-description">
+
+                        Select the industry you are
+                        interested in learning about.
+
+                    </p>
+
+
+                    <select id="sector">
+
+                        <option value="">
+                            Select sector
+                        </option>
+
+                        <option value="IT">
+                            💻 Information Technology
+                        </option>
+
+                        <option value="Banking">
+                            🏦 Banking & Finance
+                        </option>
+
+                        <option value="Pharma">
+                            💊 Pharmaceuticals
+                        </option>
+
+                        <option value="EV">
+                            🚗 Electric Vehicles
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- RECOMMEND -->
+
+            <button
+                class="recommend-btn"
+                onclick="getRecommendation()"
+            >
+
+                ✨ Generate AI Recommendation
+
+            </button>
+
+
+            <div class="trust">
+
+                <span>●</span>
+
+                Educational simulation · No real money involved ·
+                Not financial advice
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RECOMMENDATION RESULT
+        ================================================= -->
+
+        <section id="recommendation"></section>
+
+
+
+        <!-- =================================================
+             EDUCATIONAL INFORMATION
+        ================================================= -->
+
+        <section class="info-grid">
+
+
+            <div class="info-card">
+
+                <div class="info-card-icon">
+                    🧠
+                </div>
 
                 <h3>
-                    ⏳ Investment Duration
+                    AI Assisted Analysis
                 </h3>
 
                 <p>
-                    How long do you plan to stay invested?
+
+                    InvestWise analyzes the profile you
+                    provide and generates educational
+                    suggestions.
+
                 </p>
 
             </div>
 
 
-            <div class="input-area">
+            <div class="info-card">
 
-                <select id="duration">
-
-                    <option value="">
-                        Select duration
-                    </option>
-
-                    <option value="1">
-                        1 Year
-                    </option>
-
-                    <option value="3">
-                        3 Years
-                    </option>
-
-                    <option value="5">
-                        5 Years
-                    </option>
-
-                    <option value="10">
-                        10+ Years
-                    </option>
-
-                </select>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- SECTOR -->
-
-        <div class="form-row">
-
-            <div class="form-info">
+                <div class="info-card-icon">
+                    📊
+                </div>
 
                 <h3>
-                    🏢 Preferred Sector
+                    Market Awareness
                 </h3>
 
                 <p>
-                    Which industry interests you?
+
+                    Recommendations can use available
+                    market information to make the
+                    learning experience more realistic.
+
                 </p>
 
             </div>
 
 
-            <div class="input-area">
+            <div class="info-card">
 
-                <select id="sector">
+                <div class="info-card-icon">
+                    🎓
+                </div>
 
-                    <option value="">
-                        Select sector
-                    </option>
+                <h3>
+                    Learn by Simulation
+                </h3>
 
-                    <option value="IT">
-                        💻 Information Technology
-                    </option>
+                <p>
 
-                    <option value="Banking">
-                        🏦 Banking & Finance
-                    </option>
+                    Use the recommendation together with
+                    paper trading to understand investment
+                    decisions without real money.
 
-                    <option value="Pharma">
-                        💊 Pharmaceuticals
-                    </option>
-
-                    <option value="EV">
-                        🚗 Electric Vehicles
-                    </option>
-
-                </select>
+                </p>
 
             </div>
 
-        </div>
+
+        </section>
 
 
+        <!-- =================================================
+             DISCLAIMER
+        ================================================= -->
 
-        <!-- BUTTON -->
+        <div class="disclaimer">
 
-        <button
-            class="recommend-btn"
-            onclick="getRecommendation()">
+            ⚠️ <strong>Educational Disclaimer:</strong>
 
-            ✨ Get AI Recommendation
-
-        </button>
-
-
-        <div class="trust">
-
-            <span class="dot">
-                ●
-            </span>
-
-            Educational simulation • Not financial advice
+            InvestWise is a virtual investment learning
+            platform. The recommendations displayed are
+            intended for educational and simulation purposes
+            only and should not be considered professional
+            financial advice.
 
         </div>
 
-    </section>
 
-
-
-    <!-- =====================================================
-         RESULT AREA
-    ===================================================== -->
-
-    <section id="recommendation">
-
-    </section>
+    </main>
 
 
 
@@ -1324,7 +1818,7 @@
 
         Powered by
         <span>InvestWise AI</span>
-        • Virtual Investment Learning Platform
+        · Virtual Investment Learning Platform
 
     </footer>
 
@@ -1334,7 +1828,9 @@
          EXISTING JAVASCRIPT
     ===================================================== -->
 
+    <script src="js/config.js"></script>
     <script src="js/script.js"></script>
+
 
 
     <!-- =====================================================
