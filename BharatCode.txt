@@ -1,0 +1,4 @@
+Project: InvestWise
+Description: An AI-powered investment research platform that analyzes live stock market data and provides stock insights with explanations.
+Features: Live stock data, AI-powered stock analysis, investment insights, and a user-friendly interface.
+Purpose: To help users understand stock market information and make more informed investment decisions.
